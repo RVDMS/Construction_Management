@@ -1,0 +1,506 @@
+{
+  "counties": [
+    {
+      "name": "Baringo",
+      "constituencies": [
+        {
+          "name": "Baringo Central",
+          "wards": [
+            "Kabarnet",
+            "Sacho",
+            "Tenges",
+            "Ewalel Chapchap",
+            "Kapropita"
+          ]
+        },
+        {
+          "name": "Baringo North",
+          "wards": [
+            "Barwessa",
+            "Bartabwa",
+            "Kabartonjo",
+            "Saimo Kipsaraman",
+            "Saimo Soi"
+          ]
+        },
+        {
+          "name": "Baringo South",
+          "wards": [
+            "Marigat",
+            "Mochongoi",
+            "Ilchamus",
+            "Mukutani"
+          ]
+        },
+        {
+          "name": "Mogotio",
+          "wards": [
+            "Mogotio",
+            "Emining",
+            "Kisanana"
+          ]
+        },
+        {
+          "name": "Eldama Ravine",
+          "wards": [
+            "Lembus",
+            "Lembus Perkerra",
+            "Ravine",
+            "Lembus Kwen"
+          ]
+        },
+        {
+          "name": "Tiaty",
+          "wards": [
+            "Kolowa",
+            "Silale",
+            "Churo/Amaya",
+            "Ribkwo",
+            "Tirioko",
+            "Loyamorok",
+            "Tangulbei/Korossi",
+            "Ngorora"
+          ]
+        }
+      ]
+    },
+
+    {
+      "name": "Kajiado",
+      "constituencies": [
+        {
+          "name": "Kajiado North",
+          "wards": [
+            "Olkeri",
+            "Ongata Rongai",
+            "Nkaimurunya",
+            "Oloolua",
+            "Ngong"
+          ]
+        },
+        {
+          "name": "Kajiado Central",
+          "wards": [
+            "Purko",
+            "Ildamat",
+            "Dalalekutuk",
+            "Matapato North",
+            "Matapato South"
+          ]
+        },
+        {
+          "name": "Kajiado East",
+          "wards": [
+            "Kaputiei North",
+            "Kitengela",
+            "Oloosirkon/Sholinke",
+            "Kenyawa-Poka",
+            "Imaroro"
+          ]
+        },
+        {
+          "name": "Kajiado West",
+          "wards": [
+            "Keekonyokie",
+            "Iloodokilani",
+            "Magadi",
+            "Ewuaso Oonkidongi",
+            "Mosiro"
+          ]
+        },
+        {
+          "name": "Kajiado South",
+          "wards": [
+            "Entonet/Lenkism",
+            "Imbirikani/Eselenkei",
+            "Kuku",
+            "Rombo",
+            "Kimana"
+          ]
+        }
+      ]
+    },
+
+    {
+      "name": "Laikipia",
+      "constituencies": [
+        {
+          "name": "Laikipia East",
+          "wards": [
+            "Ngobit",
+            "Tigithi",
+            "Thingithu",
+            "Nanyuki",
+            "Umande"
+          ]
+        },
+        {
+          "name": "Laikipia West",
+          "wards": [
+            "Rumuruti",
+            "Githiga",
+            "Marmanet",
+            "Igwamiti",
+            "Salama"
+          ]
+        },
+        {
+          "name": "Laikipia North",
+          "wards": [
+            "Mukogodo East",
+            "Mukogodo West",
+            "Segera",
+            "Ol Moran"
+          ]
+        }
+      ]
+    },
+
+    {
+      "name": "Nakuru",
+      "constituencies": [
+        {
+          "name": "Bahati",
+          "wards": [
+            "Dundori",
+            "Kabatini",
+            "Kiamaina",
+            "Lanet/Umoja",
+            "Bahati"
+          ]
+        },
+        {
+          "name": "Subukia",
+          "wards": [
+            "Subukia",
+            "Waseges",
+            "Kabazi"
+          ]
+        },
+        {
+          "name": "Rongai",
+          "wards": [
+            "Menengai West",
+            "Visoi",
+            "Mosop",
+            "Solai",
+            "Kamura"
+          ]
+        },
+        {
+          "name": "Nakuru Town East",
+          "wards": [
+            "Flamingo",
+            "Kivumbini",
+            "Menengai",
+            "Nakuru East"
+          ]
+        },
+        {
+          "name": "Nakuru Town West",
+          "wards": [
+            "Barut",
+            "London",
+            "Kaptembwo",
+            "Rhoda",
+            "Shaabab"
+          ]
+        },
+        {
+          "name": "Molo",
+          "wards": [
+            "Mariashoni",
+            "Elburgon",
+            "Turi",
+            "Molo"
+          ]
+        },
+        {
+          "name": "Naivasha",
+          "wards": [
+            "Biashara",
+            "Hells Gate",
+            "Lakeview",
+            "Mai Mahiu",
+            "Olkaria",
+            "Viwandani"
+          ]
+        },
+        {
+          "name": "Kuresoi North",
+          "wards": [
+            "Amalo",
+            "Kiptororo",
+            "Nyota",
+            "Sirikwa"
+          ]
+        },
+        {
+          "name": "Kuresoi South",
+          "wards": [
+            "Keringet",
+            "Kiptagich",
+            "Tinet"
+          ]
+        },
+        {
+          "name": "Gilgil",
+          "wards": [
+            "Gilgil",
+            "Elementaita",
+            "Mbaruk/Eburu",
+            "Malewa West",
+            "Murindati"
+          ]
+        },
+        {
+          "name": "Njoro",
+          "wards": [
+            "Mauche",
+            "Kihingo",
+            "Nessuit",
+            "Lare",
+            "Njoro"
+          ]
+        }
+      ]
+    },
+
+    {
+      "name": "Uasin Gishu",
+      "constituencies": [
+        {
+          "name": "Turbo",
+          "wards": [
+            "Kamagut",
+            "Kiplombe",
+            "Kapseret",
+            "Huruma",
+            "Ng'enyilel"
+          ]
+        },
+        {
+          "name": "Ainabkoi",
+          "wards": [
+            "Kapsoya",
+            "Kaptagat",
+            "Ainabkoi/Olare"
+          ]
+        },
+        {
+          "name": "Soy",
+          "wards": [
+            "Moi's Bridge",
+            "Kipsomba",
+            "Soy",
+            "Ziwa",
+            "Segero/Barsombe"
+          ]
+        },
+        {
+          "name": "Moiben",
+          "wards": [
+            "Tembelio",
+            "Sergoit",
+            "Karuna/Meibeki",
+            "Moiben"
+          ]
+        },
+        {
+          "name": "Kapseret",
+          "wards": [
+            "Simat/Kapseret",
+            "Kipkenyo",
+            "Ngeria",
+            "Megun"
+          ]
+        },
+        {
+          "name": "Kesses",
+          "wards": [
+            "Racecourse",
+            "Cheptiret/Kipchamo",
+            "Tulwet/Chuiyat"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Kericho",
+      "constituencies": [
+        {
+          "name": "Ainamoi",
+          "wards": [
+            "Kapsoit",
+            "Ainamoi",
+            "Kapkugerwet",
+            "Kipchebor",
+            "Kapsaos",
+            "Kipchimchim"
+          ]
+        },
+        {
+          "name": "Belgut",
+          "wards": [
+            "Waldai",
+            "Kabianga",
+            "Cheptororiet/Seretut",
+            "Chaik"
+          ]
+        },
+        {
+          "name": "Bureti",
+          "wards": [
+            "Cheplanget",
+            "Cheboin",
+            "Litein",
+            "Chebonet/Soliat"
+          ]
+        },
+        {
+          "name": "Kipkelion East",
+          "wards": [
+            "Londiani",
+            "Kedowa/Kimugul",
+            "Chepseon",
+            "Tendeno/Sorget"
+          ]
+        },
+        {
+          "name": "Kipkelion West",
+          "wards": [
+            "Kunyak",
+            "Kamasian",
+            "Kipkelion",
+            "Chilchila"
+          ]
+        },
+        {
+          "name": "Sigowet/Soin",
+          "wards": [
+            "Sigowet",
+            "Kaplelartet",
+            "Soliat",
+            "Soin"
+          ]
+        }
+      ]
+    },
+
+    {
+      "name": "Bomet",
+      "constituencies": [
+        {
+          "name": "Bomet Central",
+          "wards": [
+            "Silibwet Township",
+            "Ndaraweta",
+            "Singorwet",
+            "Chesoen"
+          ]
+        },
+        {
+          "name": "Bomet East",
+          "wards": [
+            "Merigi",
+            "Kembu",
+            "Longisa",
+            "Kipreres",
+            "Chemaner"
+          ]
+        },
+        {
+          "name": "Chepalungu",
+          "wards": [
+            "Kongasis",
+            "Nyongores",
+            "Sigor",
+            "Chebunyo",
+            "Siongiroi"
+          ]
+        },
+        {
+          "name": "Konoin",
+          "wards": [
+            "Chepchabas",
+            "Kimulot",
+            "Mogogosiek",
+            "Boito",
+            "Embomos"
+          ]
+        },
+        {
+          "name": "Sotik",
+          "wards": [
+            "Ndanai/Abosi",
+            "Chemagel",
+            "Kipsonoi",
+            "Kapletundo",
+            "Rongena/Manaret"
+          ]
+        }
+      ]
+    },
+
+    {
+      "name": "Narok",
+      "constituencies": [
+        {
+          "name": "Narok North",
+          "wards": [
+            "Olpusimoru",
+            "Olokurto",
+            "Narok Town",
+            "Nkareta",
+            "Olorropil"
+          ]
+        },
+        {
+          "name": "Narok East",
+          "wards": [
+            "Ilkerin",
+            "Ololulunga",
+            "Melelo",
+            "Loita"
+          ]
+        },
+        {
+          "name": "Narok South",
+          "wards": [
+            "Majimoto/Naroosura",
+            "Ololmasani",
+            "Sogoo",
+            "Sagare"
+          ]
+        },
+        {
+          "name": "Narok West",
+          "wards": [
+            "Ilmotiok",
+            "Mara",
+            "Siana",
+            "Naikarra"
+          ]
+        },
+        {
+          "name": "Kilgoris",
+          "wards": [
+            "Kilgoris Central",
+            "Keyian",
+            "Angata Barikoi",
+            "Shankoe"
+          ]
+        },
+        {
+          "name": "Emurua Dikirr",
+          "wards": [
+            "Ilkerin",
+            "Mogondo",
+            "Kapsasian",
+            "Oloiborsoit"
+          ]
+        }
+      ]
+    }
+  ]
+}
