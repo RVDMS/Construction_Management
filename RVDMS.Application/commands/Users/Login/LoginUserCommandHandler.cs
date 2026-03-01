@@ -22,18 +22,21 @@ namespace RVDMS.Application.commands.Users.Login
         private readonly ITokenServices _tokenServices;
         private readonly IGeoValidationService _geoValidationService;
         private readonly IApplicationDbContext _context;
+        private readonly ITokenHasher _tokenHasher;
 
         public LoginUserCommandHandler(UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             ITokenServices tokenServices,
             IGeoValidationService geoValidationService,
-            IApplicationDbContext context)
+            IApplicationDbContext context,
+            ITokenHasher tokenHasher)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _tokenServices = tokenServices;
             _geoValidationService = geoValidationService;
             _context = context;
+            _tokenHasher = tokenHasher;
         }
         public async Task<Result<AuthResponseDto>> Handle(LoginUserCommand request, CancellationToken cancellationToken)
         {
@@ -72,6 +75,7 @@ namespace RVDMS.Application.commands.Users.Login
                 // Generate new tokens
                 var accessToken = await _tokenServices.GenerateToken(user);
                 var refreshToken = _tokenServices.GenerateRefreshToken();
+                var hashedToken = _tokenHasher.Hash(refreshToken);
 
                 var oldTokens = await _context.RefreshTokens
                         .Where(rt => rt.UserId == user.Id && !rt.IsRevoked)
@@ -86,7 +90,7 @@ namespace RVDMS.Application.commands.Users.Login
                 {
                     Id = Guid.NewGuid(),
                     UserId = user.Id,
-                    Token = refreshToken,
+                    Token = hashedToken,
                     ExpiryTime = DateTime.UtcNow.AddDays(7),
                     IsRevoked = false
                 };
@@ -97,8 +101,8 @@ namespace RVDMS.Application.commands.Users.Login
                    User: new UserDto
                    {
                        Id = user.Id,
-                       UserName = user.UserName,
-                       Email = user.Email,
+                       UserName = user.UserName!,
+                       Email = user.Email!,
                        FirstName = user.FirstName,
                        LastName = user.LastName,
                        PhoneNumber = user.PhoneNumber,

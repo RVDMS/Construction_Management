@@ -13,7 +13,7 @@ namespace RVDMS.Domain.Entities
         public string FirstName { get; set; } = string.Empty;
         public string LastName { get; set; } = string.Empty;
 
-        public Location BaseLocation { get; set; }
+        public required Location BaseLocation { get; set; }
         public DateTime? LastLoginAt { get; set; }
         public bool IsActive { get; set; } = true;
         public DateTime CreatedAt {  get; set; }
@@ -21,6 +21,6 @@ namespace RVDMS.Domain.Entities
         // Navigation properties
         public virtual ICollection<ProjectAssignment> ProjectAssignments { get; set; } = new List<ProjectAssignment>();
         public virtual ICollection<WeeklyReport> CreatedReports { get; set; } = new List<WeeklyReport>();
-        public virtual ICollection<Photo> UploadedPhotos { get; set; } = new List<Photo>();
+        
     }
 }

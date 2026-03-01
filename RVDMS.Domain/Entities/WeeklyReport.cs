@@ -28,7 +28,7 @@ namespace RVDMS.Domain.Entities
 
         // Navigation properties
         public virtual Project Project { get; set; } = null!;
-        public virtual ICollection<Photo> Photos { get; set; } = new List<Photo>();
+        
 
         public void ValidateLocation(Location projectLocation)
         {

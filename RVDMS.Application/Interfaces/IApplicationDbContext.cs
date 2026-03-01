@@ -13,7 +13,7 @@ namespace RVDMS.Application.Interfaces
         DbSet<RefreshToken> RefreshTokens { get; }
 
         
-        DbSet<ApplicationUser> Users { get; }
+        
 
         // Save changes
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);

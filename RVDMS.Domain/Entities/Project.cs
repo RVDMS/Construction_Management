@@ -12,7 +12,13 @@ namespace RVDMS.Domain.Entities
     public class Project : BaseEntity
     {
         public string Name { get; set; } = string.Empty;
-        public string? Code { get; set; }
+        public string? TenderNumber { get; set; }
+        public string UserId { get; set; } = string.Empty;
+
+        public string ContractorName {  get; set; } = string.Empty ;
+
+        public string ConsultantName { get; set; } = string.Empty ;
+
         public string? Description { get; set; }
         public decimal ContractSum { get; set; }
         public DateTime StartDate { get; set; }
@@ -20,8 +26,8 @@ namespace RVDMS.Domain.Entities
         public ProjectStatus Status { get; set; }
 
         // Location
-        public double Latitude { get; set; }
-        public double Longitude { get; set; }
+        public decimal Latitude { get; set; }
+        public decimal Longitude { get; set; }
         public double RadiusInMeters { get; set; } // Geo-fence radius
 
         // Progress tracking
@@ -59,7 +65,7 @@ namespace RVDMS.Domain.Entities
         public virtual Cluster? Cluster { get; set; }
         public virtual ICollection<ProjectAssignment> Assignments { get; set; } = new List<ProjectAssignment>();
         public virtual ICollection<WeeklyReport> WeeklyReports { get; set; } = new List<WeeklyReport>();
-        public virtual ICollection<Photo> Photos { get; set; } = new List<Photo>();
+        
 
         public void UpdateProgress(decimal physicalProgress, string userId)
         {

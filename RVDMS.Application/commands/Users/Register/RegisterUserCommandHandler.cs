@@ -11,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RVDMS.Application.commands.Users
+namespace RVDMS.Application.commands.Users.Register
 {
     public class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommand, Result<AuthResponseDto>>
     {
@@ -58,7 +58,7 @@ namespace RVDMS.Application.commands.Users
 
 
                 }
-                await _userManager.AddToRoleAsync(user, "Clerk");
+                await _userManager.AddToRoleAsync(user, "Admin");
 
                 //var accessToken = await _tokenServices.GenerateToken(user);
                 //var refreshToken = _tokenServices.GenerateRefreshToken();

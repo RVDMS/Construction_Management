@@ -8,7 +8,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RVDMS.Application.commands.Users
+namespace RVDMS.Application.commands.Users.Register
 {
     public record RegisterUserCommand : IRequest<Result<AuthResponseDto>>
     {

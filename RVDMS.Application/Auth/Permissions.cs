@@ -14,6 +14,7 @@ namespace RVDMS.Application.Auth
         public const string ViewProject = "Project.View";
         public const string SubmitReport = "Report.Submit";
         public const string ApproveReport = "Report.Approve";
+        public const string ViewReport = "Report.View";
         public const string ViewFinancialData = "Dashboard.ViewFinancialData";
     }
 
