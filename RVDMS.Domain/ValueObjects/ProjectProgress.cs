@@ -27,7 +27,7 @@ namespace RVDMS.Domain.ValueObjects
             if (PhysicalProgress == 0) return ProgressStatus.NotStarted;
             if (Variance >= 5) return ProgressStatus.Ahead;
             if (Variance >= -5) return ProgressStatus.OnTime;
-            if (Variance >= -15) return ProgressStatus.Slow;
+            if (Variance >= -10) return ProgressStatus.Slow;
             return ProgressStatus.Delayed;
         }
 
