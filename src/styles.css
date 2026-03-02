@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  font-family: 'DM Sans', sans-serif;
+}
+
+:root {
+  --primary: #059669;
+  --primary-light: #d1fae5;
+  --primary-dark: #047857;
+}
+
+body {
+  background-color: #f8fafc;
+}
