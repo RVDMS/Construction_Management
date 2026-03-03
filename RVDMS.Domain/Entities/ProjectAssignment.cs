@@ -13,7 +13,7 @@ namespace RVDMS.Domain.Entities
         // Foreign keys
         public Guid ProjectId { get; set; }
         public string UserId { get; set; } = null!;
-        public UserRole Role { get; set; }
+        public string? Role { get; set; }
         public DateTime AssignedAt { get; set; }
         public DateTime? RevokedAt { get; set; }
 

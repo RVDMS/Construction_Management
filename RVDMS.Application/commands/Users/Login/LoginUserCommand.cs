@@ -17,8 +17,8 @@ namespace RVDMS.Application.commands.Users.Login
             public string Password { get; init; } = string.Empty;
 
             // Current location sent by client
-            public decimal CurrentLatitude { get; init; }
-            public decimal CurrentLongitude { get; init; }
+            public double CurrentLatitude { get; init; }
+            public double CurrentLongitude { get; init; }
        
     }
 }

@@ -40,5 +40,7 @@ namespace RVDMS.Domain.Entities
                 );
             }
         }
+       
+        public virtual ApplicationUser? CreatedByUser { get; set; }
     }
 }

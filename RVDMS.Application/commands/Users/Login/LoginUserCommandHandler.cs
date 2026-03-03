@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using RVDMS.Application.Common;
 using RVDMS.Application.DTOs;
 using RVDMS.Application.Interfaces;
+using RVDMS.Domain.Constants;
 using RVDMS.Domain.Entities;
 using RVDMS.Domain.Interfaces;
 using RVDMS.Domain.ValueObjects;
@@ -59,7 +60,20 @@ namespace RVDMS.Application.commands.Users.Login
                        request.CurrentLongitude,
                        0
                    );
-                if (!_geoValidationService.IsWithinProjectSite(user.BaseLocation, currentLocation))
+                var roles = await _userManager.GetRolesAsync(user);
+
+                // Define roles that can bypass geofence
+                var exemptRoles = new[]
+                {
+                    UserRoles.SuperAdmin,
+                    UserRoles.RegionalLead,
+                    UserRoles.TechnicalLead,
+                    UserRoles.ClusterSupervisor
+                };
+
+                // Check if user has any of the exempt roles
+                bool isGeoFenceExempt = roles.Any(r => exemptRoles.Contains(r));
+                if (!isGeoFenceExempt && !_geoValidationService.IsWithinProjectSite(user.BaseLocation, currentLocation))
                 {
                     var distance = _geoValidationService.CalculateDistance(user.BaseLocation, currentLocation);
 
@@ -70,7 +84,11 @@ namespace RVDMS.Application.commands.Users.Login
                 }
 
                 user.LastLoginAt = DateTime.UtcNow;
-                await _userManager.UpdateAsync(user);
+                var updateResult =  await _userManager.UpdateAsync(user);
+                if (!updateResult.Succeeded)
+                {
+
+                }
 
                 // Generate new tokens
                 var accessToken = await _tokenServices.GenerateToken(user);
@@ -109,8 +127,8 @@ namespace RVDMS.Application.commands.Users.Login
                        IsActive = user.IsActive,
                        LastLoginAt = user.LastLoginAt
                    },
-                      AccessToken: string.Empty,
-                      RefreshToken: string.Empty
+                      string.Empty,
+                      string.Empty
                  );
 
                 return Result<AuthResponseDto>.Success(authResponse);

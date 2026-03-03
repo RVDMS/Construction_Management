@@ -11,6 +11,7 @@ namespace RVDMS.Domain.Entities
     public class AuditLog : BaseEntity
     {
         public string UserId { get; set; } = null!;
+        public virtual ApplicationUser User { get; set; } = null!;
         public ActionType Action { get; set; }
         public string EntityType { get; set; } = string.Empty;
         public string? EntityId { get; set; }

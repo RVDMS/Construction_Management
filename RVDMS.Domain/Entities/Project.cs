@@ -1,4 +1,5 @@
 ﻿using RVDMS.Domain.Common;
+using RVDMS.Domain.Constants;
 using RVDMS.Domain.Enum;
 using RVDMS.Domain.ValueObjects;
 using System;
@@ -13,7 +14,8 @@ namespace RVDMS.Domain.Entities
     {
         public string Name { get; set; } = string.Empty;
         public string? TenderNumber { get; set; }
-        public string UserId { get; set; } = string.Empty;
+        public string? ProjectLeadId { get; set; }
+        public virtual ApplicationUser? ProjectLead { get; set; }
 
         public string ContractorName {  get; set; } = string.Empty ;
 
@@ -26,8 +28,8 @@ namespace RVDMS.Domain.Entities
         public ProjectStatus Status { get; set; }
 
         // Location
-        public decimal Latitude { get; set; }
-        public decimal Longitude { get; set; }
+        public double Latitude { get; set; }
+        public double Longitude { get; set; }
         public double RadiusInMeters { get; set; } // Geo-fence radius
 
         // Progress tracking
@@ -63,7 +65,7 @@ namespace RVDMS.Domain.Entities
         // Navigation properties
         public virtual Ward Ward { get; set; } = null!;
         public virtual Cluster? Cluster { get; set; }
-        public virtual ICollection<ProjectAssignment> Assignments { get; set; } = new List<ProjectAssignment>();
+        public virtual ICollection<ProjectAssignment> ProjectAssignments { get; set; } = new List<ProjectAssignment>();
         public virtual ICollection<WeeklyReport> WeeklyReports { get; set; } = new List<WeeklyReport>();
         
 
@@ -91,11 +93,53 @@ namespace RVDMS.Domain.Entities
             }
         }
 
-        public bool IsUserAssigned(string userId)
+        public IEnumerable<Project> GetProjectsAsClerkOfWorks()
         {
-            
-            return Assignments.Any(a => a.UserId == userId && a.RevokedAt == null);
+            return ProjectAssignments
+                .Where(pa => pa.Role == UserRoles.ClerkOfWorks && pa.RevokedAt == null)
+                .Select(pa => pa.Project);
         }
+
+        public IEnumerable<Project> GetProjectsAsTechnicalLead()
+        {
+            return ProjectAssignments
+                .Where(pa => pa.Role == UserRoles.TechnicalLead && pa.RevokedAt == null)
+                .Select(pa => pa.Project);
+        }
+
+        public IEnumerable<Project> GetProjectsAsClusterSupervisor()
+        {
+            return ProjectAssignments
+                .Where(pa => pa.Role == UserRoles.ClusterSupervisor && pa.RevokedAt == null)
+                .Select(pa => pa.Project);
+        }
+
+        public bool IsAssignedToProject(Guid projectId)
+        {
+            return ProjectAssignments.Any(pa =>
+                pa.ProjectId == projectId &&
+                pa.RevokedAt == null);
+        }
+
+        public ProjectAssignment? GetAssignmentForProject(Guid projectId)
+        {
+            return ProjectAssignments
+                .FirstOrDefault(pa => pa.ProjectId == projectId && pa.RevokedAt == null);
+        }
+
+        public bool HasRoleOnProject(Guid projectId, string role)
+        {
+            return ProjectAssignments.Any(pa =>
+                pa.ProjectId == projectId &&
+                pa.Role == role &&
+                pa.RevokedAt == null);
+        }
+
+        public IEnumerable<ProjectAssignment> GetAssignmentsByRole(string role)
+        {
+            return ProjectAssignments.Where(a => a.Role == role && a.RevokedAt == null);
+        }
+
 
         public Location GetLocation()
         {

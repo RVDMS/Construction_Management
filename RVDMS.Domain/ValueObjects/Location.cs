@@ -4,11 +4,11 @@ namespace RVDMS.Domain.ValueObjects
 {
     public class Location : IEquatable<Location>
     {
-        public decimal Latitude { get; private set; }
-        public decimal Longitude { get; private set; }
+        public double Latitude { get; private set; }
+        public double Longitude { get; private set; }
         public double RadiusInMeters { get; private set; }
 
-        public Location(decimal latitude, decimal longitude, double radiusInMeters)
+        public Location(double latitude, double longitude, double radiusInMeters)
         {
             if (latitude < -90 || latitude > 90)
                 throw new ArgumentOutOfRangeException(nameof(latitude), "Latitude must be between -90 and 90.");
@@ -69,7 +69,10 @@ namespace RVDMS.Domain.ValueObjects
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(Latitude, Longitude, RadiusInMeters);
+            return HashCode.Combine(
+                Math.Round(Latitude, 6),
+                Math.Round(Longitude, 6),
+                Math.Round(RadiusInMeters, 2));
         }
 
         /// <summary>
@@ -79,5 +82,7 @@ namespace RVDMS.Domain.ValueObjects
         {
             return CalculateDistance((double)other.Latitude, (double)other.Longitude);
         }
+
+        private Location() { } // For EF
     }
 }

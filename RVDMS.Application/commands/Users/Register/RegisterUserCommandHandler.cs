@@ -48,7 +48,7 @@ namespace RVDMS.Application.commands.Users.Register
                         request.BaseRadiusInMeters
                         ),
                     CreatedAt = DateTime.UtcNow,
-                    EmailConfirmed = true
+                    EmailConfirmed = false
                 };
                 var createResult = await _userManager.CreateAsync(user, request.Password);
                 if (!createResult.Succeeded)
@@ -58,7 +58,7 @@ namespace RVDMS.Application.commands.Users.Register
 
 
                 }
-                await _userManager.AddToRoleAsync(user, "Admin");
+                await _userManager.AddToRoleAsync(user, "COW");
 
                 //var accessToken = await _tokenServices.GenerateToken(user);
                 //var refreshToken = _tokenServices.GenerateRefreshToken();
@@ -87,8 +87,8 @@ namespace RVDMS.Application.commands.Users.Register
                      IsActive = user.IsActive,
                      LastLoginAt = user.LastLoginAt
                  },
-                    AccessToken: string.Empty,
-                    RefreshToken: string.Empty
+                    string.Empty,
+                    string.Empty
                );
 
                 return Result<AuthResponseDto>.Success(authResponse);

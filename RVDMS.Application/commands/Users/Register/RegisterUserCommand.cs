@@ -21,8 +21,8 @@ namespace RVDMS.Application.commands.Users.Register
         public string Password { get; init; } = string.Empty;
 
         // User's base location (where they'll work from)
-        public decimal BaseLatitude { get; init; }
-        public decimal BaseLongitude { get; init; }
+        public double BaseLatitude { get; init; }
+        public double BaseLongitude { get; init; }
         public int BaseRadiusInMeters { get; init; } = 500; // Default 100m radius
 
         

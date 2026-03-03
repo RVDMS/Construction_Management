@@ -10,6 +10,7 @@ namespace RVDMS.Domain.Entities
     {
         public Guid Id { get; set; }
         public required string UserId { get; set; }
+        public virtual ApplicationUser User { get; set; } = null!;
         public string Token { get; set; } = string.Empty;
         public DateTime ExpiryTime { get; set; }
         public bool IsRevoked { get; set; }
