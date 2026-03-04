@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RVDMS.Infrastructure.Seeders
+namespace RVDMS.Infrastructure.Seeders.Seeding
 {
     public class RoleSeeder
     {

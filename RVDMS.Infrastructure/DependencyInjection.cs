@@ -8,8 +8,8 @@ using RVDMS.Application.Interfaces;
 using RVDMS.Domain.Entities;
 using RVDMS.Infrastructure.Data;
 using RVDMS.Infrastructure.Security.Services;
-using RVDMS.Infrastructure.Seeders;
 using RVDMS.Infrastructure.Seeders.MasterSeeder;
+using RVDMS.Infrastructure.Seeders.Seeding;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -71,6 +71,9 @@ namespace RVDMS.Infrastructure
             services.AddScoped<ITokenHasher, sha256TokenHasher>();
             services.AddScoped<PermissionSeeder>();
             services.AddScoped<RoleSeeder>();
+            services.AddScoped<UserSeeder>();
+            services.AddScoped<LocationSeeder>();
+            services.AddScoped<ProjectSeeder>();
             services.AddScoped<DbInitializer>();
             return services;
         }
