@@ -17,8 +17,6 @@ namespace RVDMS.Infrastructure.Configurations
         {
             builder.ToTable("AuditLogs");
 
-            // Configure BaseEntity properties
-            builder.HasKey(al => al.Id);
 
             builder.Property(al => al.Id)
                 .HasDefaultValueSql("NEWSEQUENTIALID()");
@@ -77,7 +75,7 @@ namespace RVDMS.Infrastructure.Configurations
             builder.HasOne<BaseAuditableEntity>()
                 .WithMany(b => b.AuditLogs)
                 .HasForeignKey(al => al.EntityId)
-                .HasPrincipalKey(b => b.Id.ToString());
+                .HasPrincipalKey(b => b.Id);
         }
     }
 }

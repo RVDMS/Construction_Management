@@ -176,6 +176,8 @@ namespace RVDMS.Infrastructure.Seeders
                 CreatedBy = "system-seed",
                 IsDeleted = false
             },
+
+            
             
             // Elgeyo Marakwet - Keiyo North
             new Ward
@@ -707,7 +709,19 @@ namespace RVDMS.Infrastructure.Seeders
                 CreatedAt = DateTime.UtcNow,
                 CreatedBy = "system-seed",
                 IsDeleted = false
-            }
+            },
+            //Modification after Seeding
+            //Uasin Gishu - Ainabkoi constituency
+            new Ward
+            {
+                Id = Guid.Parse("40000000-0000-0000-0000-000000000063"),
+                Name = "Ainabkoi/Olare",
+                Code = "AOE",
+                ConstituencyId = ConstituencySeedData.Constituencies[39].Id,
+                CreatedAt = DateTime.UtcNow,
+                CreatedBy = "system-seed",
+                IsDeleted = false
+            },
         };
     }
 }

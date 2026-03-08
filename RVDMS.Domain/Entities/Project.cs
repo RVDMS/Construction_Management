@@ -37,9 +37,6 @@ namespace RVDMS.Domain.Entities
         public DateTime? LastProgressUpdate { get; set; }
         public string? LastUpdatedById { get; set; }
 
-        // Computed properties (not mapped to DB)
-        private ProjectProgress? _progress;
-
         public decimal TimeElapsedPercentage
         {
             get
@@ -56,7 +53,7 @@ namespace RVDMS.Domain.Entities
         }
 
         public ProjectProgress Progress =>
-            _progress ??= new ProjectProgress(TimeElapsedPercentage, CurrentPhysicalProgress);
+            ProjectProgress.Create(TimeElapsedPercentage, CurrentPhysicalProgress);
 
         // Foreign keys
         public Guid WardId { get; set; }
@@ -83,8 +80,7 @@ namespace RVDMS.Domain.Entities
             UpdatedAt = DateTime.UtcNow;
             UpdatedBy = userId;
 
-            // Reset progress calculation
-            _progress = null;
+           
 
             // Auto-update status if completed
             if (physicalProgress >= 100)
@@ -93,54 +89,9 @@ namespace RVDMS.Domain.Entities
             }
         }
 
-        public IEnumerable<Project> GetProjectsAsClerkOfWorks()
-        {
-            return ProjectAssignments
-                .Where(pa => pa.Role == UserRoles.ClerkOfWorks && pa.RevokedAt == null)
-                .Select(pa => pa.Project);
-        }
 
-        public IEnumerable<Project> GetProjectsAsTechnicalLead()
-        {
-            return ProjectAssignments
-                .Where(pa => pa.Role == UserRoles.TechnicalLead && pa.RevokedAt == null)
-                .Select(pa => pa.Project);
-        }
-
-        public IEnumerable<Project> GetProjectsAsClusterSupervisor()
-        {
-            return ProjectAssignments
-                .Where(pa => pa.Role == UserRoles.ClusterSupervisor && pa.RevokedAt == null)
-                .Select(pa => pa.Project);
-        }
-
-        public bool IsAssignedToProject(Guid projectId)
-        {
-            return ProjectAssignments.Any(pa =>
-                pa.ProjectId == projectId &&
-                pa.RevokedAt == null);
-        }
-
-        public ProjectAssignment? GetAssignmentForProject(Guid projectId)
-        {
-            return ProjectAssignments
-                .FirstOrDefault(pa => pa.ProjectId == projectId && pa.RevokedAt == null);
-        }
-
-        public bool HasRoleOnProject(Guid projectId, string role)
-        {
-            return ProjectAssignments.Any(pa =>
-                pa.ProjectId == projectId &&
-                pa.Role == role &&
-                pa.RevokedAt == null);
-        }
-
-        public IEnumerable<ProjectAssignment> GetAssignmentsByRole(string role)
-        {
-            return ProjectAssignments.Where(a => a.Role == role && a.RevokedAt == null);
-        }
-
-
+        public bool IsOverdue =>
+            DateTime.UtcNow > EndDate && Status != ProjectStatus.Completed;
         public Location GetLocation()
         {
             return new Location(Latitude, Longitude, RadiusInMeters);

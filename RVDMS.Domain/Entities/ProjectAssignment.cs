@@ -20,5 +20,6 @@ namespace RVDMS.Domain.Entities
         // Navigation properties
         public virtual Project Project { get; set; } = null!;
         //User navigation property will be handled by Identity
+        public virtual ApplicationUser User { get; set; } = null!;
     }
 }

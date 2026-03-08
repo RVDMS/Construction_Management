@@ -15,8 +15,7 @@ namespace RVDMS.Infrastructure.Configurations
         {
             builder.ToTable("Projects");
 
-            // Configure BaseEntity properties
-            BaseEntityConfiguration.ConfigureBaseEntity(builder);
+            
 
             // Property configurations
             builder.Property(p => p.Name)
@@ -131,6 +130,7 @@ namespace RVDMS.Infrastructure.Configurations
 
             // Ignore computed properties not stored in DB
             builder.Ignore(p => p.Progress);
+            builder.Ignore(p => p.TimeElapsedPercentage);
 
             // Check constraint for dates
             builder.ToTable(t => t.HasCheckConstraint("CK_Project_EndDateGreaterThanStartDate",

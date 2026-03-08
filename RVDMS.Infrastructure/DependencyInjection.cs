@@ -6,7 +6,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using RVDMS.Application.Interfaces;
 using RVDMS.Domain.Entities;
+using RVDMS.Domain.Interfaces;
 using RVDMS.Infrastructure.Data;
+using RVDMS.Infrastructure.Repositories;
 using RVDMS.Infrastructure.Security.Services;
 using RVDMS.Infrastructure.Seeders.MasterSeeder;
 using RVDMS.Infrastructure.Seeders.Seeding;
@@ -75,6 +77,10 @@ namespace RVDMS.Infrastructure
             services.AddScoped<LocationSeeder>();
             services.AddScoped<ProjectSeeder>();
             services.AddScoped<DbInitializer>();
+            services.AddScoped<IProjectRepository, ProjectRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IGeoValidationService, GeovalidationServices>();
+            services.AddScoped<ITokenServices, TokenServices>();
             return services;
         }
     }

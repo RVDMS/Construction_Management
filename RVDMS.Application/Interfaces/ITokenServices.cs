@@ -9,7 +9,7 @@ namespace RVDMS.Application.Interfaces
 {
     public interface ITokenServices
     {
-       Task<string> GenerateToken(ApplicationUser);
+       Task<string> GenerateToken(ApplicationUser user);
         string GenerateRefreshToken();
     }
 }

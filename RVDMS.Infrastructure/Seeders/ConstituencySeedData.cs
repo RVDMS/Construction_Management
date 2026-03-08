@@ -84,6 +84,7 @@ namespace RVDMS.Infrastructure.Seeders
                 CreatedBy = "system-seed",
                 IsDeleted = false
             },
+            
             new Constituency
             {
                 Id = Guid.Parse("30000000-0000-0000-0000-000000000008"),
@@ -419,7 +420,19 @@ namespace RVDMS.Infrastructure.Seeders
                 CreatedAt = DateTime.UtcNow,
                 CreatedBy = "system-seed",
                 IsDeleted = false
-            }
+            },
+            //modification after seeding
+            //Uasin Gishu
+            new Constituency
+            {
+                Id = Guid.Parse("30000000-0000-0000-0000-000000000040"),
+                Name = "Ainabkoi",
+                Code = "ABI",
+                CountyId = CountySeedData.Counties[1].Id,
+                CreatedAt = DateTime.UtcNow,
+                CreatedBy = "system-seed",
+                IsDeleted = false
+            },
         };
     }
 }

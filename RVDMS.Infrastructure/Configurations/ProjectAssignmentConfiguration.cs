@@ -16,8 +16,7 @@ namespace RVDMS.Infrastructure.Configurations
         {
             builder.ToTable("ProjectAssignments");
 
-            // Configure BaseEntity properties
-            BaseEntityConfiguration.ConfigureBaseEntity(builder);
+            
 
             builder.Property(pa => pa.UserId)
                 .IsRequired()

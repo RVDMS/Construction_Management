@@ -53,8 +53,8 @@ Built up Structures: Block Type A G+9 (5 blocks, 26,755 sqm), Block Type B G+9 (
                 StartDate = new DateTime(2025, 6, 19),
                 EndDate = new DateTime(2026, 12, 19),
                 Status = ProjectStatus.Active,
-                Latitude = 0.527778,
-                Longitude = 35.261944,
+                Latitude = 0.526938, 
+                Longitude = 35.262038,
                 RadiusInMeters = 500,
                 CurrentPhysicalProgress = 9.76m,
                 LastProgressUpdate = new DateTime(2026, 2, 25),
@@ -694,7 +694,7 @@ Market Units: 2 Bedroom (270 units), 3 Bedroom (270 units)
                 CurrentPhysicalProgress = 99.80m,
                 LastProgressUpdate = new DateTime(2026, 1, 31),
                 LastUpdatedById = "COW00000-0000-0000-0000-000000000037", // Peter Kakuko
-                WardId = WardSeedData.Wards[12].Id, // Need appropriate Ainabkoi ward
+                WardId = WardSeedData.Wards[39].Id, // Need appropriate Ainabkoi ward
                 ClusterId = ClusterSeedData.Clusters[21].Id, // ESP Markets Cluster 89
                 CreatedAt = DateTime.UtcNow,
                 CreatedBy = "system-seed",

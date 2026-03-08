@@ -14,7 +14,7 @@ namespace RVDMS.Domain.Entities
         public virtual ApplicationUser User { get; set; } = null!;
         public ActionType Action { get; set; }
         public string EntityType { get; set; } = string.Empty;
-        public string? EntityId { get; set; }
+        public Guid EntityId { get; set; }
         public string? OldValues { get; set; }
         public string? NewValues { get; set; }
         public string? IpAddress { get; set; }

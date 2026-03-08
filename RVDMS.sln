@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36930.0 d17.14
+VisualStudioVersion = 17.14.36930.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "rvdms.client", "rvdms.client\rvdms.client.esproj", "{ECDBA6AB-6393-A1A0-86C1-30884A580F06}"
 EndProject
@@ -12,6 +12,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RVDMS.Application", "RVDMS.Application\RVDMS.Application.csproj", "{305A31A3-7911-4338-AE06-C3B80BC8FE19}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RVDMS.Infrastructure", "RVDMS.Infrastructure\RVDMS.Infrastructure.csproj", "{912B422C-64E7-4B4A-82AE-0C0DBB3BC293}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RVDMS.Tests", "RVDMS.Tests\RVDMS.Tests.csproj", "{B7E70EFA-9F21-4B35-8312-5C0700ACF67E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +43,10 @@ Global
 		{912B422C-64E7-4B4A-82AE-0C0DBB3BC293}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{912B422C-64E7-4B4A-82AE-0C0DBB3BC293}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{912B422C-64E7-4B4A-82AE-0C0DBB3BC293}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7E70EFA-9F21-4B35-8312-5C0700ACF67E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7E70EFA-9F21-4B35-8312-5C0700ACF67E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7E70EFA-9F21-4B35-8312-5C0700ACF67E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7E70EFA-9F21-4B35-8312-5C0700ACF67E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

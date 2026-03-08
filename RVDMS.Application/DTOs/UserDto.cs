@@ -17,5 +17,15 @@ namespace RVDMS.Application.DTOs
         public string FullName => $"{FirstName} {LastName}";
         public DateTime? LastLoginAt { get; set; }
         public bool IsActive { get; set; }
+
+        public string County { get; set; }
+
+        public string Constituency { get; set; }
+
+        public string Ward { get; set; }
+
+        public string? Role {  get; set; }
+
+        public List<ProjectAssignmentDto> ProjectAssignments {  get; set; } = new List<ProjectAssignmentDto>();
     }
 }

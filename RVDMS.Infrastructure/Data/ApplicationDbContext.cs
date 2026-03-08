@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using RVDMS.Application.Interfaces;
 using RVDMS.Domain.Common;
 using RVDMS.Domain.Entities;
+using RVDMS.Infrastructure.Configurations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,6 +32,8 @@ namespace RVDMS.Infrastructure.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+            BaseEntityConfiguration.ConfigureBaseEntity<BaseEntity>(builder.Entity<BaseEntity>());
+           
             builder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
             ConfigureIdentityTable(builder);
             

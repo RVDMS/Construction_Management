@@ -15,8 +15,7 @@ namespace RVDMS.Infrastructure.Configurations
         {
             builder.ToTable("WeeklyReports");
 
-            // Configure BaseEntity properties (BaseAuditableEntity inherits from BaseEntity)
-            BaseEntityConfiguration.ConfigureBaseEntity(builder);
+            
 
             // Property configurations
             builder.Property(wr => wr.Title)

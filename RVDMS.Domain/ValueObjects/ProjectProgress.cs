@@ -14,11 +14,22 @@ namespace RVDMS.Domain.ValueObjects
         public decimal Variance => PhysicalProgress - TimeElapsedPercentage;
         public ProgressStatus Status { get; private set; }
 
-        public ProjectProgress(decimal timeElapsedPercentage, decimal physicalProgress)
+        private ProjectProgress(decimal timeElapsedPercentage, decimal physicalProgress)
         {
             TimeElapsedPercentage = Math.Round(timeElapsedPercentage, 2);
             PhysicalProgress = Math.Round(physicalProgress, 2);
             Status = DetermineStatus();
+        }
+
+        public static ProjectProgress Create(decimal timeElapsedPercentage, decimal physicalProgress)
+        {
+            if (timeElapsedPercentage < 0 || timeElapsedPercentage > 100)
+                throw new ArgumentException("Time elapsed percentage must be between 0 and 100");
+
+            if (physicalProgress < 0 || physicalProgress > 100)
+                throw new ArgumentException("Physical progress must be between 0 and 100");
+
+            return new ProjectProgress(timeElapsedPercentage, physicalProgress);
         }
 
         private ProgressStatus DetermineStatus()

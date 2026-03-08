@@ -15,8 +15,7 @@ namespace RVDMS.Infrastructure.Configurations
         {
             builder.ToTable("Wards");
 
-            // Configure BaseEntity properties
-            BaseEntityConfiguration.ConfigureBaseEntity(builder);
+            
 
             // Property configurations
             builder.Property(w => w.Name)
