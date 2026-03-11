@@ -14,9 +14,9 @@ namespace RVDMS.Infrastructure.Configurations
     {
         public void Configure(EntityTypeBuilder<ProjectAssignment> builder)
         {
-            builder.ToTable("ProjectAssignments");
+            BaseEntityConfiguration.ConfigureBaseEntity(builder);
 
-            
+            builder.ToTable("ProjectAssignments");
 
             builder.Property(pa => pa.UserId)
                 .IsRequired()
@@ -50,9 +50,10 @@ namespace RVDMS.Infrastructure.Configurations
                 .HasForeignKey(pa => pa.ProjectId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            builder.HasOne<ApplicationUser>()
+            builder.HasOne(pa => pa.User)
                 .WithMany(u => u.ProjectAssignments)
                 .HasForeignKey(pa => pa.UserId)
+                
                 .OnDelete(DeleteBehavior.Restrict);
         }
     }

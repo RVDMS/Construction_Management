@@ -13,9 +13,10 @@ namespace RVDMS.Infrastructure.Configurations
     {
         public void Configure(EntityTypeBuilder<Project> builder)
         {
+            BaseEntityConfiguration.ConfigureBaseEntity(builder);
+
             builder.ToTable("Projects");
 
-            
 
             // Property configurations
             builder.Property(p => p.Name)
@@ -79,16 +80,16 @@ namespace RVDMS.Infrastructure.Configurations
                 .IsRequired();
 
             // Computed column for TimeElapsedPercentage (optional - can be kept as computed or ignored)
-            builder.Property(p => p.TimeElapsedPercentage)
-                .HasComputedColumnSql(@"
-                    CAST(
-                        CASE 
-                            WHEN DATEDIFF(day, StartDate, EndDate) <= 0 THEN 0
-                            WHEN DATEDIFF(day, StartDate, GETUTCDATE()) <= 0 THEN 0
-                            WHEN DATEDIFF(day, StartDate, GETUTCDATE()) >= DATEDIFF(day, StartDate, EndDate) THEN 100
-                            ELSE (DATEDIFF(day, StartDate, GETUTCDATE()) * 100.0) / DATEDIFF(day, StartDate, EndDate)
-                        END AS DECIMAL(5,2))",
-                    stored: false);
+            //builder.Property(p => p.TimeElapsedPercentage)
+            //    .HasComputedColumnSql(@"
+            //        CAST(
+            //            CASE 
+            //                WHEN DATEDIFF(day, StartDate, EndDate) <= 0 THEN 0
+            //                WHEN DATEDIFF(day, StartDate, GETUTCDATE()) <= 0 THEN 0
+            //                WHEN DATEDIFF(day, StartDate, GETUTCDATE()) >= DATEDIFF(day, StartDate, EndDate) THEN 100
+            //                ELSE (DATEDIFF(day, StartDate, GETUTCDATE()) * 100.0) / DATEDIFF(day, StartDate, EndDate)
+            //            END AS DECIMAL(5,2))",
+            //        stored: false);
 
             // Indexes for performance
             builder.HasIndex(p => p.Name);

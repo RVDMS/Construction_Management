@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
+using RVDMS.Domain.Constants;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,13 +22,24 @@ namespace RVDMS.Infrastructure.Seeders.Seeding
 
         public async Task SeedAsync()
         {
-            string[] roles = { "SuperAdmin", "CS", "RL", "COW", "CDH", "TL" };
-            foreach (var role in roles)
+            
+            foreach (var role in UserRoles.AllRoles)
             {
                 if(!await _roleManager.RoleExistsAsync(role))
                 {
-                    await _roleManager.CreateAsync(new IdentityRole(role));
-                    _logger.LogInformation("Role {RoleName} created successfully.", role);
+                    var result = await _roleManager.CreateAsync(new IdentityRole(role));
+
+                    if (result.Succeeded)
+                    {
+                        _logger.LogInformation("Role {RoleName} created successfully.", role);
+                    }
+                    else
+                    {
+                        foreach (var error in result.Errors)
+                        {
+                            _logger.LogError("Error creating role {RoleName}: {Error}", role, error.Description);
+                        }
+                    }
                 }
                 else
                 {

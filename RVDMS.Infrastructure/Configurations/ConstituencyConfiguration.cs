@@ -13,9 +13,10 @@ namespace RVDMS.Infrastructure.Configurations
     {
         public void Configure(EntityTypeBuilder<Constituency> builder)
         {
+            BaseEntityConfiguration.ConfigureBaseEntity(builder);
+
             builder.ToTable("Constituencies");
 
-            
 
             builder.Property(c => c.Name)
                 .IsRequired()

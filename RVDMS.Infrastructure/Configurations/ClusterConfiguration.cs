@@ -13,6 +13,8 @@ namespace RVDMS.Infrastructure.Configurations
     {
         public void Configure(EntityTypeBuilder<Cluster> builder)
         {
+            BaseEntityConfiguration.ConfigureBaseEntity(builder);
+
             builder.ToTable("Clusters");
 
             

@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Path": "rvdms.client\\rvdms.client.esproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "RVDMS.Server\\RVDMS.Api.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]

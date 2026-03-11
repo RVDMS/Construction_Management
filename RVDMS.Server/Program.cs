@@ -1,4 +1,5 @@
 ﻿using Microsoft.OpenApi.Models;
+using RVDMS.Api.Middleware;
 using RVDMS.Application;
 using RVDMS.Infrastructure;
 using RVDMS.Infrastructure.Seeders.MasterSeeder;
@@ -62,6 +63,29 @@ builder.Services.AddSwaggerGen(options =>
             Url = new Uri("https://rvdms.go.ke/license")
         }
     });
+    options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        Name = "Authorization",
+        Description = "Enter 'Bearer' [space] and then your token.\n\nExample: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9",
+        In = ParameterLocation.Header,
+        Type = SecuritySchemeType.Http,
+        Scheme = "bearer",
+        BearerFormat = "JWT"
+    });
+    options.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                }
+            },
+            new string[] {}
+        }
+    });
 });
 builder.Host.UseSerilog();
 builder.Services.AddApplication();
@@ -87,8 +111,10 @@ if (app.Environment.IsDevelopment())
     var initializer = scope.ServiceProvider.GetRequiredService<DbInitializer>();
     await initializer.SeedAsync();
 }
+app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseHttpsRedirection();
+app.UseAuthentication();
 
 app.UseAuthorization();
 

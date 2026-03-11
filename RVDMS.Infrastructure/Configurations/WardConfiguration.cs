@@ -13,9 +13,10 @@ namespace RVDMS.Infrastructure.Configurations
     {
         public void Configure(EntityTypeBuilder<Ward> builder)
         {
+            BaseEntityConfiguration.ConfigureBaseEntity(builder);
             builder.ToTable("Wards");
-
             
+
 
             // Property configurations
             builder.Property(w => w.Name)
@@ -46,7 +47,7 @@ namespace RVDMS.Infrastructure.Configurations
                 "Code IS NULL OR Code LIKE '[A-Z0-9][A-Z0-9][A-Z0-9]'")); // Example: 3-character code
 
             // Query filter for soft delete (already in BaseEntityConfiguration, but can be explicit)
-            builder.HasQueryFilter(w => !w.IsDeleted);
+            
         }
     }
 }

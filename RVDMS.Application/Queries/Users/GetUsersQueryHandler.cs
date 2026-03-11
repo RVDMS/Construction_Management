@@ -62,7 +62,7 @@ namespace RVDMS.Application.Queries.Users
             var totalRecords = await _userRepository.CountAsync(filter, cancellationToken);
 
             // 4. Calculate total pages
-            var totalPages = (int)System.Math.Ceiling((double)totalRecords / filter.PageSize);
+            var totalPages = (int)Math.Ceiling((double)totalRecords / filter.PageSize);
 
             // 5. Return PagedResponse
             return new PagedResponse<UserDto>

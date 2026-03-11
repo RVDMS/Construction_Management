@@ -104,7 +104,7 @@ namespace RVDMS.Infrastructure.Seeders
             {
                 Id = Guid.Parse("40000000-0000-0000-0000-000000000009"),
                 Name = "Kipsuswa",
-                Code = "KPS",
+                Code = "KSS",
                 ConstituencyId = ConstituencySeedData.Constituencies[4].Id,
                 CreatedAt = DateTime.UtcNow,
                 CreatedBy = "system-seed",
@@ -440,7 +440,7 @@ namespace RVDMS.Infrastructure.Seeders
             {
                 Id = Guid.Parse("40000000-0000-0000-0000-000000000039"),
                 Name = "Kiptagich",
-                Code = "KPT",
+                Code = "KPH",
                 ConstituencyId = ConstituencySeedData.Constituencies[21].Id,
                 CreatedAt = DateTime.UtcNow,
                 CreatedBy = "system-seed",
@@ -554,7 +554,7 @@ namespace RVDMS.Infrastructure.Seeders
             {
                 Id = Guid.Parse("40000000-0000-0000-0000-000000000049"),
                 Name = "Marigat",
-                Code = "MGT",
+                Code = "MRT",
                 ConstituencyId = ConstituencySeedData.Constituencies[28].Id,
                 CreatedAt = DateTime.UtcNow,
                 CreatedBy = "system-seed",

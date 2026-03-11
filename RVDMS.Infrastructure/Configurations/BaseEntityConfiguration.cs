@@ -13,7 +13,7 @@ namespace RVDMS.Infrastructure.Configurations
     {
         public static void ConfigureBaseEntity<T>(EntityTypeBuilder<T> builder) where T : BaseEntity
         {
-            builder.HasKey(e => e.Id);
+            
 
             builder.Property(e => e.Id)
                 .HasDefaultValueSql("NEWSEQUENTIALID()");

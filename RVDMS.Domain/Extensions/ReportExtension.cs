@@ -10,11 +10,11 @@ namespace RVDMS.Domain.Extensions
 {
     public static class ReportExtension
     {
-        public static bool IsLate(this WeeklyReport weeklyReport)
-        {
-            var expectedWeek = GetCurrentWeekNumber();
-            return weeklyReport.WeekNumber < expectedWeek - 1;
-        }
+        //public static bool IsLate(this WeeklyReport weeklyReport)
+        //{
+        //    var expectedWeek = GetCurrentWeekNumber();
+        //    return weeklyReport.WeekNumber < expectedWeek - 1;
+        //}
         private static int GetCurrentWeekNumber()
         {
             var culture = CultureInfo.CurrentCulture;

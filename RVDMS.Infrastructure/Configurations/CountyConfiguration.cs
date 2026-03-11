@@ -13,6 +13,7 @@ namespace RVDMS.Infrastructure.Configurations
     {
         public void Configure(EntityTypeBuilder<County> builder)
         {
+            BaseEntityConfiguration.ConfigureBaseEntity(builder);
             builder.ToTable("Counties");
 
             

@@ -58,7 +58,7 @@ namespace RVDMS.Application.commands.Users.Login
                 var currentLocation = new Location(
                        request.CurrentLatitude,
                        request.CurrentLongitude,
-                       0
+                       1000
                    );
                 var roles = await _userManager.GetRolesAsync(user);
 
@@ -68,7 +68,8 @@ namespace RVDMS.Application.commands.Users.Login
                     UserRoles.SuperAdmin,
                     UserRoles.RegionalLead,
                     UserRoles.TechnicalLead,
-                    UserRoles.ClusterSupervisor
+                    UserRoles.ClusterSupervisor,
+                    UserRoles.CountyDirector
                 };
 
                 // Check if user has any of the exempt roles
@@ -87,7 +88,7 @@ namespace RVDMS.Application.commands.Users.Login
                 var updateResult =  await _userManager.UpdateAsync(user);
                 if (!updateResult.Succeeded)
                 {
-
+                    return Result<AuthResponseDto>.Failure("Failed to update lastLogin time");
                 }
 
                 // Generate new tokens
@@ -127,8 +128,8 @@ namespace RVDMS.Application.commands.Users.Login
                        IsActive = user.IsActive,
                        LastLoginAt = user.LastLoginAt
                    },
-                      string.Empty,
-                      string.Empty
+                      AccessToken: accessToken,
+                      RefreshToken: refreshToken
                  );
 
                 return Result<AuthResponseDto>.Success(authResponse);

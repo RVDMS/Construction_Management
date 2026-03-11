@@ -12,11 +12,11 @@ namespace RVDMS.Domain.Entities
     {
         public string Title { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
-        public int WeekNumber { get; set; }
-        public int Year { get; set; }
-        public decimal ReportedProgress { get; set; }
-        public string? Challenges { get; set; }
-        public string? NextWeekPlan { get; set; }
+        //public int WeekNumber { get; set; }
+        //public int Year { get; set; }
+        //public decimal ReportedProgress { get; set; }
+        //public string? Challenges { get; set; }
+        //public string? NextWeekPlan { get; set; }
 
         // Foreign keys
         public Guid ProjectId { get; set; }
@@ -42,5 +42,7 @@ namespace RVDMS.Domain.Entities
         }
        
         public virtual ApplicationUser? CreatedByUser { get; set; }
+        
+
     }
 }

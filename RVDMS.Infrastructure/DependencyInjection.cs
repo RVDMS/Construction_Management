@@ -77,6 +77,10 @@ namespace RVDMS.Infrastructure
             services.AddScoped<LocationSeeder>();
             services.AddScoped<ProjectSeeder>();
             services.AddScoped<DbInitializer>();
+            services.AddScoped<ICurrentUserService, CurrentUserService>();
+            services.AddHttpContextAccessor();
+            services.AddScoped<IFileService, CloudinaryService>();
+            services.AddScoped<IWeeklyReportRepository, WeeklyReportRepository>();
             services.AddScoped<IProjectRepository, ProjectRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IGeoValidationService, GeovalidationServices>();

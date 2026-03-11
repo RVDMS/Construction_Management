@@ -1795,7 +1795,7 @@ Market Units: 2 Bedroom (270 units), 3 Bedroom (270 units)
             {
                 Id = Guid.Parse("70000000-0000-0000-0000-000000000074"),
                 Name = "Ewaso Ngiro ESP Market",
-                TenderNumber = "234",
+                TenderNumber = "MLPWHUD/SDHUD/UDD/089/2024-2025",
                 ContractorName = "Budgets Construction Ltd",
                 ConsultantName = "Nil",
                 Description = "Ongoing construction of ESP market",

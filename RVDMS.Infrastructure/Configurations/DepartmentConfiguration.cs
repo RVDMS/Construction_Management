@@ -13,10 +13,9 @@ namespace RVDMS.Infrastructure.Configurations
     {
         public void Configure(EntityTypeBuilder<Department> builder)
         {
-            builder.ToTable("Departments");
+            BaseEntityConfiguration.ConfigureBaseEntity(builder);
 
-            
-            
+            builder.ToTable("Departments");
 
             builder.Property(d => d.Name)
                 .IsRequired()

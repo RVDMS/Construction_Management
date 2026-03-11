@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using RVDMS.Application.Interfaces;
+using RVDMS.Domain.Enum;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,18 +12,31 @@ namespace RVDMS.Application.Queries.Projects
     public class GetProjectByIdHandler : IRequestHandler<GetProjectByIdQuery, ProjectDto>
     {
         private readonly IProjectRepository _repository;
+        private readonly ICurrentUserService _currentUserService;
 
-        public GetProjectByIdHandler(IProjectRepository repository)
+        public GetProjectByIdHandler(IProjectRepository repository, ICurrentUserService currentUserService)
         {
             _repository = repository;
+            _currentUserService = currentUserService;
         }
         public async Task<ProjectDto> Handle(GetProjectByIdQuery request, CancellationToken cancellationToken)
         {
             var project = await _repository.GetByIdAsync(request.Id, cancellationToken);
-
             if (project == null) return null;
+
             var progress = project.Progress;
             var activeAssignments = project.ProjectAssignments.Where(pa => pa.RevokedAt == null).ToList();
+
+            // Role-based access
+            var roles = _currentUserService.Roles.ToList();
+            var userId = _currentUserService.UserId;
+
+            // COW can only access their assigned project
+            if (roles.Contains("COW") && !activeAssignments.Any(a => a.UserId == userId && a.Role == "COW"))
+            {
+                return null; // Not authorized to see this project
+            }
+
             var cow = activeAssignments.FirstOrDefault(a => a.Role == "COW");
             var tl = activeAssignments.FirstOrDefault(a => a.Role == "TL");
             var css = activeAssignments.Where(a => a.Role == "CS").ToList();
@@ -60,9 +74,9 @@ namespace RVDMS.Application.Queries.Projects
                 Variance = Math.Round(progress.Variance, 2),
                 ProgressStatus = progress.Status.ToString(),
                 ProgressStatusColor = progress.GetStatusColor(),
-                IsAtRisk = progress.Status == RVDMS.Domain.Enum.ProgressStatus.Delayed || progress.Status == RVDMS.Domain.Enum.ProgressStatus.Slow,
+                IsAtRisk = progress.Status == ProgressStatus.Delayed || progress.Status == ProgressStatus.Slow,
 
-                DaysRemaining = Math.Max(0, (project.EndDate - System.DateTime.UtcNow).Days),
+                DaysRemaining = Math.Max(0, (project.EndDate - DateTime.UtcNow).Days),
                 RemainingBudget = Math.Round(project.ContractSum * (1 - (project.CurrentPhysicalProgress / 100)), 2),
                 EstimatedCompletionCost = Math.Round(project.ContractSum * ((100 - project.CurrentPhysicalProgress) / 100), 2),
 
@@ -73,8 +87,8 @@ namespace RVDMS.Application.Queries.Projects
 
                 TotalWeeklyReports = project.WeeklyReports.Count,
                 LastReportDate = latestReport?.CreatedAt,
-                HasOverdueReports = latestReport != null && latestReport.CreatedAt < System.DateTime.UtcNow.AddDays(-7)
+                HasOverdueReports = latestReport != null && latestReport.CreatedAt < DateTime.UtcNow.AddDays(-7)
             };
         }
-    }
+        }
 }

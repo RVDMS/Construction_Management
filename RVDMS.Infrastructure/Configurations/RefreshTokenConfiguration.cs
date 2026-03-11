@@ -37,9 +37,10 @@ namespace RVDMS.Infrastructure.Configurations
             builder.HasIndex(rt => rt.ExpiryTime);
 
             // Relationships
-            builder.HasOne<ApplicationUser>()
+            builder.HasOne(rt => rt.User)
                 .WithMany(rt => rt.RefreshTokens)
                 .HasForeignKey(rt => rt.UserId)
+               
                 .OnDelete(DeleteBehavior.Cascade);
         }
     }

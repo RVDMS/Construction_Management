@@ -15,15 +15,12 @@ namespace RVDMS.Infrastructure.Configurations
         
         public void Configure(EntityTypeBuilder<AuditLog> builder)
         {
+            BaseEntityConfiguration.ConfigureBaseEntity(builder);
+
             builder.ToTable("AuditLogs");
+            
 
-
-            builder.Property(al => al.Id)
-                .HasDefaultValueSql("NEWSEQUENTIALID()");
-
-            builder.Property(al => al.CreatedAt)
-                .IsRequired()
-                .HasDefaultValueSql("GETUTCDATE()");
+            
 
             builder.Property(al => al.UserId)
                 .IsRequired()
@@ -71,11 +68,7 @@ namespace RVDMS.Infrastructure.Configurations
                  .HasForeignKey(al => al.UserId)
                  .OnDelete(DeleteBehavior.Restrict);
 
-            // For BaseAuditableEntity navigation
-            builder.HasOne<BaseAuditableEntity>()
-                .WithMany(b => b.AuditLogs)
-                .HasForeignKey(al => al.EntityId)
-                .HasPrincipalKey(b => b.Id);
+            
         }
     }
 }

@@ -32,7 +32,7 @@ namespace RVDMS.Infrastructure.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-            BaseEntityConfiguration.ConfigureBaseEntity<BaseEntity>(builder.Entity<BaseEntity>());
+            
            
             builder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
             ConfigureIdentityTable(builder);

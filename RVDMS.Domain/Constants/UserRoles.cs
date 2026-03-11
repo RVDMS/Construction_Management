@@ -12,7 +12,7 @@ namespace RVDMS.Domain.Constants
         public const string ClusterSupervisor = "CS";      // Heads several projects
         public const string RegionalLead = "RL";           // Regional Lead
         public const string ClerkOfWorks = "COW";          // One per project
-        public const string CountyDirector = "CDH";        // County Director of Health? 
+        public const string CountyDirector = "CDH";        // County Director of Housing? 
         public const string TechnicalLead = "TL";          // One per region/cluster
 
         // Helper method to get all roles
@@ -54,7 +54,7 @@ namespace RVDMS.Domain.Constants
                 RegionalLead => "Regional Lead (One per system)",
                 ClusterSupervisor => "Cluster Supervisor (Can head multiple projects)",
                 ClerkOfWorks => "Clerk of Works (One per project)",
-                CountyDirector => "County Director of Health",
+                CountyDirector => "County Director of Housing",
                 TechnicalLead => "Technical Lead (One per region/cluster)",
                 _ => role
             };

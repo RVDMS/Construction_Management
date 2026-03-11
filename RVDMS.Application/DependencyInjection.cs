@@ -1,6 +1,9 @@
-﻿using FluentValidation;
+﻿using Microsoft.AspNetCore.Authorization;
+using FluentValidation;
 using MediatR;
+
 using Microsoft.Extensions.DependencyInjection;
+using RVDMS.Application.Auth;
 using RVDMS.Application.Behaviours;
 using System;
 using System.Collections.Generic;
@@ -24,6 +27,9 @@ namespace RVDMS.Application
             typeof(IPipelineBehavior<,>),
             typeof(LoggingBehavior<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+            // Permission Authorization
+            services.AddSingleton<IAuthorizationPolicyProvider, PermissionPolicyProvider>();
+            services.AddScoped<IAuthorizationHandler, PermissionAuthorizationHandler>();
 
             return services;
         }
