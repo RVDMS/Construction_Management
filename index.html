@@ -2,7 +2,13 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!-- Favicon imported from src/assets/images and applied at runtime -->
+    <link rel="icon" type="image/png" href="/favicon.png" /> <!-- fallback until script runs -->
+    <script type="module">
+      import kenyaFavicon from '/src/assets/images/kenya-favicon.png';
+      const link = document.querySelector('link[rel="icon"]');
+      if (link) link.href = kenyaFavicon;
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Affordable Housing Programme – Nakuru Dashboard</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />

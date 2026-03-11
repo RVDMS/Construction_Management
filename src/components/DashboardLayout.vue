@@ -1,7 +1,7 @@
 <template>
-  <div class="min-h-screen bg-slate-50">
+  <div class="min-h-screen bg-slate-50 dark:bg-slate-900 transition-colors duration-200">
     <!-- Top Header -->
-    <header class="bg-white border-b border-slate-200 sticky top-0 z-40">
+    <header class="bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 sticky top-0 z-40 transition-colors duration-200">
       <div class="flex items-center justify-between px-6 py-3">
         <!-- Left: Logos + Region -->
         <div class="flex items-center gap-4">
@@ -20,13 +20,23 @@
         </div>
 
         <div class="flex items-center gap-4">
-          <!-- Notification bell -->
+          <button
+            @click="themeStore.toggleTheme()"
+            :title="themeStore.isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'"
+            class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
+          >
+            <SunIcon v-if="themeStore.isDark" class="w-5 h-5 text-amber-400" />
+            <MoonIcon v-else class="w-5 h-5 text-slate-600 dark:text-slate-400" />
+          </button>
+
+          <!-- Notification bell --
           <button class="relative p-2 hover:bg-slate-100 rounded-lg transition-colors">
             <BellIcon class="w-5 h-5 text-slate-600" />
             <span class="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
           </button>
-
+        -->
           <!-- Profile dropdown -->
+
           <div class="relative" ref="profileMenuRef">
             <button
               @click="showProfileMenu = !showProfileMenu"
@@ -42,8 +52,9 @@
               </div>
               <ChevronDownIcon class="w-4 h-4 text-slate-600" />
             </button>
-
+             
             <!-- Dropdown menu -->
+            
             <Transition name="dropdown">
               <div v-if="showProfileMenu" class="absolute right-0 mt-2 w-64 bg-white rounded-lg shadow-lg border border-slate-200 py-2 z-50">
                 <div class="px-4 py-2 border-b border-slate-200">
@@ -52,6 +63,8 @@
                   <p class="text-xs text-slate-600">{{ getRoleDisplayName(userStore.currentUser.role) }}</p>
                 </div>
 
+                <!-- Switch profile section - we do away with this for now -->
+                 <!--
                 <div class="px-4 py-2 border-b border-slate-200">
                   <p class="text-xs text-slate-500 mb-2">Switch Profile</p>
                   <div class="space-y-1">
@@ -70,6 +83,30 @@
                       </div>
                     </button>
                   </div>
+                </div> 
+              -->
+
+                <div class="px-4 py-3 border-b border-slate-200 dark:border-slate-700 flex items-center justify-between">
+                  <div class="flex items-center gap-2 text-sm text-slate-700 dark:text-slate-300">
+                    <SunIcon v-if="themeStore.isDark" class="w-4 h-4 text-amber-400" />
+                    <MoonIcon v-else class="w-4 h-4 text-slate-500" />
+                    <span>{{ themeStore.isDark ? 'Light Mode' : 'Dark Mode' }}</span>
+                  </div>
+
+                  <button
+                    @click="themeStore.toggleTheme()"
+                    :class="[
+                      'relative inline-flex w-11 h-6 rounded-full transition-colors duration-300',
+                      themeStore.isDark ? 'bg-emerald-500' : 'bg-slate-300'
+                    ]"
+                  >
+                    <span
+                      :class="[
+                        'absolute top-1 left-1 w-4 h-4 bg-white rounded-full shadow transition-transform duration-300',
+                        themeStore.isDark ? 'translate-x-5' : 'translate-x-0'
+                      ]"
+                    ></span>
+                  </button>
                 </div>
 
                 <RouterLink
@@ -97,7 +134,7 @@
 
     <div class="flex">
       <!-- Sidebar -->
-      <aside class="w-64 bg-white border-r border-slate-200 min-h-[calc(100vh-65px)] sticky top-[65px]">
+      <aside class="w-64 bg-white dark:bg-slate-800 border-r border-slate-200 dark:border-slate-700 min-h-[calc(100vh-65px)] sticky top-[65px] transition-colors duration-200">
         <nav class="p-4 space-y-1">
           <RouterLink
             v-for="item in visibleNavItems"
@@ -105,8 +142,8 @@
             :to="item.href"
             :class="['flex items-center gap-3 px-4 py-3 rounded-lg transition-colors text-sm',
               isActiveRoute(item.href)
-                ? 'bg-emerald-50 text-emerald-700 font-medium'
-                : 'text-slate-700 hover:bg-slate-50'
+                ? 'bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 font-medium'
+                : 'text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700'
             ]"
           >
             <component :is="item.icon" class="w-5 h-5" />
@@ -152,7 +189,7 @@
         </nav>
 
         <!-- Security status widget -->
-        <div class="mx-4 mt-6 p-4 bg-emerald-50 rounded-lg border border-emerald-200">
+        <div class="mx-4 mt-6 p-4 bg-emerald-50 dark:bg-emerald-900/20 rounded-lg border border-emerald-200 dark:border-emerald-800">
           <div class="flex items-center gap-2 mb-2">
             <ShieldIcon class="w-4 h-4 text-emerald-600" />
             <span class="text-sm font-medium text-emerald-900">Security Status</span>
@@ -177,6 +214,7 @@
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { RouterLink, RouterView, useRoute } from 'vue-router'
+import { useThemeStore } from '../stores/themeStore.js'
 import {
   LayoutDashboard as LayoutDashboardIcon,
   FolderKanban as FolderKanbanIcon,
@@ -189,13 +227,16 @@ import {
   Shield as ShieldIcon,
   LogOut as LogOutIcon,
   UserCircle as UserCircleIcon,
-  MapPin as MapPinIcon
+  MapPin as MapPinIcon,
+  Sun as SunIcon,
+  Moon as MoonIcon
 } from 'lucide-vue-next'
 import { useUserStore } from '../stores/userStore.js'
 import { canAccessPage, getRoleDisplayName } from '../utils/permissions.js'
 import { getAccessibleCounties } from '../data/counties.js'
 
 const userStore = useUserStore()
+const themeStore = useThemeStore()
 const route = useRoute()
 const showProfileMenu = ref(false)
 const showMoreCounties = ref(false)
@@ -245,12 +286,12 @@ function isActiveRoute(href) {
   if (href === '/dashboard') return route.path === '/dashboard'
   return route.path.startsWith(href)
 }
-
+/*
 function switchProfile(userId) {
   userStore.switchUser(userId)
   showProfileMenu.value = false
 }
-
+*/
 // Close dropdown on outside click
 function handleClickOutside(e) {
   if (profileMenuRef.value && !profileMenuRef.value.contains(e.target)) {

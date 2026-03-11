@@ -237,6 +237,7 @@ export const users = [
     id: '0',
     name: 'Charles M. Hinga',
     email: 'ps@housing.go.ke',
+    password: 'PS@1234',
     role: 'principal-secretary',
     has2FA: true
   },
@@ -244,6 +245,7 @@ export const users = [
     id: '1',
     name: 'Richard Tuta',
     email: 'r.tuta@housing.go.ke',
+    password: 'Regional@1234',
     role: 'regional-lead',
     has2FA: true,
     region: 'South Rift'
@@ -252,6 +254,7 @@ export const users = [
     id: '2',
     name: 'Nicholas Ogajo',
     email: 'n.ogajo@housing.go.ke',
+    password: 'Director@1234',
     role: 'county-director',
     has2FA: true,
     county: 'Nakuru'
@@ -260,6 +263,7 @@ export const users = [
     id: '3',
     name: 'Dominic Chebon',
     email: 'd.chebon@housing.go.ke',
+    password: 'Clerk@1234',
     role: 'clerk-of-works',
     has2FA: false
   },
@@ -267,6 +271,7 @@ export const users = [
     id: '4',
     name: 'Grace Wanjiru',
     email: 'g.wanjiru@housing.go.ke',
+    password: 'Clerk@1234',
     role: 'clerk-of-works',
     has2FA: false
   },
@@ -274,6 +279,7 @@ export const users = [
     id: '5',
     name: 'Frank Asuza',
     email: 'f.asuza@consultants.co.ke',
+    password: 'Consult@1234',
     role: 'consultant',
     has2FA: false
   }
