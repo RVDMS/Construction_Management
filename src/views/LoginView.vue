@@ -1,15 +1,15 @@
 <template>
-  <div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 to-slate-100">
-    <div class="w-full max-w-md px-4">
+  <div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 px-4 py-8">
+    <div class="w-full max-w-md">
       <!-- Header with logos -->
-      <div class="text-center mb-8">
-        <div class="flex items-center justify-center gap-4 mb-6 flex-wrap">
+      <div class="text-center mb-6 md:mb-8">
+        <div class="flex items-center justify-center gap-3 md:gap-4 mb-4 md:mb-6 flex-wrap">
           <!-- Ministry Logo placeholder -->
-          <img :src="ministryLogo" alt="Ministry Logo" class="h-14 w-14 object-contain" />
-          <img :src="ahbLogo" alt="AHB Logo" class="h-14 w-14 object-contain" />
-          <img :src="bomaLogo" alt="Boma Yangu Logo" class="h-12 w-12 object-contain" />
+          <img :src="ministryLogo" alt="Ministry Logo" class="h-12 w-12 md:h-14 md:w-14 object-contain" />
+          <img :src="ahbLogo" alt="AHB Logo" class="h-12 w-12 md:h-14 md:w-14 object-contain" />
+          <img :src="bomaLogo" alt="Boma Yangu Logo" class="h-10 w-10 md:h-12 md:w-12 object-contain" />
         </div>
-        <h1 class="text-2xl font-semibold text-slate-900 mb-2">Affordable Housing Programme</h1>
+        <h1 class="text-xl md:text-2xl font-semibold text-slate-900 mb-1 md:mb-2">Affordable Housing Programme</h1>
         <p class="text-slate-600">Nakuru County Pilot – Regional Dashboard</p>
       </div>
 
@@ -47,8 +47,8 @@
       </div>
 
       <!-- Login Form Card -->
-      <div class="bg-white rounded-xl shadow-lg border border-slate-200 p-8">
-        <h2 class="text-xl font-semibold mb-6 text-slate-900">
+      <div class="bg-white dark:bg-slate-800 rounded-xl shadow-lg border border-slate-200 dark:border-slate-700 p-6 md:p-8">
+        <h2 class="text-lg md:text-xl font-semibold mb-5 md:mb-6 text-slate-900 dark:text-white">
           {{ showTwoFactor ? 'Two-Factor Authentication' : 'Secure Login' }}
         </h2>
 
@@ -117,14 +117,15 @@
             class="w-full text-slate-600 hover:text-slate-900 text-sm"
           >
             Back to login
+          </button>
+
           <!-- Error message -->
           <div v-if="errorMsg" class="text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg px-4 py-2">
             {{ errorMsg }}
           </div>
-          </button>
         </form>
 
-        <div class="mt-6 pt-6 border-t border-slate-200">
+        <div class="mt-5 md:mt-6 pt-5 md:pt-6 border-t border-slate-200 dark:border-slate-700">
           <div class="flex items-center gap-2 text-xs text-slate-500">
             <ShieldIcon class="w-4 h-4" />
             <span>Secured with JWT authentication, 2FA, and geo-limited access</span>
@@ -132,7 +133,7 @@
         </div>
       </div>
 
-      <p class="text-center text-sm text-slate-600 mt-6">
+      <p class="text-center text-xs md:text-sm text-slate-600 dark:text-slate-400 mt-4 md:mt-6">
         Ministry of Lands, Public Works, Housing and Urban Development
       </p>
     </div>
@@ -194,6 +195,7 @@ function fillCredentials(cred) {
   password.value      = cred.password
   showTwoFactor.value = false
   errorMsg.value      = ''   // <-- Clears previous errors
+  showCredentials.value = false // <-- Optionally hide credentials after filling
 }
 
 function handleLogin() {

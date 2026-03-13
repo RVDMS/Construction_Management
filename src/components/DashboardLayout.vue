@@ -1,25 +1,37 @@
 <template>
-  <div class="min-h-screen bg-slate-50 dark:bg-slate-900 transition-colors duration-200">
+  <div class="h-screen flex flex-col bg-slate-50 dark:bg-slate-900 transition-colors duration-200 overflow-hidden">
     <!-- Top Header -->
     <header class="bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 sticky top-0 z-40 transition-colors duration-200">
-      <div class="flex items-center justify-between px-6 py-3">
+      <div class="flex items-center justify-between px-4 md:px-6 py-3">
         <!-- Left: Logos + Region -->
-        <div class="flex items-center gap-4">
-          <img src="@/assets/logos/Ministry+SDHUD_Logo.jpg" alt="Ministry Logo" class="h-14 w-14 object-contain" />
-          <div class="h-px w-6 bg-slate-300 rotate-90"></div>
-          <img src="@/assets/logos/AHB_Logo.jpg" alt="AHB Logo" class="h-14 w-14 object-contain" />
-          <div class="h-px w-6 bg-slate-300 rotate-90"></div>
-          <img src="@/assets/logos/Boma Yangu_Logo.jpg" alt="Boma Yangu Logo" class="h-12 w-12 object-contain" />
+        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-3">
 
-          <div class="ml-3">
-            <p class="text-sm font-semibold text-slate-900">
+          <!-- Mobile hamburger -->
+          <button
+            @click="sidebarOpen = !sidebarOpen"
+            class="lg:hidden p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
+          >
+            <MenuIcon v-if="!sidebarOpen" class="w-5 h-5 text-slate-600 dark:text-slate-400" />
+            <XIcon v-else class="w-5 h-5 text-slate-600 dark:text-slate-400" />
+          </button>
+          <div class="flex items-center gap-2">
+            <!-- Ministry logo: always visible -->
+            <img src="@/assets/logos/Ministry+SDHUD_Logo.jpg" alt="Ministry Logo" class="h-8 w-8 md:h-10 md:w-10 object-contain" />
+
+            <!-- Other logos: hidden on small screens -->
+            <img src="@/assets/logos/AHB_Logo.jpg" alt="AHB Logo" class="hidden md:block h-8 w-8 md:h-10 md:w-10 object-contain" />
+            <img src="@/assets/logos/Boma Yangu_Logo.jpg" alt="Boma Yangu Logo" class="hidden md:block h-7 w-7 md:h-9 md:w-9 object-contain" />
+          </div>
+
+          <div class="ml-3 hidden sm:block">
+            <p class="text-sm font-semibold text-slate-900 dark:text-white leading-tight">
               {{ headerTitle }}
             </p>
-            <p class="text-xs text-slate-600">{{ headerSubtitle }}</p>
+            <p class="text-xs text-slate-600 dark:text-slate-400">{{ headerSubtitle }}</p>
           </div>
         </div>
 
-        <div class="flex items-center gap-4">
+        <div class="flex items-center gap-2 md:gap-3">
           <button
             @click="themeStore.toggleTheme()"
             :title="themeStore.isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'"
@@ -29,12 +41,12 @@
             <MoonIcon v-else class="w-5 h-5 text-slate-600 dark:text-slate-400" />
           </button>
 
-          <!-- Notification bell --
+          <!-- Notification bell -->
           <button class="relative p-2 hover:bg-slate-100 rounded-lg transition-colors">
             <BellIcon class="w-5 h-5 text-slate-600" />
             <span class="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
           </button>
-        -->
+
           <!-- Profile dropdown -->
 
           <div class="relative" ref="profileMenuRef">
@@ -132,14 +144,29 @@
       </div>
     </header>
 
-    <div class="flex">
+    <div class="flex flex-1 relative overflow-hidden">
+      <!-- Mobile Overlay -->
+      <Transition name="fade">
+        <div
+          v-if="sidebarOpen"
+          class="lg:hidden fixed inset-0 bg-black/50 z-40 top-[57px]"
+          @click="sidebarOpen = false"
+        ></div>
+      </Transition>
       <!-- Sidebar -->
-      <aside class="w-64 bg-white dark:bg-slate-800 border-r border-slate-200 dark:border-slate-700 min-h-[calc(100vh-65px)] sticky top-[65px] transition-colors duration-200">
-        <nav class="p-4 space-y-1">
+      <aside :class="[
+        'bg-white dark:bg-slate-800 border-r border-slate-200 dark:border-slate-700 transition-transform duration-300 z-30 flex-shrink-0',
+        'fixed top-[73px] bottom-0 w-72 flex flex-col overflow-hidden z-50',
+        'lg:sticky lg:top-[57px] lg:h-[calc(100vh-57px)] lg:w-64 lg:translate-x-0 lg:z-30',
+        sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
+      ]">
+        <div class="flex-1 overflow-y-auto">
+        <nav class="p-4 space-y-1 pb-6">
           <RouterLink
             v-for="item in visibleNavItems"
             :key="item.name"
             :to="item.href"
+            @click="sidebarOpen = false"
             :class="['flex items-center gap-3 px-4 py-3 rounded-lg transition-colors text-sm',
               isActiveRoute(item.href)
                 ? 'bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 font-medium'
@@ -168,7 +195,7 @@
                 @click="showMoreCounties = !showMoreCounties"
                 class="w-full flex items-center justify-between gap-3 px-4 py-3 rounded-lg text-slate-700 hover:bg-slate-50 text-sm"
               >
-                <div class="flex items-center gap-3">
+                <div class="flex items-center gap-1 w-2 md:w-auto">
                   <MapPinIcon class="w-4 h-4" />
                   More Counties ({{ moreCounties.length }})
                 </div>
@@ -187,8 +214,9 @@
             </div>
           </div>
         </nav>
+        </div>
 
-        <!-- Security status widget -->
+        <!-- Security status widget -removed 
         <div class="mx-4 mt-6 p-4 bg-emerald-50 dark:bg-emerald-900/20 rounded-lg border border-emerald-200 dark:border-emerald-800">
           <div class="flex items-center gap-2 mb-2">
             <ShieldIcon class="w-4 h-4 text-emerald-600" />
@@ -201,10 +229,11 @@
             <li>● Rate Limiting On</li>
           </ul>
         </div>
+        -->
       </aside>
 
       <!-- Main content -->
-      <main class="flex-1 p-6">
+      <main class="flex-1 p-4 md:p-6 min-w-0 min-h-0 overflow-y-auto">
         <RouterView />
       </main>
     </div>
@@ -229,7 +258,9 @@ import {
   UserCircle as UserCircleIcon,
   MapPin as MapPinIcon,
   Sun as SunIcon,
-  Moon as MoonIcon
+  Moon as MoonIcon,
+  Menu as MenuIcon,
+  X as XIcon
 } from 'lucide-vue-next'
 import { useUserStore } from '../stores/userStore.js'
 import { canAccessPage, getRoleDisplayName } from '../utils/permissions.js'
@@ -240,6 +271,7 @@ const themeStore = useThemeStore()
 const route = useRoute()
 const showProfileMenu = ref(false)
 const showMoreCounties = ref(false)
+const sidebarOpen = ref(false)
 const userLocation = ref('Nakuru, Kenya')
 const profileMenuRef = ref(null)
 
@@ -327,5 +359,14 @@ onUnmounted(() => {
 .dropdown-leave-to {
   opacity: 0;
   transform: translateY(-4px);
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
