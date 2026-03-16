@@ -64,13 +64,22 @@
         <canvas ref="progressChartRef" class="w-full" height="120"></canvas>
       </div>
 
-      <!-- Budget Chart -->
+      <!-- Budget Pie Chart -->
+      <div class="bg-white dark:bg-slate-800 rounded-lg border border-slate-200 p-4 md:p-6">
+        <h3 class="text-lg font-medium text-slate-900 dark:text-white mb-1">Budget Allocation by Project</h3>
+        <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">Contract sum per project (KES Millions)</p>
+        <canvas ref="budgetChartRef" class="w-full" height="120"></canvas>
+      </div>
+
+      <!-- Budget Chart - Bar version (commented out for now) -->
+       <!--
       <div class="bg-white dark:bg-slate-800 rounded-lg border border-slate-200 p-4 md:p-6">
         <h3 class="text-lg font-medium text-slate-900 mb-4">Budget Utilization (KES Millions)</h3>
         <canvas ref="budgetChartRef" class="w-full" height="120"></canvas>
       </div>
     </div>
-
+      -->
+      
     <!-- Map / Site Cards -->
     <div class="bg-white dark:bg-slate-800 rounded-lg border border-slate-200 p-4 md:p-6">
       <h3 class="text-lg font-medium text-slate-900 mb-4">Project Sites – Nakuru County</h3>
@@ -154,6 +163,7 @@
       </div>
     </div>
   </div>
+</div>
 </template>
 
 <script setup>
@@ -225,6 +235,19 @@ const progressData = {
   }]
 }
 
+const budgetData = computed(() => ({
+  labels: userProjects.value.map(p => p.name),
+  datasets: [{
+    data: userProjects.value.map(p => (p.contractSum / 1000000).toFixed(1)),
+    backgroundColor: [
+      '#10b981', '#3b82f6', '#f59e0b',
+      '#ef4444', '#8b5cf6', '#ec4899'
+    ],
+    borderColor: '#ffffff',
+    borderWidth: 2
+  }]
+}))
+/*
 const budgetData = {
   labels: projects.map(p => p.name.split(' ')[0]),
   datasets: [
@@ -240,7 +263,7 @@ const budgetData = {
     }
   ]
 }
-
+*/
 onMounted(() => {
   new Chart(progressChartRef.value, {
     type: 'line',
@@ -248,9 +271,30 @@ onMounted(() => {
     options: { responsive: true, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true } } }
   })
   new Chart(budgetChartRef.value, {
+    type: 'pie',
+    data: budgetData.value,
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          position: 'bottom',
+          labels: { font: { size: 11 }, padding: 12 }
+        },
+        tooltip: {
+          callbacks: {
+            label: (ctx) => ` KES ${ctx.parsed}M`
+          }
+        }
+      }
+    }
+  })
+
+  /*
+  new Chart(budgetChartRef.value, {
     type: 'bar',
     data: budgetData,
     options: { responsive: true, scales: { y: { beginAtZero: true } } }
   })
+  */
 })
 </script>

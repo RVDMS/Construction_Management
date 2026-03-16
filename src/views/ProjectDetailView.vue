@@ -174,7 +174,7 @@
 
           <div>
             <h4 class="text-sm font-medium text-slate-900 mb-3">Previous Reports</h4>
-            <div class="space-y-3">
+            <div :class="userStore.currentUser.role === 'clerk-of-works' ? 'space-y-6 max-w-4xl mx-auto' : 'space-y-6'">
               <div v-for="report in projectReports" :key="report.id" class="p-4 border border-slate-200 rounded-lg">
                 <div class="flex items-center justify-between mb-2">
                   <div class="flex items-center gap-2">

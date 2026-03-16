@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { useUserStore } from '../stores/userStore.js'
 import LoginView from '../views/LoginView.vue'
 import DashboardLayout from '../components/DashboardLayout.vue'
 import DashboardView from '../views/DashboardView.vue'
@@ -34,4 +35,21 @@ const router = createRouter({
   routes
 })
 
+/* Navigation guard to restrict access for clerk-of-works to only their project page */
+router.beforeEach((to, from, next) => {
+  const userStore = useUserStore()
+  const user = userStore.currentUser
+
+  if (user && user.role === 'clerk-of-works') {
+    const projectId = user.assignedProjectId
+    const projectPath = `/dashboard/projects/${projectId}`
+    if (to.path !== projectPath) {
+      return next()
+    }
+    return next(projectPath)
+  }
+
+  next()
+})
+    
 export default router

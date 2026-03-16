@@ -144,6 +144,7 @@
 import { useUserStore } from '../stores/userStore.js'
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { login } from '../services/api.js'
 import {
   Mail as MailIcon,
   Lock as LockIcon,

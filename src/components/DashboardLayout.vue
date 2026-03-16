@@ -8,6 +8,7 @@
 
           <!-- Mobile hamburger -->
           <button
+            v-if="userStore.currentUser.role !== 'clerk-of-works'"
             @click="sidebarOpen = !sidebarOpen"
             class="lg:hidden p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
           >
@@ -154,7 +155,7 @@
         ></div>
       </Transition>
       <!-- Sidebar -->
-      <aside :class="[
+      <aside v-if="userStore.currentUser.role !== 'clerk-of-works'" :class="[
         'bg-white dark:bg-slate-800 border-r border-slate-200 dark:border-slate-700 transition-transform duration-300 z-30 flex-shrink-0',
         'fixed top-[73px] bottom-0 w-72 flex flex-col overflow-hidden z-50',
         'lg:sticky lg:top-[57px] lg:h-[calc(100vh-57px)] lg:w-64 lg:translate-x-0 lg:z-30',
