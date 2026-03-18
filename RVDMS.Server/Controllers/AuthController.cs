@@ -1,9 +1,12 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using RVDMS.Application.commands.Users.AuthToken;
 using RVDMS.Application.commands.Users.Login;
+using RVDMS.Application.commands.Users.PasswordChange;
 using RVDMS.Application.commands.Users.Register;
 using RVDMS.Application.Common;
 using RVDMS.Application.DTOs;
@@ -31,6 +34,7 @@ namespace RVDMS.Api.Controllers
             [FromBody] RegisterUserCommand command,
             CancellationToken cancellationToken)
         {
+            
             var result = await _mediator.Send(command, cancellationToken);
 
             if (!result.IsSuccess)
@@ -65,6 +69,32 @@ namespace RVDMS.Api.Controllers
 
             if (!result.IsSuccess)
                 return Unauthorized(result);
+
+            return Ok(result);
+        }
+
+        [HttpPost("change-password")]
+        [Authorize]
+        public async Task<IActionResult> ChangePassword(
+    [FromBody] ChangePasswordCommand command,
+    CancellationToken cancellationToken)
+        {
+            var result = await _mediator.Send(command, cancellationToken);
+
+            if (!result.IsSuccess)
+                return BadRequest(result);
+
+            return Ok(result);
+        }
+
+        [HttpPost("logout")]
+        [Authorize]
+        public async Task<IActionResult> Logout(CancellationToken cancellationToken)
+        {
+            var result = await _mediator.Send(new LogoutCommand(), cancellationToken);
+
+            if (!result.IsSuccess)
+                return BadRequest(result);
 
             return Ok(result);
         }

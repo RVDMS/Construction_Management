@@ -69,6 +69,7 @@ namespace RVDMS.Infrastructure
             
             services.AddScoped<IApplicationDbContext>(provider => 
                 provider.GetRequiredService<ApplicationDbContext>());
+            services.AddHostedService<ReportCleanupService>();
 
             services.AddScoped<ITokenHasher, sha256TokenHasher>();
             services.AddScoped<PermissionSeeder>();

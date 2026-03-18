@@ -22,16 +22,35 @@ namespace RVDMS.Application.Behaviours
         {
             var requestName = typeof(TRequest).Name;
             var stopwatch = Stopwatch.StartNew();
-            _logger.LogInformation($"Handling {requestName} with data: {request}", requestName, request);
 
-            var response = await next();
-            stopwatch.Stop();
+            // FIXED: Use structured logging without string interpolation
+            // Log the request name and data properly
+            _logger.LogInformation("Handling {RequestName} with data: {@Request}",
+                requestName, request);
 
-            _logger.LogInformation(
-            $"Handled {requestName} in {stopwatch.ElapsedMilliseconds}ms",
-            requestName,
-            stopwatch.ElapsedMilliseconds);
-            return response;
+            try
+            {
+                var response = await next();
+                stopwatch.Stop();
+
+                // FIXED: Structured logging with proper placeholders
+                _logger.LogInformation(
+                    "Handled {RequestName} in {ElapsedMilliseconds}ms",
+                    requestName,
+                    stopwatch.ElapsedMilliseconds);
+
+                return response;
+            }
+            catch (Exception ex)
+            {
+                stopwatch.Stop();
+                _logger.LogError(ex,
+                    "Error handling {RequestName} after {ElapsedMilliseconds}ms: {ErrorMessage}",
+                    requestName,
+                    stopwatch.ElapsedMilliseconds,
+                    ex.Message);
+                throw;
+            }
         }
     }
 }

@@ -43,6 +43,8 @@ namespace RVDMS.Domain.Entities
        
         public virtual ApplicationUser? CreatedByUser { get; set; }
         
+        public decimal Progress { get; set; } // The progress percentage for this report
+
 
     }
 }

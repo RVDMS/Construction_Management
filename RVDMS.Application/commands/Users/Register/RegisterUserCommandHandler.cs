@@ -50,7 +50,18 @@ namespace RVDMS.Application.commands.Users.Register
                     CreatedAt = DateTime.UtcNow,
                     EmailConfirmed = false
                 };
-                var createResult = await _userManager.CreateAsync(user, request.Password);
+                // Try to create the user with detailed error handling
+                IdentityResult createResult = null;
+                try
+                {
+                    createResult = await _userManager.CreateAsync(user, request.Password);
+                }
+                catch (Exception ex)
+                {
+                    // This will catch any underlying errors from Identity
+                    return Result<AuthResponseDto>.Failure($"Identity error during creation: {ex.Message}");
+                }
+                //var createResult = await _userManager.CreateAsync(user, request.Password);
                 if (!createResult.Succeeded)
                 {
                     var errors = string.Join(", ", createResult.Errors.Select(e => e.Description));
@@ -58,7 +69,7 @@ namespace RVDMS.Application.commands.Users.Register
 
 
                 }
-                await _userManager.AddToRoleAsync(user, "COW");
+                //await _userManager.AddToRoleAsync(user, "COW");
 
                 //var accessToken = await _tokenServices.GenerateToken(user);
                 //var refreshToken = _tokenServices.GenerateRefreshToken();

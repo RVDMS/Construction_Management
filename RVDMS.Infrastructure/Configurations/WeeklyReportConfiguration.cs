@@ -35,6 +35,11 @@ namespace RVDMS.Infrastructure.Configurations
                 .IsRequired()
                 .HasDefaultValue(false);
 
+            builder.Property(wr => wr.Progress)
+                .IsRequired()
+                .HasPrecision(5, 3)  // 5 digits total, 2 after decimal (e.g., 99.99)
+                .HasDefaultValue(0);
+
             // Owned Value Object
             builder.OwnsOne(wr => wr.SubmissionLocation, location =>
             {

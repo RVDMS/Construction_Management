@@ -9,17 +9,25 @@
     "preview": "vite preview",
     "lint": "run-s lint:*",
     "lint:oxlint": "oxlint . --fix",
-    "lint:eslint": "eslint . --fix --cache"
+    "lint:eslint": "eslint . --fix --cache",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run"
   },
   "dependencies": {
+    "@vueuse/core": "^14.2.1",
     "axios": "^1.13.6",
+    "jwt-decode": "^4.0.0",
+    "lucide-vue-next": "^0.577.0",
+    "pinia": "^3.0.4",
     "vue": "^3.5.27",
-    "vue-router": "^4.6.4"
+    "vue-router": "^4.6.4",
+    "vue-toastification": "^2.0.0-rc.5"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.2",
     "@vitejs/plugin-vue": "^6.0.3",
     "autoprefixer": "^10.4.27",
+    "cypress": "^15.12.0",
     "eslint": "^9.39.2",
     "eslint-plugin-oxlint": "~1.42.0",
     "eslint-plugin-vue": "~10.7.0",

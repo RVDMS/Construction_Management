@@ -6,6 +6,7 @@ using RVDMS.Application.Auth;
 using RVDMS.Application.commands.WeeklyReportss;
 using RVDMS.Application.Common;
 using RVDMS.Application.DTOs;
+using RVDMS.Application.Queries.Reports;
 
 namespace RVDMS.Api.Controllers
 {
@@ -49,6 +50,22 @@ namespace RVDMS.Api.Controllers
                 return BadRequest(result);
 
             return Ok(result);
+        }
+
+        [HttpGet("project/{projectId}")]
+        [ProducesResponseType(typeof(List<WeeklyReportDto>), 200)]
+        [ProducesResponseType(401)]
+        [ProducesResponseType(403)]
+        public async Task<IActionResult> GetReportsByProject(
+            [FromRoute] Guid projectId,
+            CancellationToken cancellationToken,
+            [FromQuery] bool includeDeleted = false
+            )
+        {
+            var query = new GetReportsByProjectQuery(projectId, includeDeleted);
+            var reports = await _mediator.Send(query, cancellationToken);
+
+            return Ok(reports);
         }
 
     }

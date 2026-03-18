@@ -16,5 +16,8 @@ namespace RVDMS.Application.DTOs
         public DateTime CreatedAt { get; set; }
         public string CreatedById { get; set; } = string.Empty;
         public Guid ProjectId { get; set; }
+        public decimal Progress { get; set; }
+        public string? CreatedByName { get; set; }
+        public bool IsDeleted { get; set; }
     }
 }

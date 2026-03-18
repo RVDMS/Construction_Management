@@ -936,6 +936,12 @@ namespace RVDMS.Infrastructure.Migrations
                         .HasColumnType("bit")
                         .HasDefaultValue(false);
 
+                    b.Property<decimal>("Progress")
+                        .ValueGeneratedOnAdd()
+                        .HasPrecision(5, 3)
+                        .HasColumnType("decimal(5,3)")
+                        .HasDefaultValue(0m);
+
                     b.Property<Guid>("ProjectId")
                         .HasColumnType("uniqueidentifier");
 
@@ -1036,13 +1042,13 @@ namespace RVDMS.Infrastructure.Migrations
                                 .HasColumnType("nvarchar(450)");
 
                             b1.Property<double>("Latitude")
-                                .HasPrecision(18, 15)
-                                .HasColumnType("float(18)")
+                                .HasPrecision(9, 6)
+                                .HasColumnType("float(9)")
                                 .HasColumnName("BaseLatitude");
 
                             b1.Property<double>("Longitude")
-                                .HasPrecision(18, 15)
-                                .HasColumnType("float(18)")
+                                .HasPrecision(9, 6)
+                                .HasColumnType("float(9)")
                                 .HasColumnName("BaseLongitude");
 
                             b1.Property<double>("RadiusInMeters")

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace RVDMS.Infrastructure.Repositories
 {
@@ -41,18 +42,39 @@ namespace RVDMS.Infrastructure.Repositories
                 .FirstOrDefaultAsync(r => r.Id == id, cancellationToken);
         }
 
-        public async Task<IEnumerable<WeeklyReport>> GetByProjectAsync(Guid projectId, CancellationToken cancellationToken)
+        public async Task<IEnumerable<WeeklyReport>> GetByProjectAsync(Guid projectId, bool includeDeleted, CancellationToken cancellationToken)
         {
-            return await _context.WeeklyReports
-                .Where(r => r.ProjectId == projectId)
+            var query = _context.WeeklyReports
+        .Where(r => r.ProjectId == projectId);
+
+            // 👇 Apply soft delete filter here
+            if (!includeDeleted)
+            {
+                query = query.Where(r => !r.IsDeleted);
+            }
+            return await query
+                .AsNoTracking()
                 .Include(r => r.CreatedByUser)
                 .OrderByDescending(r => r.CreatedAt)
                 .ToListAsync(cancellationToken);
         }
 
+       
+
         public async Task SaveChangesAsync(CancellationToken cancellationToken)
         {
             await _context.SaveChangesAsync(cancellationToken);
+        }
+
+        public async Task<int> SoftDeleteOldReportsAsync(DateTime cutoff, CancellationToken ct)
+        {
+            return await _context.WeeklyReports
+        .Where(r => !r.IsDeleted && r.CreatedAt <= cutoff)
+        .ExecuteUpdateAsync(setters => setters
+            .SetProperty(r => r.IsDeleted, true)
+            .SetProperty(r => r.UpdatedAt, DateTime.UtcNow)
+            .SetProperty(r => r.UpdatedBy, "System"),
+            ct);
         }
     }
 }

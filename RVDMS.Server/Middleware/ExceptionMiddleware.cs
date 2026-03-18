@@ -33,7 +33,8 @@ namespace RVDMS.Api.Middleware
                     var response = new
                     {
                         message = "An unexpected error occurred.",
-                        details = ex.Message
+                        details = ex.Message,
+                        stackTrace = ex.StackTrace
                     };
 
                     var json = JsonSerializer.Serialize(response);

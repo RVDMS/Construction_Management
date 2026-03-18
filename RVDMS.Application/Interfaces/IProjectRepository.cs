@@ -14,5 +14,7 @@ namespace RVDMS.Application.Interfaces
         Task<IReadOnlyList<Project>> GetFilteredAsync(ProjectFilter filter, CancellationToken cancellationToken = default);
         Task<int> CountAsync(ProjectFilter filter, CancellationToken cancellationToken = default);
         Task<Project?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
+        Task UpdateAsync(Project project, CancellationToken cancellationToken = default);
+        Task<Project?> GetProjectByUserIdAsync(string userId, CancellationToken cancellationToken = default);
     }
 }

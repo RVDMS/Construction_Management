@@ -14,6 +14,7 @@ namespace RVDMS.Application.commands.WeeklyReportss
     public record CreateWeeklyReportCommand(Guid ProjectId,
         string Title,
         string Description,
+        decimal Progress,
         IFormFile File,
         double SubmissionLatitude,
         double SubmissionLongitude) : IRequest<Result<WeeklyReportDto>>;

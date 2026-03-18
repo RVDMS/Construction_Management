@@ -37,7 +37,6 @@ namespace RVDMS.Application.commands.WeeklyReportss
         {
             try
             {
-
                 // 1. Validate file type
                 if (!_fileService.IsValidFileType(request.File.FileName))
                 {
@@ -59,21 +58,29 @@ namespace RVDMS.Application.commands.WeeklyReportss
                 if (project == null)
                     return Result<WeeklyReportDto>.Failure("Project not found.");
 
-                // 4. Create project location object
+                // 4. Validate that progress is increasing
+                if (request.Progress <= project.CurrentPhysicalProgress)
+                {
+                    return Result<WeeklyReportDto>.Failure(
+                        $"Progress must be greater than current progress ({project.CurrentPhysicalProgress}%). Please enter a higher value."
+                    );
+                }
+
+                // 5. Create project location object
                 var projectLocation = new Location(
                     project.Latitude,
                     project.Longitude,
                     project.RadiusInMeters
                 );
 
-                // 5. Create submission location (owned type)
+                // 6. Create submission location (owned type)
                 var submissionLocation = new Location(
                     request.SubmissionLatitude,
                     request.SubmissionLongitude,
                     0 // Radius doesn't matter for submission
                 );
 
-                // 6. Validate geo-location
+                // 7. Validate geo-location
                 var isWithinProjectSite = _geoValidation.IsWithinProjectSite(
                     projectLocation,
                     submissionLocation
@@ -88,7 +95,7 @@ namespace RVDMS.Application.commands.WeeklyReportss
                     );
                 }
 
-                // 7. Upload file to Cloudinary
+                // 8. Upload file to Cloudinary
                 string filePath;
                 try
                 {
@@ -105,7 +112,7 @@ namespace RVDMS.Application.commands.WeeklyReportss
                         $"projects/{request.ProjectId}/weekly-reports"
                     );
                 }
-                catch (InvalidOperationException ex) // Catch file validation errors
+                catch (InvalidOperationException ex)
                 {
                     return Result<WeeklyReportDto>.Failure(ex.Message);
                 }
@@ -113,7 +120,8 @@ namespace RVDMS.Application.commands.WeeklyReportss
                 {
                     return Result<WeeklyReportDto>.Failure($"File upload failed: {ex.Message}");
                 }
-                // 8. Create report entity with Location owned type
+
+                // 9. Create report entity
                 var report = new WeeklyReport
                 {
                     Id = Guid.NewGuid(),
@@ -121,19 +129,25 @@ namespace RVDMS.Application.commands.WeeklyReportss
                     Description = request.Description,
                     FilePath = filePath,
                     ProjectId = project.Id,
-                    SubmissionLocation = submissionLocation, // This will be stored as owned properties
+                    SubmissionLocation = submissionLocation,
                     CreatedBy = _currentUser.UserId,
-                    CreatedAt = DateTime.UtcNow
+                    CreatedAt = DateTime.UtcNow,
+                    Progress = request.Progress // Make sure your WeeklyReport entity has this property
                 };
 
-                // 9. Validate location (sets IsGeoValidated)
+                // 10. Validate location (sets IsGeoValidated)
                 report.ValidateLocation(projectLocation);
 
-                // 10. Save to database
+                // 11. Add report to database
                 await _repository.AddAsync(report, cancellationToken);
+
+                // 12. UPDATE PROJECT PROGRESS - THIS IS THE KEY PART!
+                project.UpdateProgress(request.Progress, _currentUser.UserId);
+
+                // 13. Save all changes (both report and project update)
                 await _repository.SaveChangesAsync(cancellationToken);
 
-                // 11. Return DTO
+                // 14. Return DTO
                 return Result<WeeklyReportDto>.Success(new WeeklyReportDto
                 {
                     Id = report.Id,
@@ -143,12 +157,12 @@ namespace RVDMS.Application.commands.WeeklyReportss
                     IsGeoValidated = report.IsGeoValidated,
                     CreatedAt = report.CreatedAt,
                     CreatedById = report.CreatedBy,
-                    ProjectId = report.ProjectId
+                    ProjectId = report.ProjectId,
+                    Progress = report.Progress
                 });
             }
             catch (Exception ex)
             {
-
                 return Result<WeeklyReportDto>.Failure($"An error occurred: {ex.Message}");
             }
         }

@@ -50,5 +50,19 @@ namespace RVDMS.Api.Controllers
 
             return Ok(project);
         }
+
+        [HttpGet("my-project")]
+        [ProducesResponseType(typeof(ProjectDto), 200)]
+        [ProducesResponseType(404)]
+        public async Task<IActionResult> GetMyProject(CancellationToken cancellationToken)
+        {
+            var query = new GetMyProjectQuery();
+            var project = await _mediator.Send(query, cancellationToken);
+
+            if (project == null)
+                return NotFound("No project assigned to you");
+
+            return Ok(project);
+        }
     }
 }

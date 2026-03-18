@@ -33,12 +33,12 @@ namespace RVDMS.Infrastructure.Configurations
                 {
                     location.Property(l => l.Latitude)
                         .HasColumnName("BaseLatitude")
-                        .HasPrecision(18, 15)
+                        .HasPrecision(9, 6)
                         .IsRequired();
 
                     location.Property(l => l.Longitude)
                         .HasColumnName("BaseLongitude")
-                        .HasPrecision(18, 15)
+                        .HasPrecision(9, 6)
                         .IsRequired();
 
                     location.Property(l => l.RadiusInMeters)

@@ -123,5 +123,29 @@ namespace RVDMS.Infrastructure.Repositories
 
             return await query.ToListAsync(cancellationToken);
         }
+
+        public async Task<Project?> GetProjectByUserIdAsync(string userId, CancellationToken cancellationToken = default)
+        {
+            // Find project where this user is the lastUpdatedBy OR has an active assignment
+            return await _context.Projects
+                .Include(p => p.Ward)
+                    .ThenInclude(w => w.Constituency)
+                    .ThenInclude(c => c.County)
+                .Include(p => p.Cluster)
+                .Include(p => p.ProjectLead)
+                .Include(p => p.ProjectAssignments)
+                    .ThenInclude(pa => pa.User)
+                .Include(p => p.WeeklyReports)
+                .FirstOrDefaultAsync(p =>
+                    p.LastUpdatedById == userId ||
+                    p.ProjectAssignments.Any(pa => pa.UserId == userId && pa.RevokedAt == null),
+                    cancellationToken);
+        }
+
+        public async Task UpdateAsync(Project project, CancellationToken cancellationToken = default)
+        {
+            _context.Projects.Update(project);
+            await Task.CompletedTask;
+        }
     }
 }
