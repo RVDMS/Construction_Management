@@ -279,7 +279,9 @@ const profileMenuRef = ref(null)
 const navItems = [
   { name: 'Dashboard', href: '/dashboard', icon: LayoutDashboardIcon, page: 'dashboard' },
   { name: 'Projects', href: '/dashboard/projects', icon: FolderKanbanIcon, page: 'projects' },
+  /*
   { name: 'Reports', href: '/dashboard/reports', icon: FileTextIcon, page: 'reports' },
+   */
   { name: 'Audit Logs', href: '/dashboard/audit-logs', icon: HistoryIcon, page: 'audit-logs' },
   { name: 'Users / Roles', href: '/dashboard/users', icon: UsersIcon, page: 'users' },
   { name: 'Settings', href: '/dashboard/settings', icon: SettingsIcon, page: 'settings' }

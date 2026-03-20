@@ -61,18 +61,20 @@
       <!-- Progress Chart -->
       <div class="bg-white dark:bg-slate-800 rounded-lg border border-slate-200 p-4 md:p-6">
         <h3 class="text-lg font-medium text-slate-900 mb-4">Average Progress Over Time</h3>
-        <canvas ref="progressChartRef" class="w-full" height="120"></canvas>
+        <canvas ref="progressChartRef" class="w-full" height="240"></canvas>
       </div>
 
       <!-- Budget Pie Chart -->
-      <div class="bg-white dark:bg-slate-800 rounded-lg border border-slate-200 p-4 md:p-6">
+      <div class="max-w-[300px] mx-auto">
+        <!--
+      <div class="bg-white dark:bg-slate-800 rounded-lg border border-slate-200 p-4 md:p-6"> -->
         <h3 class="text-lg font-medium text-slate-900 dark:text-white mb-1">Budget Allocation by Project</h3>
         <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">Contract sum per project (KES Millions)</p>
-        <canvas ref="budgetChartRef" class="w-full" height="120"></canvas>
+        <canvas ref="budgetChartRef" class="w-full" height="80"></canvas>
       </div>
 
       <!-- Budget Chart - Bar version (commented out for now) -->
-       <!--
+       <!-- 
       <div class="bg-white dark:bg-slate-800 rounded-lg border border-slate-200 p-4 md:p-6">
         <h3 class="text-lg font-medium text-slate-900 mb-4">Budget Utilization (KES Millions)</h3>
         <canvas ref="budgetChartRef" class="w-full" height="120"></canvas>
@@ -80,7 +82,7 @@
     </div>
       -->
       
-    <!-- Map / Site Cards -->
+    <!-- Map / Site Cards -- removed for now --
     <div class="bg-white dark:bg-slate-800 rounded-lg border border-slate-200 p-4 md:p-6">
       <h3 class="text-lg font-medium text-slate-900 mb-4">Project Sites – Nakuru County</h3>
       <div class="bg-slate-100 dark:bg-slate-700 rounded-lg h-64 md:h-80 flex items-center justify-center relative overflow-hidden">
@@ -109,10 +111,10 @@
           </RouterLink>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <!-- Projects Table -->
-    <div class="bg-white dark:bg-slate-800 rounded-lg border border-slate-200">
+    <div class="bg-white dark:bg-slate-800 rounded-lg border border-slate-00">
       <div class="p-4 md:p-6 border-b border-slate-200">
         <h3 class="text-lg font-medium text-slate-900">All Projects</h3>
       </div>

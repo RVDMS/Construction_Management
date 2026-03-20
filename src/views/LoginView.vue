@@ -4,10 +4,10 @@
       <!-- Header with logos -->
       <div class="text-center mb-6 md:mb-8">
         <div class="flex items-center justify-center gap-3 md:gap-4 mb-4 md:mb-6 flex-wrap">
-          <!-- Ministry Logo placeholder -->
+          <!-- Ministry Logo placeholder - removed in login page
           <img :src="ministryLogo" alt="Ministry Logo" class="h-12 w-12 md:h-14 md:w-14 object-contain" />
           <img :src="ahbLogo" alt="AHB Logo" class="h-12 w-12 md:h-14 md:w-14 object-contain" />
-          <img :src="bomaLogo" alt="Boma Yangu Logo" class="h-10 w-10 md:h-12 md:w-12 object-contain" />
+          <img :src="bomaLogo" alt="Boma Yangu Logo" class="h-10 w-10 md:h-12 md:w-12 object-contain" /> -->
         </div>
         <h1 class="text-xl md:text-2xl font-semibold text-slate-900 mb-1 md:mb-2">Affordable Housing Programme</h1>
         <p class="text-slate-600">Nakuru County Pilot – Regional Dashboard</p>
@@ -101,13 +101,13 @@
               </div>
               <p class="text-sm text-slate-500 mt-2">Enter the code from your authenticator app</p>
             </div>
-          </template>
+          </template> 
 
           <button
             type="submit"
             class="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-2.5 rounded-lg transition-colors font-medium"
-          >
-            {{ showTwoFactor ? 'Verify & Login' : 'Continue' }}
+          >          
+            {{ showTwoFactor ? 'Verify & Login' : 'Continue' }}        
           </button>
 
           <button
@@ -125,12 +125,15 @@
           </div>
         </form>
 
+        <!-- Also removed for now
         <div class="mt-5 md:mt-6 pt-5 md:pt-6 border-t border-slate-200 dark:border-slate-700">
+          
           <div class="flex items-center gap-2 text-xs text-slate-500">
-            <ShieldIcon class="w-4 h-4" />
-            <span>Secured with JWT authentication, 2FA, and geo-limited access</span>
-          </div>
+            <ShieldIcon class="w-4 h-4" />            
+            <span>Secured with JWT authentication, 2FA, and geo-limited access</span>          
+          </div>          
         </div>
+        -->
       </div>
 
       <p class="text-center text-xs md:text-sm text-slate-600 dark:text-slate-400 mt-4 md:mt-6">

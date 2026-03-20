@@ -61,8 +61,8 @@
               <th class="px-6 py-3 text-left text-sm text-slate-700">Name</th>
               <th class="px-6 py-3 text-left text-sm text-slate-700">Email</th>
               <th class="px-6 py-3 text-left text-sm text-slate-700">Role</th>
-              <th class="px-6 py-3 text-left text-sm text-slate-700">2FA</th>
-              <th class="px-6 py-3 text-left text-sm text-slate-700">Actions</th>
+              <th class="px-6 py-3 text-left text-sm text-slate-700">Phone Number</th>
+              <!--<th class="px-6 py-3 text-left text-sm text-slate-700">Actions</th> -->
             </tr>
           </thead>
           <tbody class="divide-y divide-slate-200">
@@ -74,12 +74,16 @@
                   {{ getRoleDisplayName(user.role) }}
                 </span>
               </td>
+              <td>
+                <span class="text-sm text-slate-600">{{ user.phone }}></span>
+              </td>
+              <!--
               <td class="px-6 py-4">
                 <span v-if="user.has2FA" class="inline-flex items-center gap-1 text-xs text-emerald-700">
                   <ShieldIcon class="w-3 h-3" /> Enabled
-                </span>
+                </span> 
                 <span v-else class="text-xs text-slate-500">Disabled</span>
-              </td>
+              </td> -->
               <td class="px-6 py-4">
                 <div class="flex items-center gap-2">
                   <button class="p-1 hover:bg-slate-100 rounded transition-colors">
@@ -96,7 +100,7 @@
       </div>
     </div>
 
-    <!-- Role Permissions Matrix -->
+    <!-- Role Permissions Matrix --
     <div class="bg-white rounded-lg border border-slate-200 p-6">
       <h3 class="text-lg font-medium text-slate-900 mb-4">Role Permissions Matrix</h3>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -112,7 +116,7 @@
       </div>
     </div>
 
-    <!-- Security Notice -->
+    -- Security Notice 
     <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
       <div class="flex items-start gap-3">
         <ShieldIcon class="w-5 h-5 text-blue-600 mt-0.5" />
@@ -122,6 +126,7 @@
         </div>
       </div>
     </div>
+    -->
   </div>
 </template>
 
