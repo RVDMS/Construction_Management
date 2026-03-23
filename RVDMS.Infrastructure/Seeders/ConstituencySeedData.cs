@@ -433,6 +433,16 @@ namespace RVDMS.Infrastructure.Seeders
                 CreatedBy = "system-seed",
                 IsDeleted = false
             },
+            new Constituency
+            {
+                Id = Guid.Parse("30000000-0000-0000-0000-000000000041"),
+                Name = "Bureti",
+                Code = "BRT",
+                CountyId = CountySeedData.Counties.First(c => c.Code == "KR").Id, // Kericho County
+                CreatedAt = DateTime.UtcNow,
+                CreatedBy = "system-seed",
+                IsDeleted = false
+            },
         };
     }
 }

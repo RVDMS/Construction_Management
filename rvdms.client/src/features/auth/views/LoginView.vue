@@ -191,28 +191,20 @@ const handleLogin = async () => {
 
     toast.success("Login successful 🚀");
 
-    // 3️⃣ Redirect using store role (clean way)
+    // 3️⃣ Redirect using store role
     const role = authStore.userRole;
 
     switch (role) {
       case "CS":
-        router.push("/dashboard/ps");
-        break;
-
       case "RL":
-        router.push("/dashboard/regional");
-        break;
-
       case "CDH":
-        router.push("/dashboard/county");
+      case "TL":
+        // All leadership roles go to the same dashboard
+        router.push("/dashboard");
         break;
 
       case "COW":
         router.push("/dashboard/clerk");
-        break;
-
-      case "TL":
-        router.push("/dashboard/consultant");
         break;
 
       default:

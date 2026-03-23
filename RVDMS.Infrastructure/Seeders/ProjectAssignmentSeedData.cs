@@ -1023,7 +1023,285 @@ namespace RVDMS.Infrastructure.Seeders
                 CreatedBy = "system-seed",
                 IsDeleted = false
             },
-            
+                        // Add these to ProjectAssignmentSeedData.ProjectAssignments list
+
+            // ==================== ADDITIONAL COW ASSIGNMENTS ====================
+
+            // Bahati Modern Market - Gideon Ngacha
+            new ProjectAssignment
+            {
+                Id = Guid.Parse("80000000-0000-0000-0000-000000000091"),
+                ProjectId = Guid.Parse("70000000-0000-0000-0000-000000000078"),
+                UserId = "COW00000-0000-0000-0000-000000000011",
+                Role = UserRoles.ClerkOfWorks,
+                AssignedAt = new DateTime(2025, 10, 2),
+                CreatedAt = DateTime.UtcNow,
+                CreatedBy = "system-seed",
+                IsDeleted = false
+            },
+
+            // Kaptumo Modern Market - Kelvin Namu Mugendi
+            new ProjectAssignment
+            {
+                Id = Guid.Parse("80000000-0000-0000-0000-000000000092"),
+                ProjectId = Guid.Parse("70000000-0000-0000-0000-000000000079"),
+                UserId = "COW00000-0000-0000-0000-000000000017",
+                Role = UserRoles.ClerkOfWorks,
+                AssignedAt = new DateTime(2025, 8, 26),
+                CreatedAt = DateTime.UtcNow,
+                CreatedBy = "system-seed",
+                IsDeleted = false
+            },
+
+            // Subukia ESP Market - Daniel Githiomi
+            new ProjectAssignment
+            {
+                Id = Guid.Parse("80000000-0000-0000-0000-000000000093"),
+                ProjectId = Guid.Parse("70000000-0000-0000-0000-000000000080"),
+                UserId = "COW00000-0000-0000-0000-000000000018",
+                Role = UserRoles.ClerkOfWorks,
+                AssignedAt = new DateTime(2024, 6, 5),
+                CreatedAt = DateTime.UtcNow,
+                CreatedBy = "system-seed",
+                IsDeleted = false
+            },
+
+            // Nessuit ESP Market - Kelvin Kaptum
+            new ProjectAssignment
+            {
+                Id = Guid.Parse("80000000-0000-0000-0000-000000000094"),
+                ProjectId = Guid.Parse("70000000-0000-0000-0000-000000000081"),
+                UserId = "COW00000-0000-0000-0000-000000000020",
+                Role = UserRoles.ClerkOfWorks,
+                AssignedAt = new DateTime(2025, 7, 23),
+                CreatedAt = DateTime.UtcNow,
+                CreatedBy = "system-seed",
+                IsDeleted = false
+            },
+
+            // Kericho ESP Market - Charity Chelagat
+            new ProjectAssignment
+            {
+                Id = Guid.Parse("80000000-0000-0000-0000-000000000095"),
+                ProjectId = Guid.Parse("70000000-0000-0000-0000-000000000082"),
+                UserId = "COW00000-0000-0000-0000-000000000021",
+                Role = UserRoles.ClerkOfWorks,
+                AssignedAt = new DateTime(2024, 4, 26),
+                CreatedAt = DateTime.UtcNow,
+                CreatedBy = "system-seed",
+                IsDeleted = false
+            },
+
+            // Naivasha SEZA AHP - Phineas Lingera
+            new ProjectAssignment
+            {
+                Id = Guid.Parse("80000000-0000-0000-0000-000000000096"),
+                ProjectId = Guid.Parse("70000000-0000-0000-0000-000000000083"),
+                UserId = "COW00000-0000-0000-0000-000000000022",
+                Role = UserRoles.ClerkOfWorks,
+                AssignedAt = new DateTime(2025, 7, 25),
+                CreatedAt = DateTime.UtcNow,
+                CreatedBy = "system-seed",
+                IsDeleted = false
+            },
+
+            // Seguton ESP Market - Jeff Ongala
+            new ProjectAssignment
+            {
+                Id = Guid.Parse("80000000-0000-0000-0000-000000000097"),
+                ProjectId = Guid.Parse("70000000-0000-0000-0000-000000000084"),
+                UserId = "COW00000-0000-0000-0000-000000000023",
+                Role = UserRoles.ClerkOfWorks,
+                AssignedAt = new DateTime(2024, 8, 26),
+                CreatedAt = DateTime.UtcNow,
+                CreatedBy = "system-seed",
+                IsDeleted = false
+            },
+
+            // Keringet ESP Market - Betty Chebii
+            new ProjectAssignment
+            {
+                Id = Guid.Parse("80000000-0000-0000-0000-000000000098"),
+                ProjectId = Guid.Parse("70000000-0000-0000-0000-000000000085"),
+                UserId = "COW00000-0000-0000-0000-000000000024",
+                Role = UserRoles.ClerkOfWorks,
+                AssignedAt = new DateTime(2024, 5, 22),
+                CreatedAt = DateTime.UtcNow,
+                CreatedBy = "system-seed",
+                IsDeleted = false
+            },
+
+            // Moi's Modern Market - Emmanuel Wanyonyi
+            new ProjectAssignment
+            {
+                Id = Guid.Parse("80000000-0000-0000-0000-000000000099"),
+                ProjectId = Guid.Parse("70000000-0000-0000-0000-000000000086"),
+                UserId = "COW00000-0000-0000-0000-000000000025",
+                Role = UserRoles.ClerkOfWorks,
+                AssignedAt = new DateTime(2025, 11, 17),
+                CreatedAt = DateTime.UtcNow,
+                CreatedBy = "system-seed",
+                IsDeleted = false
+            },
+
+            // Rongai ESP Market - Stanslaus Njue
+            new ProjectAssignment
+            {
+                Id = Guid.Parse("80000000-0000-0000-0000-000000000100"),
+                ProjectId = Guid.Parse("70000000-0000-0000-0000-000000000087"),
+                UserId = "COW00000-0000-0000-0000-000000000026",
+                Role = UserRoles.ClerkOfWorks,
+                AssignedAt = new DateTime(2024, 6, 12),
+                CreatedAt = DateTime.UtcNow,
+                CreatedBy = "system-seed",
+                IsDeleted = false
+            },
+
+            // Ollessos ESP Market - Sammy Kipruto
+            new ProjectAssignment
+            {
+                Id = Guid.Parse("80000000-0000-0000-0000-000000000101"),
+                ProjectId = Guid.Parse("70000000-0000-0000-0000-000000000088"),
+                UserId = "COW00000-0000-0000-0000-000000000065",
+                Role = UserRoles.ClerkOfWorks,
+                AssignedAt = new DateTime(2025, 7, 4),
+                CreatedAt = DateTime.UtcNow,
+                CreatedBy = "system-seed",
+                IsDeleted = false
+            },
+
+            // West Pokot ESP Markets - Alex Maina
+            new ProjectAssignment
+            {
+                Id = Guid.Parse("80000000-0000-0000-0000-000000000102"),
+                ProjectId = Guid.Parse("70000000-0000-0000-0000-000000000089"),
+                UserId = "COW00000-0000-0000-0000-000000000058",
+                Role = UserRoles.ClerkOfWorks,
+                AssignedAt = new DateTime(2024, 4, 18),
+                CreatedAt = DateTime.UtcNow,
+                CreatedBy = "system-seed",
+                IsDeleted = false
+            },
+
+            // Limuko Primary School - Salome Muthini
+            new ProjectAssignment
+            {
+                Id = Guid.Parse("80000000-0000-0000-0000-000000000103"),
+                ProjectId = Guid.Parse("70000000-0000-0000-0000-000000000090"),
+                UserId = "COW00000-0000-0000-0000-000000000109",
+                Role = UserRoles.ClerkOfWorks,
+                AssignedAt = new DateTime(2025, 3, 7),
+                CreatedAt = DateTime.UtcNow,
+                CreatedBy = "system-seed",
+                IsDeleted = false
+            },
+
+            // ==================== ADDITIONAL ASSIGNMENTS FOR DUPLICATE COWS ====================
+
+            // Chesumei AHP - Moses Omondi (additional COW)
+            new ProjectAssignment
+            {
+                Id = Guid.Parse("80000000-0000-0000-0000-000000000104"),
+                ProjectId = Guid.Parse("70000000-0000-0000-0000-000000000005"), // Chesumei AHP
+                UserId = "COW00000-0000-0000-0000-000000000014",
+                Role = UserRoles.ClerkOfWorks,
+                AssignedAt = new DateTime(2025, 6, 23),
+                CreatedAt = DateTime.UtcNow,
+                CreatedBy = "system-seed",
+                IsDeleted = false
+            },
+
+            // Nandi Hills AHP - Nickson Kirui (additional COW)
+            new ProjectAssignment
+            {
+                Id = Guid.Parse("80000000-0000-0000-0000-000000000105"),
+                ProjectId = Guid.Parse("70000000-0000-0000-0000-000000000004"), // Nandi Hills AHP
+                UserId = "COW00000-0000-0000-0000-000000000029",
+                Role = UserRoles.ClerkOfWorks,
+                AssignedAt = new DateTime(2025, 11, 5),
+                CreatedAt = DateTime.UtcNow,
+                CreatedBy = "system-seed",
+                IsDeleted = false
+            },
+
+            // Nandi Hills AHP - Rahab Njoroge (additional COW)
+            new ProjectAssignment
+            {
+                Id = Guid.Parse("80000000-0000-0000-0000-000000000106"),
+                ProjectId = Guid.Parse("70000000-0000-0000-0000-000000000004"), // Nandi Hills AHP
+                UserId = "COW00000-0000-0000-0000-000000000115",
+                Role = UserRoles.ClerkOfWorks,
+                AssignedAt = new DateTime(2025, 11, 5),
+                CreatedAt = DateTime.UtcNow,
+                CreatedBy = "system-seed",
+                IsDeleted = false
+            },
+
+            // Kabarnet Town AHP - Kevin Kiprono (additional COW)
+            new ProjectAssignment
+            {
+                Id = Guid.Parse("80000000-0000-0000-0000-000000000107"),
+                ProjectId = Guid.Parse("70000000-0000-0000-0000-000000000016"), // Kabarnet Town AHP
+                UserId = "COW00000-0000-0000-0000-000000000043",
+                Role = UserRoles.ClerkOfWorks,
+                AssignedAt = new DateTime(2025, 12, 5),
+                CreatedAt = DateTime.UtcNow,
+                CreatedBy = "system-seed",
+                IsDeleted = false
+            },
+
+            // Kabarnet Town AHP - Abel Atebe (additional COW)
+            new ProjectAssignment
+            {
+                Id = Guid.Parse("80000000-0000-0000-0000-000000000108"),
+                ProjectId = Guid.Parse("70000000-0000-0000-0000-000000000016"), // Kabarnet Town AHP
+                UserId = "COW00000-0000-0000-0000-000000000047",
+                Role = UserRoles.ClerkOfWorks,
+                AssignedAt = new DateTime(2025, 12, 5),
+                CreatedAt = DateTime.UtcNow,
+                CreatedBy = "system-seed",
+                IsDeleted = false
+            },
+
+            // Pioneer AHP - Kiprotich Dennis (additional COW)
+            new ProjectAssignment
+            {
+                Id = Guid.Parse("80000000-0000-0000-0000-000000000109"),
+                ProjectId = Guid.Parse("70000000-0000-0000-0000-000000000003"), // Pioneer AHP
+                UserId = "COW00000-0000-0000-0000-000000000044",
+                Role = UserRoles.ClerkOfWorks,
+                AssignedAt = new DateTime(2024, 7, 16),
+                CreatedAt = DateTime.UtcNow,
+                CreatedBy = "system-seed",
+                IsDeleted = false
+            },
+
+            // Lowarengak Fish Market - Musa Erube (additional COW)
+            new ProjectAssignment
+            {
+                Id = Guid.Parse("80000000-0000-0000-0000-000000000110"),
+                ProjectId = Guid.Parse("70000000-0000-0000-0000-000000000069"), // Lowarengak Fish Market
+                UserId = "COW00000-0000-0000-0000-000000000036",
+                Role = UserRoles.ClerkOfWorks,
+                AssignedAt = new DateTime(2025, 11, 7),
+                CreatedAt = DateTime.UtcNow,
+                CreatedBy = "system-seed",
+                IsDeleted = false
+            },
+
+            // Sotik AHP - Robert Ouko (additional COW)
+            new ProjectAssignment
+            {
+                Id = Guid.Parse("80000000-0000-0000-0000-000000000111"),
+                ProjectId = Guid.Parse("70000000-0000-0000-0000-000000000014"), // Sotik AHP
+                UserId = "COW00000-0000-0000-0000-000000000079",
+                Role = UserRoles.ClerkOfWorks,
+                AssignedAt = new DateTime(2025, 10, 10),
+                CreatedAt = DateTime.UtcNow,
+                CreatedBy = "system-seed",
+                IsDeleted = false
+            },
+
         };
 
        

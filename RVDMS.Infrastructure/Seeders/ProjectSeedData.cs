@@ -1886,7 +1886,348 @@ Market Units: 2 Bedroom (270 units), 3 Bedroom (270 units)
                 CreatedAt = DateTime.UtcNow,
                 CreatedBy = "system-seed",
                 IsDeleted = false
-            }
+            },
+            // Add these to ProjectSeedData.Projects list
+
+                // ==================== ADDITIONAL MISSING PROJECTS ====================
+
+                // 1. Bahati Modern Market
+                new Project
+                {
+                    Id = Guid.Parse("70000000-0000-0000-0000-000000000078"),
+                    Name = "Bahati Modern Market",
+                    TenderNumber = "MLPWHUD/SDHUD/AHP/346/2024-2025",
+                    ContractorName = "Adawa Investment Company",
+                    ConsultantName = "Dama Services Limited",
+                    Description = "Located in Bahati Constituency, Nakuru County. Modern market construction with associated facilities.",
+                    ContractSum = 249505168.50m,
+                    StartDate = new DateTime(2025, 10, 2),
+                    EndDate = new DateTime(2026, 10, 27),
+                    Status = ProjectStatus.Active,
+                    Latitude = -0.154841,
+                    Longitude = 36.144773,
+                    RadiusInMeters = 500,
+                    CurrentPhysicalProgress = 20,
+                    LastProgressUpdate = new DateTime(2026, 2, 27),
+                    LastUpdatedById = "COW00000-0000-0000-0000-000000000011", // Gideon Ngacha
+                    WardId = WardSeedData.Wards[27].Id, // Bahati
+                    ClusterId = ClusterSeedData.Clusters[23].Id, // Modern Markets Cluster
+                    CreatedAt = DateTime.UtcNow,
+                    CreatedBy = "system-seed",
+                    IsDeleted = false
+                },
+
+                // 2. Kaptumo Modern Market
+                new Project
+                {
+                    Id = Guid.Parse("70000000-0000-0000-0000-000000000079"),
+                    Name = "Kaptumo Modern Market",
+                    TenderNumber = "MLPWHUD/SDHUD/SUS/UDD/109/2023-2024",
+                    ContractorName = "Abeera Enterprises LTD",
+                    ConsultantName = "KEMSAL",
+                    Description = "Kaptumo market located in Nandi County, Aldai Constituency, Kaptumo Kaboi Ward.",
+                    ContractSum = 270757858m,
+                    StartDate = new DateTime(2025, 8, 26),
+                    EndDate = new DateTime(2026, 8, 26),
+                    Status = ProjectStatus.Active,
+                    Latitude = 0.07651,
+                    Longitude = 35.07226,
+                    RadiusInMeters = 500,
+                    CurrentPhysicalProgress = 18.02m,
+                    LastProgressUpdate = new DateTime(2026, 2, 28),
+                    LastUpdatedById = "COW00000-0000-0000-0000-000000000017", // Kelvin Namu Mugendi
+                    WardId = WardSeedData.Wards[26].Id, // Kaptumo/Kaboi
+                    ClusterId = ClusterSeedData.Clusters[23].Id, // Modern Markets Cluster
+                    CreatedAt = DateTime.UtcNow,
+                    CreatedBy = "system-seed",
+                    IsDeleted = false
+                },
+
+                // 3. Subukia ESP Market
+                new Project
+                {
+                    Id = Guid.Parse("70000000-0000-0000-0000-000000000080"),
+                    Name = "Subukia ESP Market",
+                    TenderNumber = "MLPWHUD/SDHUD/UDD/198/2023-2024",
+                    ContractorName = "Axela Holdings Limited",
+                    ConsultantName = "Tej Consortium",
+                    Description = "G+1 esp market with a capacity of 204 vendors.",
+                    ContractSum = 180555172.00m,
+                    StartDate = new DateTime(2024, 6, 5),
+                    EndDate = new DateTime(2025, 1, 13),
+                    Status = ProjectStatus.Active,
+                    Latitude = 0.00364,
+                    Longitude = 36.22974,
+                    RadiusInMeters = 500,
+                    CurrentPhysicalProgress = 79,
+                    LastProgressUpdate = new DateTime(2026, 2, 25),
+                    LastUpdatedById = "COW00000-0000-0000-0000-000000000018", // Daniel Githiomi
+                    WardId = WardSeedData.Wards[37].Id, // Subukia
+                    ClusterId = ClusterSeedData.Clusters[11].Id, // ESP Markets Cluster 4
+                    CreatedAt = DateTime.UtcNow,
+                    CreatedBy = "system-seed",
+                    IsDeleted = false
+                },
+
+                // 4. Nessuit ESP Market
+                new Project
+                {
+                    Id = Guid.Parse("70000000-0000-0000-0000-000000000081"),
+                    Name = "Nessuit ESP Market",
+                    TenderNumber = "MLPWHUD/SDHUD/UDD/098/2024-2025-CLUSTER 93",
+                    ContractorName = "Quartz Company Limited",
+                    ConsultantName = "Tej Consortium",
+                    Description = "ESP market in Njoro Constituency, Nakuru County.",
+                    ContractSum = 111770460.00m,
+                    StartDate = new DateTime(2025, 7, 23),
+                    EndDate = new DateTime(2026, 4, 23),
+                    Status = ProjectStatus.Active,
+                    Latitude = -0.390172,
+                    Longitude = 35.896316,
+                    RadiusInMeters = 500,
+                    CurrentPhysicalProgress = 62.49m,
+                    LastProgressUpdate = new DateTime(2026, 1, 27),
+                    LastUpdatedById = "COW00000-0000-0000-0000-000000000020", // Kelvin Kaptum
+                    WardId = WardSeedData.Wards[34].Id, // Njoro
+                    ClusterId = ClusterSeedData.Clusters[22].Id, // ESP Markets Cluster 93
+                    CreatedAt = DateTime.UtcNow,
+                    CreatedBy = "system-seed",
+                    IsDeleted = false
+                },
+
+                // 5. Kericho ESP Market (Economic Stimulus Program)
+                new Project
+                {
+                    Id = Guid.Parse("70000000-0000-0000-0000-000000000082"),
+                    Name = "Kericho ESP Market",
+                    TenderNumber = "220",
+                    ContractorName = "Resjos Enterprises Limited",
+                    ConsultantName = "No consultant",
+                    Description = "Economic stimulus program (ESP) market in Bureti Constituency, Kericho County.",
+                    ContractSum = 162008145.00m,
+                    StartDate = new DateTime(2024, 4, 26),
+                    EndDate = new DateTime(2024, 10, 25),
+                    Status = ProjectStatus.Active,
+                    Latitude = -0.63142,
+                    Longitude = 35.19748,
+                    RadiusInMeters = 500,
+                    CurrentPhysicalProgress = 85,
+                    LastProgressUpdate = new DateTime(2026, 2, 27),
+                    LastUpdatedById = "COW00000-0000-0000-0000-000000000021", // Charity Chelagat
+                    WardId = WardSeedData.Wards.First(w => w.Code == "KKT").Id, // Need appropriate Kapkatet ward
+                    ClusterId = ClusterSeedData.Clusters[26].Id, // ESP Markets General
+                    CreatedAt = DateTime.UtcNow,
+                    CreatedBy = "system-seed",
+                    IsDeleted = false
+                },
+
+                // 6. Naivasha SEZA AHP
+                new Project
+                {
+                    Id = Guid.Parse("70000000-0000-0000-0000-000000000083"),
+                    Name = "Naivasha SEZA AHP",
+                    TenderNumber = "MLPWHUD/SDHUD/AHP/438/2023-2024",
+                    ContractorName = "Sava Builders Limited",
+                    ConsultantName = "Tej Consortium",
+                    Description = "The site has both affordable and Social units including social amenities.",
+                    ContractSum = 2142408000m,
+                    StartDate = new DateTime(2025, 7, 25),
+                    EndDate = new DateTime(2027, 1, 22),
+                    Status = ProjectStatus.Active,
+                    Latitude = -1.015488,
+                    Longitude = 36.469896,
+                    RadiusInMeters = 500,
+                    CurrentPhysicalProgress = 15.62m,
+                    LastProgressUpdate = new DateTime(2026, 2, 27),
+                    LastUpdatedById = "COW00000-0000-0000-0000-000000000022", // Phineas Lingera
+                    WardId = WardSeedData.Wards[32].Id, // Maai Mahiu
+                    ClusterId = ClusterSeedData.Clusters[1].Id, // South Rift AHP Cluster
+                    CreatedAt = DateTime.UtcNow,
+                    CreatedBy = "system-seed",
+                    IsDeleted = false
+                },
+
+                // 7. Seguton ESP Market
+                new Project
+                {
+                    Id = Guid.Parse("70000000-0000-0000-0000-000000000084"),
+                    Name = "Seguton ESP Market",
+                    TenderNumber = "MLPWHUD/SDHUD/SUD/258/2023-2024",
+                    ContractorName = "Floliz Contractors Limited",
+                    ConsultantName = "Dama Services Limited",
+                    Description = "The project Comprises of 1 Market Block G+1 an Ablution Block and it's amenities.",
+                    ContractSum = 151147005.00m,
+                    StartDate = new DateTime(2024, 8, 26),
+                    EndDate = new DateTime(2025, 2, 26),
+                    Status = ProjectStatus.Active,
+                    Latitude = -0.371877,
+                    Longitude = 35.684658,
+                    RadiusInMeters = 500,
+                    CurrentPhysicalProgress = 74,
+                    LastProgressUpdate = new DateTime(2026, 2, 28),
+                    LastUpdatedById = "COW00000-0000-0000-0000-000000000023", // Jeff Ongala
+                    WardId = WardSeedData.Wards.First(w => w.Code == "NYT").Id, // Need appropriate Seguton ward
+                    ClusterId = ClusterSeedData.Clusters[14].Id, // ESP Markets Cluster 12
+                    CreatedAt = DateTime.UtcNow,
+                    CreatedBy = "system-seed",
+                    IsDeleted = false
+                },
+
+                // 8. Keringet ESP Market
+                new Project
+                {
+                    Id = Guid.Parse("70000000-0000-0000-0000-000000000085"),
+                    Name = "Keringet ESP Market",
+                    TenderNumber = "MLPWHUD/SDHUD/UDD/198/2023-2024 CLUSTER4",
+                    ContractorName = "Axela Holdings Ltd",
+                    ConsultantName = "Tej Consortium",
+                    Description = "The proposed market project is located in Keringet Town, Nakuru County.",
+                    ContractSum = 180555172.00m,
+                    StartDate = new DateTime(2024, 5, 22),
+                    EndDate = new DateTime(2024, 11, 22),
+                    Status = ProjectStatus.Active,
+                    Latitude = 0.427105,
+                    Longitude = 35.69197,
+                    RadiusInMeters = 500,
+                    CurrentPhysicalProgress = 72,
+                    LastProgressUpdate = new DateTime(2026, 2, 25),
+                    LastUpdatedById = "COW00000-0000-0000-0000-000000000024", // Betty Chebii
+                    WardId = WardSeedData.Wards[40].Id, // Keringet
+                    ClusterId = ClusterSeedData.Clusters[11].Id, // ESP Markets Cluster 4
+                    CreatedAt = DateTime.UtcNow,
+                    CreatedBy = "system-seed",
+                    IsDeleted = false
+                },
+
+                // 9. Moi's Modern Market
+                new Project
+                {
+                    Id = Guid.Parse("70000000-0000-0000-0000-000000000086"),
+                    Name = "Moi's Modern Market",
+                    TenderNumber = "MLPWHUD/SDHUD/UDD/010/2024-2025",
+                    ContractorName = "Firmbridge Limited",
+                    ConsultantName = "Morphosis Limited",
+                    Description = "The site is located in moi's bridge municipality market in uasin gishu county.",
+                    ContractSum = 381572751.49m,
+                    StartDate = new DateTime(2025, 11, 17),
+                    EndDate = new DateTime(2026, 11, 16),
+                    Status = ProjectStatus.Active,
+                    Latitude = 0.87394,
+                    Longitude = 35.11992,
+                    RadiusInMeters = 500,
+                    CurrentPhysicalProgress = 0,
+                    LastProgressUpdate = new DateTime(2026, 2, 27),
+                    LastUpdatedById = "COW00000-0000-0000-0000-000000000025", // Emmanuel Wanyonyi
+                    WardId = WardSeedData.Wards[10].Id, // Moi's Bridge
+                    ClusterId = ClusterSeedData.Clusters[23].Id, // Modern Markets Cluster
+                    CreatedAt = DateTime.UtcNow,
+                    CreatedBy = "system-seed",
+                    IsDeleted = false
+                },
+
+                // 10. Rongai ESP Market
+                new Project
+                {
+                    Id = Guid.Parse("70000000-0000-0000-0000-000000000087"),
+                    Name = "Rongai ESP Market",
+                    TenderNumber = "MLPWHUD/SDHUD/ESP/225/2023-2024 – CLUSTER 31",
+                    ContractorName = "Moran Ridge Ltd",
+                    ConsultantName = "N/A",
+                    Description = "G+1 market block, an ablution block, mechanical, electrical works and waste cubicles. Located at Rongai Market in Visoi Ward, Rongai Sub-County in Nakuru County.",
+                    ContractSum = 110653512.00m,
+                    StartDate = new DateTime(2024, 6, 12),
+                    EndDate = new DateTime(2024, 12, 12),
+                    Status = ProjectStatus.Active,
+                    Latitude = -0.173871,
+                    Longitude = 35.862151,
+                    RadiusInMeters = 500,
+                    CurrentPhysicalProgress = 52.10m,
+                    LastProgressUpdate = new DateTime(2026, 2, 25),
+                    LastUpdatedById = "COW00000-0000-0000-0000-000000000026", // Stanslaus Njue
+                    WardId = WardSeedData.Wards[35].Id, // Visoi
+                    ClusterId = ClusterSeedData.Clusters[17].Id, // ESP Markets Cluster 31
+                    CreatedAt = DateTime.UtcNow,
+                    CreatedBy = "system-seed",
+                    IsDeleted = false
+                },
+
+                // 11. Ollessos ESP Market
+                new Project
+                {
+                    Id = Guid.Parse("70000000-0000-0000-0000-000000000088"),
+                    Name = "Ollessos ESP Market",
+                    TenderNumber = "110",
+                    ContractorName = "Golbo Holding Limited Company",
+                    ConsultantName = "KEMSAL",
+                    Description = "Proposed construction of ollessos esp market in Nandi Hills Constituency.",
+                    ContractSum = 56852500m,
+                    StartDate = new DateTime(2025, 7, 4),
+                    EndDate = new DateTime(2026, 4, 28),
+                    Status = ProjectStatus.Active,
+                    Latitude = 0.166667,
+                    Longitude = 35.15,
+                    RadiusInMeters = 500,
+                    CurrentPhysicalProgress = 5,
+                    LastProgressUpdate = new DateTime(2026, 2, 20),
+                    LastUpdatedById = "COW00000-0000-0000-0000-000000000065", // Sammy Kipruto
+                    WardId = WardSeedData.Wards[20].Id, // Ollessos
+                    ClusterId = ClusterSeedData.Clusters[26].Id, // ESP Markets General
+                    CreatedAt = DateTime.UtcNow,
+                    CreatedBy = "system-seed",
+                    IsDeleted = false
+                },
+
+                // 12. West Pokot ESP Markets
+                new Project
+                {
+                    Id = Guid.Parse("70000000-0000-0000-0000-000000000089"),
+                    Name = "West Pokot ESP Markets",
+                    TenderNumber = "MLPWHUD/SDHUD/UDD/241/2023-2024 – CLUSTER 47",
+                    ContractorName = "Clara Tiamale",
+                    ConsultantName = "N/A",
+                    Description = "Proposed construction of ESP Markets and Supporting Facilities in West-Pokot County. 30*36 Market Block.",
+                    ContractSum = 58341939m,
+                    StartDate = new DateTime(2024, 4, 18),
+                    EndDate = new DateTime(2024, 10, 18),
+                    Status = ProjectStatus.Active,
+                    Latitude = 1.43746,
+                    Longitude = 35.35484,
+                    RadiusInMeters = 500,
+                    CurrentPhysicalProgress = 54.52m,
+                    LastProgressUpdate = new DateTime(2026, 2, 25),
+                    LastUpdatedById = "COW00000-0000-0000-0000-000000000058", // Alex Maina
+                    WardId = WardSeedData.Wards.First(w => w.Code == "BTI").Id, // Need appropriate Batei ward
+                    ClusterId = ClusterSeedData.Clusters[18].Id, // ESP Markets Cluster 47
+                    CreatedAt = DateTime.UtcNow,
+                    CreatedBy = "system-seed",
+                    IsDeleted = false
+                },
+
+                // 13. Limuko Primary School Classrooms
+                new Project
+                {
+                    Id = Guid.Parse("70000000-0000-0000-0000-000000000090"),
+                    Name = "Limuko Primary School Classrooms",
+                    TenderNumber = "MLPHUD/SDHUD/HUD/260/2024-2025",
+                    ContractorName = "Megapro Engineering Ltd",
+                    ConsultantName = "No consultant",
+                    Description = "Construction of 10 classrooms in Limuko primary school, Bahati Constituency, Nakuru County.",
+                    ContractSum = 49893884.25m,
+                    StartDate = new DateTime(2025, 3, 7),
+                    EndDate = new DateTime(2026, 3, 6),
+                    Status = ProjectStatus.Active,
+                    Latitude = 0.211886,
+                    Longitude = 36.161838,
+                    RadiusInMeters = 500,
+                    CurrentPhysicalProgress = 75,
+                    LastProgressUpdate = new DateTime(2026, 2, 25),
+                    LastUpdatedById = "COW00000-0000-0000-0000-000000000109", // Salome Muthini
+                    WardId = WardSeedData.Wards[28].Id, // Kabatini
+                    ClusterId = ClusterSeedData.Clusters[5].Id, // Social Housing Cluster (SUD)
+                    CreatedAt = DateTime.UtcNow,
+                    CreatedBy = "system-seed",
+                    IsDeleted = false
+                },
         };
 
             // Project Assignments (linking COWs and TLs to projects)
@@ -1980,6 +2321,72 @@ Market Units: 2 Bedroom (270 units), 3 Bedroom (270 units)
             (Projects[74].Id, "COW00000-0000-0000-0000-000000000071", UserRoles.ClerkOfWorks), // Kinungi - Dennis Mvoi
             (Projects[75].Id, "COW00000-0000-0000-0000-000000000078", UserRoles.ClerkOfWorks), // Mulot - Cleophas Kibon
             (Projects[76].Id, "COW00000-0000-0000-0000-000000000112", UserRoles.ClerkOfWorks), // ASTU Gilgil - Jane Wangeci
+            // ==================== ADDITIONAL MISSING COW ASSIGNMENTS ====================
+
+            // Bahati Modern Market - Gideon Ngacha (COW011)
+            (Projects[77].Id, "COW00000-0000-0000-0000-000000000011", UserRoles.ClerkOfWorks), // Bahati Modern Market
+
+            // Kaptumo Modern Market - Kelvin Namu Mugendi (COW017)
+            (Projects[78].Id, "COW00000-0000-0000-0000-000000000017", UserRoles.ClerkOfWorks), // Kaptumo Modern Market
+
+            // Subukia ESP Market - Daniel Githiomi (COW018)
+            (Projects[79].Id, "COW00000-0000-0000-0000-000000000018", UserRoles.ClerkOfWorks), // Subukia ESP Market
+
+            // Nessuit ESP Market - Kelvin Kaptum (COW020)
+            (Projects[80].Id, "COW00000-0000-0000-0000-000000000020", UserRoles.ClerkOfWorks), // Nessuit ESP Market
+
+            // Kericho ESP Market - Charity Chelagat (COW021)
+            (Projects[81].Id, "COW00000-0000-0000-0000-000000000021", UserRoles.ClerkOfWorks), // Kericho ESP Market
+
+            // Naivasha SEZA AHP - Phineas Lingera (COW022)
+            (Projects[82].Id, "COW00000-0000-0000-0000-000000000022", UserRoles.ClerkOfWorks), // Naivasha SEZA AHP
+
+            // Seguton ESP Market - Jeff Ongala (COW023)
+            (Projects[83].Id, "COW00000-0000-0000-0000-000000000023", UserRoles.ClerkOfWorks), // Seguton ESP Market
+
+            // Keringet ESP Market - Betty Chebii (COW024)
+            (Projects[84].Id, "COW00000-0000-0000-0000-000000000024", UserRoles.ClerkOfWorks), // Keringet ESP Market
+
+            // Moi's Modern Market - Emmanuel Wanyonyi (COW025)
+            (Projects[85].Id, "COW00000-0000-0000-0000-000000000025", UserRoles.ClerkOfWorks), // Moi's Modern Market
+
+            // Rongai ESP Market - Stanslaus Njue (COW026)
+            (Projects[86].Id, "COW00000-0000-0000-0000-000000000026", UserRoles.ClerkOfWorks), // Rongai ESP Market
+
+            // Ollessos ESP Market - Sammy Kipruto (COW065)
+            (Projects[87].Id, "COW00000-0000-0000-0000-000000000065", UserRoles.ClerkOfWorks), // Ollessos ESP Market
+
+            // West Pokot ESP Markets - Alex Maina (COW058)
+            (Projects[88].Id, "COW00000-0000-0000-0000-000000000058", UserRoles.ClerkOfWorks), // West Pokot ESP Markets
+
+            // Limuko Primary School - Salome Muthini (COW109)
+            (Projects[89].Id, "COW00000-0000-0000-0000-000000000109", UserRoles.ClerkOfWorks), // Limuko Primary School Classrooms
+
+            // ==================== ADDITIONAL ASSIGNMENTS FOR DUPLICATE COWS ====================
+
+            // Chesumei AHP - Moses Omondi (COW014) - additional COW
+            (Projects[4].Id, "COW00000-0000-0000-0000-000000000014", UserRoles.ClerkOfWorks), // Chesumei AHP
+
+            // Nandi Hills AHP - Nickson Kirui (COW029) - additional COW
+            (Projects[3].Id, "COW00000-0000-0000-0000-000000000029", UserRoles.ClerkOfWorks), // Nandi Hills AHP
+
+            // Nandi Hills AHP - Rahab Njoroge (COW115) - additional COW
+            (Projects[3].Id, "COW00000-0000-0000-0000-000000000115", UserRoles.ClerkOfWorks), // Nandi Hills AHP
+
+            // Kabarnet Town AHP - Kevin Kiprono (COW043) - additional COW
+            (Projects[15].Id, "COW00000-0000-0000-0000-000000000043", UserRoles.ClerkOfWorks), // Kabarnet Town AHP
+
+            // Kabarnet Town AHP - Abel Atebe (COW047) - additional COW
+            (Projects[15].Id, "COW00000-0000-0000-0000-000000000047", UserRoles.ClerkOfWorks), // Kabarnet Town AHP
+
+            // Pioneer AHP - Kiprotich Dennis (COW044) - additional COW
+            (Projects[2].Id, "COW00000-0000-0000-0000-000000000044", UserRoles.ClerkOfWorks), // Pioneer AHP
+
+            // Lowarengak Fish Market - Musa Erube (COW036) - additional COW
+            (Projects[68].Id, "COW00000-0000-0000-0000-000000000036", UserRoles.ClerkOfWorks), // Lowarengak Fish Market
+
+            // Sotik AHP - Robert Ouko (COW079) - additional COW
+            (Projects[13].Id, "COW00000-0000-0000-0000-000000000079", UserRoles.ClerkOfWorks), // Sotik AHP
 
             // Technical Lead assignments (Jeremiah Miyora - TL for all projects in North Rift)
             (Projects[0].Id, "TL000000-0000-0000-0000-000000000001", UserRoles.TechnicalLead), // Maili Tatu
@@ -2071,6 +2478,22 @@ Market Units: 2 Bedroom (270 units), 3 Bedroom (270 units)
             (Projects[74].Id, "TL000000-0000-0000-0000-000000000002", UserRoles.TechnicalLead), // Kinungi
             (Projects[75].Id, "TL000000-0000-0000-0000-000000000002", UserRoles.TechnicalLead), // Mulot
             (Projects[76].Id, "TL000000-0000-0000-0000-000000000002", UserRoles.TechnicalLead), // ASTU Gilgil
+            // ==================== TECHNICAL LEAD ASSIGNMENTS FOR NEW PROJECTS ====================
+
+            // New projects - assign to Sheila Chepng'eno (TL2) for South Rift and other regions
+            (Projects[77].Id, "TL000000-0000-0000-0000-000000000002", UserRoles.TechnicalLead), // Bahati Modern Market
+            (Projects[78].Id, "TL000000-0000-0000-0000-000000000002", UserRoles.TechnicalLead), // Kaptumo Modern Market
+            (Projects[79].Id, "TL000000-0000-0000-0000-000000000002", UserRoles.TechnicalLead), // Subukia ESP Market
+            (Projects[80].Id, "TL000000-0000-0000-0000-000000000002", UserRoles.TechnicalLead), // Nessuit ESP Market
+            (Projects[81].Id, "TL000000-0000-0000-0000-000000000002", UserRoles.TechnicalLead), // Kericho ESP Market
+            (Projects[82].Id, "TL000000-0000-0000-0000-000000000002", UserRoles.TechnicalLead), // Naivasha SEZA AHP
+            (Projects[83].Id, "TL000000-0000-0000-0000-000000000002", UserRoles.TechnicalLead), // Seguton ESP Market
+            (Projects[84].Id, "TL000000-0000-0000-0000-000000000002", UserRoles.TechnicalLead), // Keringet ESP Market
+            (Projects[85].Id, "TL000000-0000-0000-0000-000000000002", UserRoles.TechnicalLead), // Moi's Modern Market
+            (Projects[86].Id, "TL000000-0000-0000-0000-000000000002", UserRoles.TechnicalLead), // Rongai ESP Market
+            (Projects[87].Id, "TL000000-0000-0000-0000-000000000002", UserRoles.TechnicalLead), // Ollessos ESP Market
+            (Projects[88].Id, "TL000000-0000-0000-0000-000000000002", UserRoles.TechnicalLead), // West Pokot ESP Markets
+            (Projects[89].Id, "TL000000-0000-0000-0000-000000000002", UserRoles.TechnicalLead), // Limuko Primary School
         };
         }
     }

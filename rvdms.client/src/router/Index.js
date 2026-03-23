@@ -23,6 +23,11 @@ router.beforeEach((to) => {
     return "/login";
   }
 
+  // If route requires multiple roles
+  if (to.meta.roles && !to.meta.roles.includes(authStore.userRole)) {
+    return "/login";
+  }
+
   // allow navigation
   return true;
 });

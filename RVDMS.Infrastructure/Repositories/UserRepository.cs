@@ -26,6 +26,20 @@ namespace RVDMS.Infrastructure.Repositories
         {
             var query = _userManager.Users.AsQueryable();
 
+            // ✅ ROLE FILTER (same logic)
+            if (filter.Role != null && filter.Role.Any())
+            {
+                var userIdsInRoles = new List<string>();
+
+                foreach (var role in filter.Role)
+                {
+                    var usersInRole = await _userManager.GetUsersInRoleAsync(role);
+                    userIdsInRoles.AddRange(usersInRole.Select(u => u.Id));
+                }
+
+                query = query.Where(u => userIdsInRoles.Contains(u.Id));
+            }
+
             if (filter.IsActive.HasValue)
                 query = query.Where(u => u.IsActive == filter.IsActive.Value);
 
@@ -66,7 +80,9 @@ namespace RVDMS.Infrastructure.Repositories
                  .FirstOrDefaultAsync(u => u.Id == id, cancellationToken);
         }
 
-        public async Task<IReadOnlyList<ApplicationUser>> GetFilteredAsync(UserFilter filter, CancellationToken cancellationToken = default)
+        public async Task<IReadOnlyList<ApplicationUser>> GetFilteredAsync(
+    UserFilter filter,
+    CancellationToken cancellationToken = default)
         {
             var query = _userManager.Users
                 .Include(u => u.ProjectAssignments)
@@ -77,11 +93,25 @@ namespace RVDMS.Infrastructure.Repositories
                 .AsNoTracking()
                 .AsQueryable();
 
-            // Filter by active
+            // ✅ ROLE FILTER (FIRST - IMPORTANT)
+            if (filter.Role != null && filter.Role.Any())
+            {
+                var userIdsInRoles = new List<string>();
+
+                foreach (var role in filter.Role)
+                {
+                    var usersInRole = await _userManager.GetUsersInRoleAsync(role);
+                    userIdsInRoles.AddRange(usersInRole.Select(u => u.Id));
+                }
+
+                query = query.Where(u => userIdsInRoles.Contains(u.Id));
+            }
+
+            // ✅ Filter by active
             if (filter.IsActive.HasValue)
                 query = query.Where(u => u.IsActive == filter.IsActive.Value);
 
-            // Search term
+            // ✅ Search term
             if (!string.IsNullOrWhiteSpace(filter.SearchTerm))
             {
                 var search = $"%{filter.SearchTerm}%";
@@ -92,18 +122,25 @@ namespace RVDMS.Infrastructure.Repositories
                     EF.Functions.Like(u.UserName, search));
             }
 
-            // Filter by Ward, Constituency, County through ProjectAssignments
+            // ✅ Location filters
             if (filter.WardId.HasValue)
-                query = query.Where(u => u.ProjectAssignments.Any(pa => pa.Project.WardId == filter.WardId.Value));
+                query = query.Where(u =>
+                    u.ProjectAssignments.Any(pa => pa.Project.WardId == filter.WardId.Value));
 
             if (filter.ConstituencyId.HasValue)
-                query = query.Where(u => u.ProjectAssignments.Any(pa => pa.Project.Ward.Constituency.Id == filter.ConstituencyId.Value));
+                query = query.Where(u =>
+                    u.ProjectAssignments.Any(pa =>
+                        pa.Project.Ward.Constituency.Id == filter.ConstituencyId.Value));
 
             if (filter.CountyId.HasValue)
-                query = query.Where(u => u.ProjectAssignments.Any(pa => pa.Project.Ward.Constituency.County.Id == filter.CountyId.Value));
+                query = query.Where(u =>
+                    u.ProjectAssignments.Any(pa =>
+                        pa.Project.Ward.Constituency.County.Id == filter.CountyId.Value));
 
-            // Sorting and Pagination
+            // ✅ Sorting
             query = query.ApplySorting(filter.SortBy, "FirstName");
+
+            // ✅ Pagination (LAST ALWAYS)
             query = query.ApplyPagination(filter.PageNumber, filter.PageSize);
 
             return await query.ToListAsync(cancellationToken);

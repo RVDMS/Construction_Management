@@ -23,26 +23,40 @@ namespace RVDMS.Infrastructure.Seeders.Seeding
         {
             _logger.LogInformation("Starting project seeding...");
 
-            if (!_context.Projects.Any())
+            foreach (var project in ProjectSeedData.Projects)
             {
-                await _context.Projects.AddRangeAsync(ProjectSeedData.Projects);
-                _logger.LogInformation("Seeded {Count} projects", ProjectSeedData.Projects.Count);
-                await _context.SaveChangesAsync();
+                var exists = _context.Projects.Any(p => p.Id == project.Id);
+
+                if (!exists)
+                {
+                    await _context.Projects.AddAsync(project);
+                }
             }
+
+            var changes = await _context.SaveChangesAsync();
+            _logger.LogInformation("Added {Count} new projects", changes);
 
             _logger.LogInformation("Project seeding completed.");
         }
-
         public async Task SeedAssignmentsAsync()
         {
             _logger.LogInformation("Starting project assignments seeding...");
 
-            if (!_context.ProjectAssignments.Any())
+            foreach (var assignment in ProjectAssignmentSeedData.ProjectAssignments)
             {
-                await _context.ProjectAssignments.AddRangeAsync(ProjectAssignmentSeedData.ProjectAssignments);
-                _logger.LogInformation("Seeded {Count} project assignments", ProjectAssignmentSeedData.ProjectAssignments.Count);
-                await _context.SaveChangesAsync();
+                var exists = _context.ProjectAssignments.Any(pa =>
+                    pa.UserId == assignment.UserId &&
+                    pa.ProjectId == assignment.ProjectId
+                );
+
+                if (!exists)
+                {
+                    await _context.ProjectAssignments.AddAsync(assignment);
+                }
             }
+
+            var changes = await _context.SaveChangesAsync();
+            _logger.LogInformation("Added {Count} new project assignments", changes);
 
             _logger.LogInformation("Project assignments seeding completed.");
         }

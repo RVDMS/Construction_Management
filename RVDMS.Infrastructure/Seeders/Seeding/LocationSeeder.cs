@@ -23,28 +23,32 @@ namespace RVDMS.Infrastructure.Seeders.Seeding
         {
             _logger.LogInformation("Starting location seeding...");
 
-            // Seed Counties
-            if (!_context.Counties.Any())
+            // Counties
+            foreach (var county in CountySeedData.Counties)
             {
-                await _context.Counties.AddRangeAsync(CountySeedData.Counties);
-                _logger.LogInformation("Seeded {Count} counties", CountySeedData.Counties.Count);
+                var exists = _context.Counties.Any(c => c.Id == county.Id);
+                if (!exists)
+                    await _context.Counties.AddAsync(county);
             }
 
-            // Seed Constituencies
-            if (!_context.Constituencies.Any())
+            // Constituencies
+            foreach (var constituency in ConstituencySeedData.Constituencies)
             {
-                await _context.Constituencies.AddRangeAsync(ConstituencySeedData.Constituencies);
-                _logger.LogInformation("Seeded {Count} constituencies", ConstituencySeedData.Constituencies.Count);
+                var exists = _context.Constituencies.Any(c => c.Id == constituency.Id);
+                if (!exists)
+                    await _context.Constituencies.AddAsync(constituency);
             }
 
-            // Seed Wards
-            if (!_context.Wards.Any())
+            // Wards
+            foreach (var ward in WardSeedData.Wards)
             {
-                await _context.Wards.AddRangeAsync(WardSeedData.Wards);
-                _logger.LogInformation("Seeded {Count} wards", WardSeedData.Wards.Count);
+                var exists = _context.Wards.Any(w => w.Id == ward.Id);
+                if (!exists)
+                    await _context.Wards.AddAsync(ward);
             }
 
             await _context.SaveChangesAsync();
+
             _logger.LogInformation("Location seeding completed.");
         }
 
@@ -52,21 +56,24 @@ namespace RVDMS.Infrastructure.Seeders.Seeding
         {
             _logger.LogInformation("Starting departments and clusters seeding...");
 
-            // Seed Departments
-            if (!_context.Departments.Any())
+            // Departments
+            foreach (var dept in DepartmentSeedData.Departments)
             {
-                await _context.Departments.AddRangeAsync(DepartmentSeedData.Departments);
-                _logger.LogInformation("Seeded {Count} departments", DepartmentSeedData.Departments.Count);
+                var exists = _context.Departments.Any(d => d.Id == dept.Id);
+                if (!exists)
+                    await _context.Departments.AddAsync(dept);
             }
 
-            // Seed Clusters
-            if (!_context.Clusters.Any())
+            // Clusters
+            foreach (var cluster in ClusterSeedData.Clusters)
             {
-                await _context.Clusters.AddRangeAsync(ClusterSeedData.Clusters);
-                _logger.LogInformation("Seeded {Count} clusters", ClusterSeedData.Clusters.Count);
+                var exists = _context.Clusters.Any(c => c.Id == cluster.Id);
+                if (!exists)
+                    await _context.Clusters.AddAsync(cluster);
             }
 
             await _context.SaveChangesAsync();
+
             _logger.LogInformation("Departments and clusters seeding completed.");
         }
     }

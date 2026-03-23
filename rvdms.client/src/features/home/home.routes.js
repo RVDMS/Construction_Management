@@ -1,3 +1,7 @@
+// home.routes.js
+import AppLayout from "@/layouts/AppLayout.vue";
+import ClerkLayout from "@/layouts/ClerkLayout.vue";
+
 export default [
   {
     name: "home",
@@ -5,37 +9,56 @@ export default [
     component: () => import("./views/HomeView.vue"),
     meta: { requiresAuth: false },
   },
-  // Principal Secretary
-  // {
-  //   name: "psDashboard",
-  //   path: "/dashboard/ps",
-  //   component: () => import("./views/dashboard/PsDashboard.vue"),
-  //   meta: { requiresAuth: true, role: "CS" },
-  // },
 
-  // Regional Lead
-  // {
-  //   name: "regionalDashboard",
-  //   path: "/dashboard/regional",
-  //   component: () => import("./views/dashboard/RegionalDashboard.vue"),
-  //   meta: { requiresAuth: true, role: "RL" },
-  // },
-
-  // County Head
-  // {
-  //   name: "countyDashboard",
-  //   path: "/dashboard/county",
-  //   component: () => import("./views/dashboard/CountyDashboard.vue"),
-  //   meta: { requiresAuth: true, role: "CDH" },
-  // },
-
-  // Clerk of Works
+  // LEADERSHIP ROUTES - All wrapped in AppLayout
   {
-    name: "clerkDashboard",
-    path: "/dashboard/clerk",
-    component: () => import("./views/dashboard/ClerkDashboard.vue"),
-    meta: { requiresAuth: true, role: "COW" },
+    path: "/dashboard",
+    component: AppLayout,
+    meta: { requiresAuth: true, roles: ["CS", "RL", "CDH", "TL"] },
+    children: [
+      {
+        name: "adminDashboard",
+        path: "",
+        component: () => import("./views/dashboard/admin/DashboardHome.vue"),
+      },
+      {
+        name: "projectsList",
+        path: "projects",
+        component: () => import("./views/dashboard/admin/ProjectsList.vue"),
+      },
+      {
+        name: "projectDetails",
+        path: "projects/:id",
+        component: () => import("./views/dashboard/admin/ProjectDetails.vue"),
+      },
+      {
+        name: "usersList",
+        path: "users",
+        component: () => import("./views/dashboard/admin/UsersList.vue"),
+      },
+      {
+        name: "userDetails",
+        path: "users/:id",
+        component: () => import("./views/dashboard/admin/UserDetails.vue"),
+      },
+    ],
   },
+
+  // CLERK OF WORKS ROUTES - Wrapped in ClerkLayout
+  {
+    path: "/dashboard/clerk",
+    component: ClerkLayout,
+    meta: { requiresAuth: true, role: "COW" },
+    children: [
+      {
+        name: "clerkDashboard",
+        path: "",
+        component: () => import("./views/dashboard/ClerkDashboard.vue"),
+      },
+    ],
+  },
+
+  // PROFILE PAGE - Standalone (no sidebar)
   {
     path: "/profile",
     name: "profile",
@@ -45,12 +68,4 @@ export default [
       title: "My Profile",
     },
   },
-
-  // Technical Lead / Consultant
-  // {
-  //   name: "consultantDashboard",
-  //   path: "/dashboard/consultant",
-  //   component: () => import("./views/dashboard/ConsultantDashboard.vue"),
-  //   meta: { requiresAuth: true, role: "TL" },
-  // },
 ];

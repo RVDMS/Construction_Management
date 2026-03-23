@@ -46,7 +46,7 @@ export const useAuthStore = defineStore("auth", () => {
       // Because backend returns Result<T>
       const { isSuccess, value, error } = response.data;
       if (!isSuccess) {
-        console.log("Backend error:", error); // 👈 ADD THIS
+        console.log("Backend error:", error);
         return { success: false, error };
       }
 

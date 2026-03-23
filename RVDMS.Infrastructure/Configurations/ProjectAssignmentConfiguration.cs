@@ -39,10 +39,8 @@ namespace RVDMS.Infrastructure.Configurations
             builder.HasIndex(pa => new { pa.ProjectId, pa.Role, pa.RevokedAt })
                 .HasFilter("[RevokedAt] IS NULL AND [Role] IS NOT NULL");
 
-            // Ensure only one active COW per project
             builder.HasIndex(pa => new { pa.ProjectId, pa.Role })
-                .IsUnique()
-                .HasFilter($"[Role] = '{UserRoles.ClerkOfWorks}' AND [RevokedAt] IS NULL");
+                .HasFilter("[RevokedAt] IS NULL");
 
             // Relationships
             builder.HasOne(pa => pa.Project)

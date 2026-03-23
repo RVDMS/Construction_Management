@@ -1,0 +1,123 @@
+// src/stores/userStore.js
+import { defineStore } from "pinia";
+import apiClient from "@/services/apiClient";
+
+export const useUserStore = defineStore("users", {
+  state: () => ({
+    users: [],
+    selectedUser: null,
+    loading: false,
+    pagination: {
+      pageNumber: 1,
+      pageSize: 10,
+      totalPages: 1,
+      totalRecords: 0,
+      hasNextPage: false,
+      hasPreviousPage: false,
+    },
+  }),
+
+  actions: {
+    async fetchUsers(params = {}) {
+      this.loading = true;
+
+      try {
+        const queryParams = new URLSearchParams();
+
+        // ✅ REQUIRED: Pagination
+        queryParams.append(
+          "PageNumber",
+          params.pageNumber || this.pagination.pageNumber,
+        );
+
+        queryParams.append(
+          "PageSize",
+          params.pageSize || this.pagination.pageSize,
+        );
+
+        // ✅ OPTIONAL: Search
+        if (params.searchTerm?.trim()) {
+          queryParams.append("SearchTerm", params.searchTerm.trim());
+        }
+
+        // ✅ OPTIONAL: Active filter (safe boolean conversion)
+        if (params.isActive !== "" && params.isActive !== undefined) {
+          queryParams.append(
+            "IsActive",
+            params.isActive === true || params.isActive === "true",
+          );
+        }
+
+        // 🔥 IMPORTANT FIX: ROLE MUST BE SENT (backend supports List<string>)
+        if (params.role) {
+          if (Array.isArray(params.role)) {
+            params.role.forEach((r) => queryParams.append("Role", r));
+          } else {
+            queryParams.append("Role", params.role);
+          }
+        }
+
+        // ✅ Location filters
+        if (params.countyId) {
+          queryParams.append("CountyId", params.countyId);
+        }
+
+        if (params.constituencyId) {
+          queryParams.append("ConstituencyId", params.constituencyId);
+        }
+
+        if (params.wardId) {
+          queryParams.append("WardId", params.wardId);
+        }
+
+        // ✅ Sorting
+        if (params.sortBy) {
+          queryParams.append("SortBy", params.sortBy);
+        }
+
+        const url = `/Users?${queryParams.toString()}`;
+        console.log("API CALL:", url);
+
+        const response = await apiClient.get(url);
+
+        const { data, pageNumber, pageSize, totalPages, totalRecords } =
+          response.data;
+
+        // ✅ State update
+        this.users = data || [];
+
+        this.pagination = {
+          pageNumber,
+          pageSize,
+          totalPages,
+          totalRecords,
+          hasNextPage: pageNumber < totalPages,
+          hasPreviousPage: pageNumber > 1,
+        };
+      } catch (error) {
+        console.error("Failed to load users", error);
+        this.users = [];
+      } finally {
+        this.loading = false;
+      }
+    },
+
+    async fetchUserById(userId) {
+      this.loading = true;
+
+      try {
+        const response = await apiClient.get(`/Users/${userId}`);
+        this.selectedUser = response.data;
+      } catch (error) {
+        console.error("Failed to load user", error);
+        this.selectedUser = null;
+      } finally {
+        this.loading = false;
+      }
+    },
+
+    clearSelectedUser() {
+      this.selectedUser = null;
+    },
+  },
+});

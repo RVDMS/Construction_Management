@@ -65,7 +65,7 @@
           </button>
 
           <!-- Profile Dropdown -->
-          <div class="relative" ref="dropdownRef">
+          <!-- <div class="relative" ref="dropdownRef">
             <button
               @click="showProfileDropdown = !showProfileDropdown"
               class="flex items-center gap-2 px-3 py-2 bg-white border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors"
@@ -84,7 +84,7 @@
               <ChevronDownIcon class="w-4 h-4 text-slate-400" />
             </button>
 
-            <!-- Dropdown Menu -->
+            
             <div
               v-if="showProfileDropdown"
               class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-slate-200 py-1 z-50"
@@ -106,7 +106,7 @@
                 Logout
               </button>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
 

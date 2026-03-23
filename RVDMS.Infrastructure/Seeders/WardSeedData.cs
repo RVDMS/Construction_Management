@@ -722,6 +722,46 @@ namespace RVDMS.Infrastructure.Seeders
                 CreatedBy = "system-seed",
                 IsDeleted = false
             },
+
+            // Add to WardSeedData.Wards list
+
+            // Kericho - Bureti Constituency (for Kericho ESP Market)
+            new Ward
+            {
+                Id = Guid.Parse("40000000-0000-0000-0000-000000000064"),
+                Name = "Kapkatet",
+                Code = "KKT",
+                ConstituencyId = ConstituencySeedData.Constituencies.First(c => c.Code == "BRT").Id, // Need to add Bureti constituency first
+                CreatedAt = DateTime.UtcNow,
+                CreatedBy = "system-seed",
+                IsDeleted = false
+            },
+
+            // Nakuru - Kuresoi North Constituency (for Seguton ESP Market)
+            // Nyota Ward - need to verify if this is correct name
+            new Ward
+            {
+                Id = Guid.Parse("40000000-0000-0000-0000-000000000065"),
+                Name = "Nyota",
+                Code = "NYT",
+                ConstituencyId = ConstituencySeedData.Constituencies.First(c => c.Code == "KRN").Id, // Kuresoi North
+                CreatedAt = DateTime.UtcNow,
+                CreatedBy = "system-seed",
+                IsDeleted = false
+            },
+
+            // West Pokot - Pokot South Constituency (for West Pokot ESP Markets)
+            // Batei Ward
+            new Ward
+            {
+                Id = Guid.Parse("40000000-0000-0000-0000-000000000066"),
+                Name = "Batei",
+                Code = "BTI",
+                ConstituencyId = ConstituencySeedData.Constituencies.First(c => c.Code == "PKS").Id, // Pokot South
+                CreatedAt = DateTime.UtcNow,
+                CreatedBy = "system-seed",
+                IsDeleted = false
+            },
         };
     }
 }
