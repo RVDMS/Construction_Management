@@ -2,6 +2,7 @@ import { defineStore } from "pinia";
 import { ref, computed } from "vue";
 import apiClient from "@/services/apiClient";
 import { jwtDecode } from "jwt-decode";
+import router from "@/router/Index";
 
 export const useAuthStore = defineStore("auth", () => {
   // =====================================================

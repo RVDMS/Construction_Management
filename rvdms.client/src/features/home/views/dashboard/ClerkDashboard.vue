@@ -63,50 +63,6 @@
           >
             <RefreshCwIcon class="w-5 h-5" />
           </button>
-
-          <!-- Profile Dropdown -->
-          <!-- <div class="relative" ref="dropdownRef">
-            <button
-              @click="showProfileDropdown = !showProfileDropdown"
-              class="flex items-center gap-2 px-3 py-2 bg-white border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors"
-            >
-              <div class="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center">
-                <span class="text-sm font-medium text-emerald-700">
-                  {{ userInitials }}
-                </span>
-              </div>
-              <div class="hidden md:block text-left">
-                <p class="text-sm font-medium text-slate-900">
-                  {{ user?.fullName || "Clerk of Works" }}
-                </p>
-                <p class="text-xs text-slate-500">{{ userRoleLabel }}</p>
-              </div>
-              <ChevronDownIcon class="w-4 h-4 text-slate-400" />
-            </button>
-
-            
-            <div
-              v-if="showProfileDropdown"
-              class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-slate-200 py-1 z-50"
-            >
-              <RouterLink
-                to="/profile"
-                class="flex items-center gap-2 px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 w-full text-left"
-                @click="showProfileDropdown = false"
-              >
-                <UserIcon class="w-4 h-4" />
-                My Profile
-              </RouterLink>
-
-              <button
-                @click="logout"
-                class="flex items-center gap-2 px-4 py-2 text-sm text-red-600 hover:bg-red-50 w-full text-left"
-              >
-                <LogOutIcon class="w-4 h-4" />
-                Logout
-              </button>
-            </div>
-          </div> -->
         </div>
       </div>
 
@@ -134,15 +90,15 @@
           </p>
         </div>
 
-        <!-- Time Card -->
+        <!-- Time Card - Now in Months -->
         <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
           <div class="flex items-center justify-between mb-3">
             <div class="p-2 bg-blue-100 rounded-lg">
               <CalendarIcon class="w-5 h-5 text-blue-700" />
             </div>
-            <span class="text-xs font-medium px-2 py-1 bg-slate-100 rounded-full"
-              >{{ myProject.daysRemaining }} days left</span
-            >
+            <span class="text-xs font-medium px-2 py-1 bg-slate-100 rounded-full">
+              {{ formatRemainingTime(myProject.daysRemaining) }}
+            </span>
           </div>
           <p class="text-2xl font-bold text-slate-900">{{ myProject.timeElapsedPercentage }}%</p>
           <p class="text-sm text-slate-500 mt-1">Time Elapsed</p>
@@ -155,7 +111,7 @@
           <p class="text-xs text-slate-400 mt-2">Target: {{ formatDate(myProject.endDate) }}</p>
         </div>
 
-        <!-- Budget Card -->
+        <!-- Budget Card - Updated: Contract Sum -->
         <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
           <div class="flex items-center justify-between mb-3">
             <div class="p-2 bg-purple-100 rounded-lg">
@@ -168,17 +124,8 @@
           </p>
           <p class="text-sm text-slate-500 mt-1">Contract Sum</p>
           <div class="flex justify-between text-xs mt-3">
-            <span class="text-slate-600"
-              >Remaining: KES {{ formatCurrency(myProject.remainingBudget) }}</span
-            >
-            <span class="text-emerald-600"
-              >{{
-                (
-                  ((myProject.contractSum - myProject.remainingBudget) / myProject.contractSum) *
-                  100
-                ).toFixed(1)
-              }}% spent</span
-            >
+            <span class="text-slate-600">Certified: KES {{ formatCurrency(certifiedAmount) }}</span>
+            <span class="text-emerald-600">{{ certifiedPercentage }}% Certified</span>
           </div>
         </div>
 
@@ -211,8 +158,9 @@
             </h4>
             <p class="text-sm text-red-700 mt-1">
               This project is {{ myProject.progressStatus.toLowerCase() }} by
-              {{ Math.abs(myProject.variance) }}%. {{ myProject.daysRemaining }} days remaining to
-              complete {{ (100 - myProject.currentPhysicalProgress).toFixed(1) }}% of work.
+              {{ Math.abs(myProject.variance) }}%.
+              {{ formatRemainingTime(myProject.daysRemaining) }} remaining to complete
+              {{ (100 - myProject.currentPhysicalProgress).toFixed(1) }}% of work.
             </p>
           </div>
         </div>
@@ -425,21 +373,11 @@
                       {{ myProject.technicalLead || "Not assigned" }}
                     </p>
                   </div>
-                  <div v-if="myProject.clusterSupervisors?.length">
-                    <p class="text-xs text-slate-500">Cluster Supervisor(s)</p>
-                    <p
-                      v-for="(cs, index) in myProject.clusterSupervisors"
-                      :key="index"
-                      class="text-sm font-medium"
-                    >
-                      {{ cs }}
-                    </p>
-                  </div>
                 </div>
               </div>
             </div>
 
-            <!-- Budget Breakdown -->
+            <!-- Budget Breakdown - Updated with Certified Amount -->
             <div class="bg-slate-50 rounded-lg p-4">
               <h4 class="text-sm font-medium text-slate-900 mb-3">Budget Breakdown</h4>
               <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -450,22 +388,33 @@
                   </p>
                 </div>
                 <div>
-                  <p class="text-xs text-slate-500 mb-1">Estimated Spent</p>
+                  <p class="text-xs text-slate-500 mb-1">Certified Amount</p>
                   <p class="text-lg font-semibold text-emerald-700">
-                    KES {{ formatCurrency(myProject.contractSum - myProject.remainingBudget) }}
+                    KES {{ formatCurrency(certifiedAmount) }}
                   </p>
                 </div>
                 <div>
-                  <p class="text-xs text-slate-500 mb-1">Remaining Budget</p>
-                  <p class="text-lg font-semibold text-blue-700">
-                    KES {{ formatCurrency(myProject.remainingBudget) }}
-                  </p>
+                  <p class="text-xs text-slate-500 mb-1">% Certified</p>
+                  <p class="text-lg font-semibold text-blue-700">{{ certifiedPercentage }}%</p>
+                </div>
+              </div>
+              <!-- Progress Bar for Certification -->
+              <div class="mt-4">
+                <div class="flex justify-between text-xs text-slate-500 mb-1">
+                  <span>Certification Progress</span>
+                  <span>{{ certifiedPercentage }}%</span>
+                </div>
+                <div class="bg-slate-200 rounded-full h-2">
+                  <div
+                    class="bg-emerald-600 h-2 rounded-full transition-all"
+                    :style="{ width: `${certifiedPercentage}%` }"
+                  ></div>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- REPORTS TAB -->
+          <!-- REPORTS TAB (unchanged from previous) -->
           <div v-if="activeTab === 'reports'" class="space-y-6">
             <!-- Upload Section with Geolocation -->
             <div class="bg-slate-50 rounded-lg p-5 border border-slate-200">
@@ -666,7 +615,7 @@
             </div>
           </div>
 
-          <!-- DOCUMENTS TAB - Keeping for future use -->
+          <!-- DOCUMENTS TAB -->
           <div v-if="activeTab === 'documents'" class="text-center py-12">
             <FolderOpenIcon class="w-12 h-12 mx-auto mb-3 text-slate-300" />
             <p class="text-slate-600">Project documents will appear here</p>
@@ -695,11 +644,7 @@ import {
   Users as UsersIcon,
   ExternalLink as ExternalLinkIcon,
   FolderOpen as FolderOpenIcon,
-  ChevronDown as ChevronDownIcon,
-  User as UserIcon,
-  LogOut as LogOutIcon,
 } from "lucide-vue-next";
-import { onClickOutside } from "@vueuse/core";
 import { useAuthStore } from "@/stores/AuthStore";
 import { useProjectStore } from "@/stores/projectStore";
 import apiClient from "@/services/apiClient";
@@ -721,10 +666,8 @@ const locationStatus = ref("Checking your location...");
 const locationError = ref("");
 const isWithinGeofence = ref(false);
 const currentLocation = ref(null);
-const showProfileDropdown = ref(false);
-const dropdownRef = ref(null);
 
-// Tabs configuration - REMOVED instructions tab
+// Tabs configuration
 const tabs = [
   { id: "overview", label: "Overview", icon: FileTextIcon },
   {
@@ -747,6 +690,46 @@ const reportForm = ref({
 const user = computed(() => authStore.user);
 const myProject = computed(() => projectStore.myProject);
 const loading = computed(() => projectStore.loading);
+
+// Helper: Convert days to months
+const getRemainingMonths = (days) => {
+  if (!days || days <= 0) return 0;
+  return days / 30.44;
+};
+
+const formatRemainingTime = (days) => {
+  if (!days || days <= 0) return "Completed";
+
+  const months = getRemainingMonths(days);
+  const wholeMonths = Math.floor(months);
+  const decimalMonths = months - wholeMonths;
+
+  if (months < 1) {
+    return `${days} day${days !== 1 ? "s" : ""}`;
+  }
+
+  if (decimalMonths > 0.85) {
+    return `${wholeMonths + 1} month${wholeMonths + 1 !== 1 ? "s" : ""}`;
+  } else if (decimalMonths > 0.35) {
+    return `${wholeMonths}.5 month${wholeMonths !== 0 ? "s" : ""}`;
+  } else if (decimalMonths > 0.1) {
+    return `${wholeMonths} month${wholeMonths !== 1 ? "s" : ""} ${Math.round(decimalMonths * 30)} days`;
+  } else {
+    return `${wholeMonths} month${wholeMonths !== 1 ? "s" : ""}`;
+  }
+};
+
+// Helper: Calculate certified amount based on progress
+const certifiedAmount = computed(() => {
+  if (!myProject.value) return 0;
+  // Certified amount is based on physical progress percentage
+  return (myProject.value.contractSum * myProject.value.currentPhysicalProgress) / 100;
+});
+
+const certifiedPercentage = computed(() => {
+  if (!myProject.value) return 0;
+  return myProject.value.currentPhysicalProgress;
+});
 
 // Chart calculations
 const plannedProgress = computed(() => {
@@ -782,30 +765,6 @@ const progressBarClass = computed(() => {
   if (myProject.value?.isAtRisk) return "bg-red-600";
   if (myProject.value?.variance < -10) return "bg-amber-600";
   return "bg-emerald-600";
-});
-
-const userInitials = computed(() => {
-  if (!user.value) return "U";
-  const first = user.value.firstName?.charAt(0) || "";
-  const last = user.value.lastName?.charAt(0) || "";
-  return (first + last).toUpperCase() || "U";
-});
-
-const userRoleLabel = computed(() => {
-  const role = authStore.userRole;
-  const roles = {
-    CS: "Principal Secretary",
-    RL: "Regional Lead",
-    CDH: "County Director",
-    COW: "Clerk of Works",
-    TL: "Technical Lead",
-  };
-  return roles[role] || role || "User";
-});
-
-// Click outside to close dropdown
-onClickOutside(dropdownRef, () => {
-  showProfileDropdown.value = false;
 });
 
 // Methods
@@ -870,7 +829,6 @@ const checkGeolocation = async () => {
     const { latitude, longitude } = position.coords;
     currentLocation.value = { latitude, longitude };
 
-    // For now, assume within geofence - your backend will validate
     isWithinGeofence.value = true;
     locationStatus.value = "✓ Location detected - you can upload reports";
   } catch (error) {
@@ -931,7 +889,6 @@ const submitReport = async () => {
   submitting.value = true;
 
   try {
-    // Get fresh location
     const position = await authStore.getCurrentPosition();
     const { latitude, longitude } = position.coords;
 
@@ -950,7 +907,7 @@ const submitReport = async () => {
       },
     });
 
-    const { isSuccess, error, value } = response.data;
+    const { isSuccess, error } = response.data;
 
     if (!isSuccess) {
       throw new Error(error || "Failed to submit report");
@@ -958,7 +915,6 @@ const submitReport = async () => {
 
     toast.success("Report submitted successfully!");
 
-    // Reset form
     reportForm.value = {
       title: "",
       progress: 0,
@@ -969,7 +925,6 @@ const submitReport = async () => {
       fileInput.value.value = "";
     }
 
-    // Refresh data
     await Promise.all([fetchReports(), projectStore.fetchMyProject()]);
   } catch (error) {
     console.error("Error submitting report:", error);
@@ -977,11 +932,6 @@ const submitReport = async () => {
   } finally {
     submitting.value = false;
   }
-};
-
-const logout = () => {
-  authStore.logout();
-  router.push("/login");
 };
 
 // Initialize

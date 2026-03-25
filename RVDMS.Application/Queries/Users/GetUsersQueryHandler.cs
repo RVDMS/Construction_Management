@@ -46,6 +46,8 @@ namespace RVDMS.Application.Queries.Users
                     PhoneNumber = user.PhoneNumber,
                     IsActive = user.IsActive,
                     Role = roles.FirstOrDefault(), // show first role
+                    LastLoginAt = user.LastLoginAt,
+                    CreatedAt = user.CreatedAt,
                     ProjectAssignments = user.ProjectAssignments.Select(pa => new ProjectAssignmentDto
                     {
                         ProjectName = pa.Project.Name,

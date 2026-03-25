@@ -16,6 +16,7 @@ namespace RVDMS.Application.DTOs
         public string? PhoneNumber { get; set; }
         public string FullName => $"{FirstName} {LastName}";
         public DateTime? LastLoginAt { get; set; }
+        public DateTime? CreatedAt { get; set; }
         public bool IsActive { get; set; }
 
         public string County { get; set; }
