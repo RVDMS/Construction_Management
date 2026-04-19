@@ -2,7 +2,7 @@ import axios from "axios";
 import router from "@/router/Index";
 
 const apiClient = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || "https://localhost:7026/api",
+  baseURL: import.meta.env.VITE_API_URL || "https://construction-management-znxf.onrender.com/api",
   headers: {
     "Content-Type": "application/json",
   },
