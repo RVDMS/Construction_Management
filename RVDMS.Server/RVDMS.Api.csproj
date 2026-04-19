@@ -23,9 +23,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\RVDMS.Application\RVDMS.Application.csproj" />
-    <ProjectReference Include="..\rvdms.client\rvdms.client.esproj">
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
     <ProjectReference Include="..\RVDMS.Infrastructure\RVDMS.Infrastructure.csproj" />
   </ItemGroup>
 

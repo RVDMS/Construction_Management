@@ -1,0 +1,8 @@
+rvdms.client/
+**/rvdms.client/
+**/node_modules/
+**/bin/
+**/obj/
+.git/
+.vs/
+*.log
