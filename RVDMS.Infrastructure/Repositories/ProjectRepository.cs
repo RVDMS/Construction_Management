@@ -27,10 +27,10 @@ namespace RVDMS.Infrastructure.Repositories
             {
                 var search = filter.SearchTerm.ToLower();
                 query = query.Where(p =>
-                    EF.Functions.Like(p.Name, $"%{search}%") ||
-                    EF.Functions.Like(p.TenderNumber ?? "", $"%{search}%") ||
-                    EF.Functions.Like(p.ContractorName, $"%{search}%") ||
-                    EF.Functions.Like(p.ConsultantName, $"%{search}%"));
+                    EF.Functions.ILike(p.Name, $"%{search}%") ||
+                    EF.Functions.ILike(p.TenderNumber ?? "", $"%{search}%") ||
+                    EF.Functions.ILike(p.ContractorName, $"%{search}%") ||
+                    EF.Functions.ILike(p.ConsultantName, $"%{search}%"));
             }
 
             return await query.CountAsync(cancellationToken);
@@ -86,10 +86,10 @@ namespace RVDMS.Infrastructure.Repositories
             {
                 var search = $"%{filter.SearchTerm}%"; // % = wildcard before and after
                 query = query.Where(p =>
-                    EF.Functions.Like(p.Name, search) ||
-                    EF.Functions.Like(p.TenderNumber ?? "", search) ||
-                    EF.Functions.Like(p.ContractorName, search) ||
-                    EF.Functions.Like(p.ConsultantName, search));
+                    EF.Functions.ILike(p.Name, search) ||
+                    EF.Functions.ILike(p.TenderNumber ?? "", search) ||
+                    EF.Functions.ILike(p.ContractorName, search) ||
+                    EF.Functions.ILike(p.ConsultantName, search));
             }
 
             // Filter by progress status (in-memory calculation)

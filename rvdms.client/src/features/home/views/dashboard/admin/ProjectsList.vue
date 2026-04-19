@@ -23,7 +23,6 @@
       class="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4"
     >
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
-        <!-- Search -->
         <div>
           <label class="block text-sm text-slate-700 dark:text-slate-300 mb-1">Search</label>
           <input
@@ -34,8 +33,6 @@
             class="w-full px-3 py-2 text-sm border border-slate-300 dark:border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:bg-slate-700 dark:text-white"
           />
         </div>
-
-        <!-- County Filter -->
         <div>
           <label class="block text-sm text-slate-700 dark:text-slate-300 mb-1">County</label>
           <select
@@ -49,8 +46,6 @@
             </option>
           </select>
         </div>
-
-        <!-- Progress Status Filter -->
         <div>
           <label class="block text-sm text-slate-700 dark:text-slate-300 mb-1"
             >Progress Status</label
@@ -67,8 +62,6 @@
             <option value="Ahead">Ahead</option>
           </select>
         </div>
-
-        <!-- Assigned To Filter -->
         <div>
           <label class="block text-sm text-slate-700 dark:text-slate-300 mb-1">Assigned To</label>
           <select
@@ -83,7 +76,6 @@
         </div>
       </div>
 
-      <!-- Active Filters Display -->
       <div
         v-if="hasActiveFilters"
         class="flex flex-wrap gap-2 mt-4 pt-4 border-t border-slate-200 dark:border-slate-700"
@@ -141,6 +133,9 @@
               {{ project.name }}
             </h3>
             <p class="text-xs text-slate-500 mt-0.5">{{ project.tenderNumber }}</p>
+            <p class="text-xs text-emerald-600 mt-1 font-medium">
+              KES {{ formatCurrencyFull(project.contractSum) }}
+            </p>
           </div>
           <span
             :class="[
@@ -151,7 +146,6 @@
             {{ project.progressStatus }}
           </span>
         </div>
-
         <div class="space-y-2 text-sm">
           <div class="flex justify-between">
             <span class="text-slate-500">County:</span>
@@ -176,7 +170,6 @@
               project.clerkOfWorks || "Unassigned"
             }}</span>
           </div>
-          <!-- Time Left - Converted to Months -->
           <div class="flex justify-between">
             <span class="text-slate-500">Time Left:</span>
             <span
@@ -205,10 +198,7 @@
         <table class="w-full text-sm">
           <thead class="bg-slate-50 dark:bg-slate-700/50 text-slate-600 dark:text-slate-300">
             <tr>
-              <th
-                class="px-6 py-3 text-left font-medium cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-600"
-                @click="sortBy('name')"
-              >
+              <th class="px-6 py-3 text-left font-medium cursor-pointer" @click="sortBy('name')">
                 <div class="flex items-center gap-1">
                   Project Name
                   <SortIcon
@@ -220,7 +210,7 @@
               </th>
               <th class="px-6 py-3 text-left font-medium">County</th>
               <th
-                class="px-6 py-3 text-left font-medium cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-600"
+                class="px-6 py-3 text-left font-medium cursor-pointer"
                 @click="sortBy('currentPhysicalProgress')"
               >
                 <div class="flex items-center gap-1">
@@ -235,8 +225,9 @@
               <th class="px-6 py-3 text-left font-medium">Status</th>
               <th class="px-6 py-3 text-left font-medium">COW</th>
               <th class="px-6 py-3 text-left font-medium">Consultant</th>
+              <th class="px-6 py-3 text-left font-medium">Contract Sum</th>
               <th
-                class="px-6 py-3 text-left font-medium cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-600"
+                class="px-6 py-3 text-left font-medium cursor-pointer"
                 @click="sortBy('daysRemaining')"
               >
                 <div class="flex items-center gap-1">
@@ -297,6 +288,9 @@
               <td class="px-6 py-4 text-slate-700 dark:text-slate-300">
                 {{ project.consultantName || "N/A" }}
               </td>
+              <td class="px-6 py-4 text-slate-700 dark:text-slate-300 font-mono text-xs">
+                KES {{ formatCurrencyFull(project.contractSum) }}
+              </td>
               <td class="px-6 py-4">
                 <span
                   :class="
@@ -312,34 +306,27 @@
                 {{ formatDate(project.lastProgressUpdate) }}
               </td>
             </tr>
+            <tr v-if="projects.length === 0 && !projectsLoading">
+              <td colspan="9" class="px-6 py-12 text-center">
+                <FolderOpenIcon class="w-12 h-12 text-slate-300 dark:text-slate-600 mx-auto mb-3" />
+                <p class="text-slate-500 dark:text-slate-400">No projects found</p>
+                <button
+                  @click="clearAllFilters"
+                  class="text-sm text-emerald-600 hover:text-emerald-700 mt-2"
+                >
+                  Clear filters
+                </button>
+              </td>
+            </tr>
+            <tr v-if="projectsLoading">
+              <td colspan="9" class="px-6 py-12 text-center">
+                <Loader2Icon class="w-8 h-8 animate-spin text-emerald-600 mx-auto" />
+                <p class="text-slate-500 dark:text-slate-400 mt-2">Loading projects...</p>
+              </td>
+            </tr>
           </tbody>
         </table>
       </div>
-    </div>
-
-    <!-- Empty State -->
-    <div
-      v-if="projects.length === 0 && !projectsLoading"
-      class="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-12 text-center"
-    >
-      <FolderOpenIcon class="w-12 h-12 text-slate-300 dark:text-slate-600 mx-auto mb-3" />
-      <p class="text-slate-500 dark:text-slate-400">No projects found</p>
-      <button
-        v-if="hasActiveFilters"
-        @click="clearAllFilters"
-        class="text-sm text-emerald-600 hover:text-emerald-700 mt-2"
-      >
-        Clear filters
-      </button>
-    </div>
-
-    <!-- Loading State -->
-    <div
-      v-if="projectsLoading"
-      class="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-12 text-center"
-    >
-      <Loader2Icon class="w-8 h-8 animate-spin text-emerald-600 mx-auto" />
-      <p class="text-slate-500 dark:text-slate-400 mt-2">Loading projects...</p>
     </div>
 
     <!-- Pagination -->
@@ -358,9 +345,9 @@
         >
           Previous
         </button>
-        <span class="text-sm text-slate-600 dark:text-slate-400">
-          Page {{ currentPage }} of {{ totalPages }}
-        </span>
+        <span class="text-sm text-slate-600 dark:text-slate-400"
+          >Page {{ currentPage }} of {{ totalPages }}</span
+        >
         <button
           @click="changePage(currentPage + 1)"
           :disabled="!hasNextPage"
@@ -389,42 +376,7 @@ import {
 const router = useRouter();
 const projectStore = useProjectStore();
 
-// Helper functions for days to months conversion
-const getRemainingMonths = (days) => {
-  if (!days || days <= 0) return 0;
-  // Average days per month = 30.44
-  return days / 30.44;
-};
-
-const formatRemainingTime = (days) => {
-  if (!days || days <= 0) return "Completed";
-
-  const months = getRemainingMonths(days);
-  const wholeMonths = Math.floor(months);
-  const decimalMonths = months - wholeMonths;
-
-  // If less than 1 month, show days
-  if (months < 1) {
-    return `${days} day${days !== 1 ? "s" : ""}`;
-  }
-
-  // Show months with decimal for partial months
-  if (decimalMonths > 0.85) {
-    // More than ~25 days, show as next whole month
-    return `${wholeMonths + 1} month${wholeMonths + 1 !== 1 ? "s" : ""}`;
-  } else if (decimalMonths > 0.35) {
-    // About 2-3 weeks, show as 0.5 months
-    return `${wholeMonths}.5 month${wholeMonths !== 0 ? "s" : ""}`;
-  } else if (decimalMonths > 0.1) {
-    // About 1 week
-    return `${wholeMonths} month${wholeMonths !== 1 ? "s" : ""} ${Math.round(decimalMonths * 30)} days`;
-  } else {
-    // Less than 3 days after whole month
-    return `${wholeMonths} month${wholeMonths !== 1 ? "s" : ""}`;
-  }
-};
-
-// Rest of your existing code...
+// State
 const filters = ref({
   searchTerm: "",
   countyId: "",
@@ -436,6 +388,7 @@ const sortOrder = ref("asc");
 const searchTimeout = ref(null);
 const projectsLoading = ref(false);
 
+// Computed
 const projects = computed(() => projectStore.projects);
 const pagination = computed(() => projectStore.pagination);
 const currentPage = computed(() => pagination.value.pageNumber);
@@ -444,10 +397,10 @@ const totalRecords = computed(() => pagination.value.totalRecords);
 const hasNextPage = computed(() => pagination.value.hasNextPage);
 const hasPreviousPage = computed(() => pagination.value.hasPreviousPage);
 const pageSize = computed(() => pagination.value.pageSize);
-
 const startRecord = computed(() => (currentPage.value - 1) * pageSize.value + 1);
 const endRecord = computed(() => Math.min(currentPage.value * pageSize.value, totalRecords.value));
 
+// Counties data
 const counties = ref([
   { id: "20000000-0000-0000-0000-000000000001", name: "Trans-Nzoia" },
   { id: "20000000-0000-0000-0000-000000000002", name: "Uasin Gishu" },
@@ -462,6 +415,34 @@ const counties = ref([
   { id: "20000000-0000-0000-0000-000000000011", name: "Turkana" },
   { id: "20000000-0000-0000-0000-000000000012", name: "West Pokot" },
 ]);
+
+// Helper functions
+const formatCurrencyFull = (value) => {
+  if (!value && value !== 0) return "0";
+  const number = typeof value === "string" ? parseFloat(value) : value;
+  return number.toLocaleString("en-KE", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  });
+};
+
+const getRemainingMonths = (days) => {
+  if (!days || days <= 0) return 0;
+  return days / 30.44;
+};
+
+const formatRemainingTime = (days) => {
+  if (!days || days <= 0) return "Completed";
+  const months = getRemainingMonths(days);
+  const wholeMonths = Math.floor(months);
+  const decimalMonths = months - wholeMonths;
+  if (months < 1) return `${days} day${days !== 1 ? "s" : ""}`;
+  if (decimalMonths > 0.85) return `${wholeMonths + 1} month${wholeMonths + 1 !== 1 ? "s" : ""}`;
+  if (decimalMonths > 0.35) return `${wholeMonths}.5 month${wholeMonths !== 0 ? "s" : ""}`;
+  if (decimalMonths > 0.1)
+    return `${wholeMonths} month${wholeMonths !== 1 ? "s" : ""} ${Math.round(decimalMonths * 30)} days`;
+  return `${wholeMonths} month${wholeMonths !== 1 ? "s" : ""}`;
+};
 
 const sortedProjects = computed(() => {
   const sorted = [...projects.value];
@@ -513,9 +494,7 @@ const applyFilters = () => {
 
 const debouncedSearch = () => {
   if (searchTimeout.value) clearTimeout(searchTimeout.value);
-  searchTimeout.value = setTimeout(() => {
-    applyFilters();
-  }, 300);
+  searchTimeout.value = setTimeout(() => applyFilters(), 300);
 };
 
 const clearFilter = (filter) => {
@@ -524,12 +503,7 @@ const clearFilter = (filter) => {
 };
 
 const clearAllFilters = () => {
-  filters.value = {
-    searchTerm: "",
-    countyId: "",
-    progressStatus: "",
-    assignedTo: "",
-  };
+  filters.value = { searchTerm: "", countyId: "", progressStatus: "", assignedTo: "" };
   applyFilters();
 };
 

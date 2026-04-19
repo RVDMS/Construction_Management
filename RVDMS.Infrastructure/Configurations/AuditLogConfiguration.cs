@@ -40,14 +40,14 @@ namespace RVDMS.Infrastructure.Configurations
                 .HasMaxLength(500);
 
             builder.Property(al => al.OldValues)
-                .HasColumnType("nvarchar(max)");
+                .HasColumnType("text");
 
             builder.Property(al => al.NewValues)
-                .HasColumnType("nvarchar(max)");
+                .HasColumnType("text");
 
             builder.Property(al => al.Timestamp)
                 .IsRequired()
-                .HasDefaultValueSql("GETUTCDATE()");
+                .HasDefaultValueSql("NOW()");
 
             // Indexes
             builder.HasIndex(al => al.UserId);

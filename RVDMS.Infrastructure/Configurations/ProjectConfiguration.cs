@@ -133,21 +133,25 @@ namespace RVDMS.Infrastructure.Configurations
             builder.Ignore(p => p.Progress);
             builder.Ignore(p => p.TimeElapsedPercentage);
 
-            // Check constraint for dates
-            builder.ToTable(t => t.HasCheckConstraint("CK_Project_EndDateGreaterThanStartDate",
-                "EndDate >= StartDate"));
+            builder.ToTable(t => t.HasCheckConstraint(
+                 "CK_Project_EndDateGreaterThanStartDate",
+                 "\"EndDate\" >= \"StartDate\""
+             ));
 
-            // Check constraint for physical progress
-            builder.ToTable(t => t.HasCheckConstraint("CK_Project_CurrentPhysicalProgress_Range",
-                "CurrentPhysicalProgress >= 0 AND CurrentPhysicalProgress <= 100"));
+            builder.ToTable(t => t.HasCheckConstraint(
+                "CK_Project_CurrentPhysicalProgress_Range",
+                "\"CurrentPhysicalProgress\" >= 0 AND \"CurrentPhysicalProgress\" <= 100"
+            ));
 
-            // Check constraint for contract sum
-            builder.ToTable(t => t.HasCheckConstraint("CK_Project_ContractSum_Positive",
-                "ContractSum >= 0"));
+            builder.ToTable(t => t.HasCheckConstraint(
+                "CK_Project_ContractSum_Positive",
+                "\"ContractSum\" >= 0"
+            ));
 
-            // Check constraint for radius
-            builder.ToTable(t => t.HasCheckConstraint("CK_Project_RadiusInMeters_Positive",
-                "RadiusInMeters >= 0"));
+            builder.ToTable(t => t.HasCheckConstraint(
+                "CK_Project_RadiusInMeters_Positive",
+                "\"RadiusInMeters\" >= 0"
+            ));
         }
     }
 }

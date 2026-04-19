@@ -26,7 +26,7 @@ namespace RVDMS.Infrastructure.Configurations
 
                 builder.Property(u => u.CreatedAt)
                     .IsRequired()
-                    .HasDefaultValueSql("GETUTCDATE()");
+                    .HasDefaultValueSql("NOW()");
 
                 // Owned entity configuration for Location
                 builder.OwnsOne(u => u.BaseLocation, location =>

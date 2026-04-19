@@ -47,10 +47,10 @@ namespace RVDMS.Infrastructure.Repositories
             {
                 var search = $"%{filter.SearchTerm}%";
                 query = query.Where(u =>
-                    EF.Functions.Like(u.FirstName, search) ||
-                    EF.Functions.Like(u.LastName, search) ||
-                    EF.Functions.Like(u.Email, search) ||
-                    EF.Functions.Like(u.UserName, search));
+                    EF.Functions.ILike(u.FirstName, search) ||
+                    EF.Functions.ILike(u.LastName, search) ||
+                    EF.Functions.ILike(u.Email, search) ||
+                    EF.Functions.ILike(u.UserName, search));
             }
 
             return await query.CountAsync(cancellationToken);
@@ -116,10 +116,10 @@ namespace RVDMS.Infrastructure.Repositories
             {
                 var search = $"%{filter.SearchTerm}%";
                 query = query.Where(u =>
-                    EF.Functions.Like(u.FirstName, search) ||
-                    EF.Functions.Like(u.LastName, search) ||
-                    EF.Functions.Like(u.Email, search) ||
-                    EF.Functions.Like(u.UserName, search));
+                    EF.Functions.ILike(u.FirstName, search) ||
+                    EF.Functions.ILike(u.LastName, search) ||
+                    EF.Functions.ILike(u.Email, search) ||
+                    EF.Functions.ILike(u.UserName, search));
             }
 
             // ✅ Location filters

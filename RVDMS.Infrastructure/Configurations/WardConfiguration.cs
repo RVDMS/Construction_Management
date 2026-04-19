@@ -44,10 +44,10 @@ namespace RVDMS.Infrastructure.Configurations
 
             // Check constraints
             builder.ToTable(t => t.HasCheckConstraint("CK_Ward_Code_Format",
-                "Code IS NULL OR Code LIKE '[A-Z0-9][A-Z0-9][A-Z0-9]'")); // Example: 3-character code
+                    "\"Code\" IS NULL OR \"Code\" ~ '^[A-Z0-9]{3}$'"));
 
             // Query filter for soft delete (already in BaseEntityConfiguration, but can be explicit)
-            
+
         }
     }
 }

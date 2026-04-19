@@ -16,14 +16,14 @@ namespace RVDMS.Infrastructure.Configurations
             
 
             builder.Property(e => e.Id)
-                .HasDefaultValueSql("NEWSEQUENTIALID()");
+                .HasDefaultValueSql("gen_random_uuid()");
 
             builder.Property(e => e.CreatedAt)
                 .IsRequired()
-                .HasDefaultValueSql("GETUTCDATE()");
+                .HasDefaultValueSql("NOW()");
 
             builder.Property(e => e.UpdatedAt)
-                .HasDefaultValueSql("GETUTCDATE()");
+                .HasDefaultValueSql("NOW()");
 
             builder.Property(e => e.CreatedBy)
                 .HasMaxLength(450);

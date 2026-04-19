@@ -54,6 +54,7 @@ namespace RVDMS.Application.Queries.Projects
         
         public int TotalAssignments { get; set; }
         public string? ClerkOfWorks { get; set; }
+        public string? ClusterSupervisor { get; set; }
         public string? TechnicalLead { get; set; }
         public List<string> ClusterSupervisors { get; set; } = new();
 

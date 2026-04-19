@@ -18,7 +18,7 @@ namespace RVDMS.Infrastructure.Configurations
             builder.HasKey(rt => rt.Id);
 
             builder.Property(rt => rt.Id)
-                .HasDefaultValueSql("NEWSEQUENTIALID()");
+                .HasDefaultValueSql("gen_random_uuid()");
 
             builder.Property(rt => rt.UserId)
                 .IsRequired()

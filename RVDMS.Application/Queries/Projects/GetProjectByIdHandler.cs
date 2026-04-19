@@ -82,7 +82,9 @@ namespace RVDMS.Application.Queries.Projects
 
                 TotalAssignments = activeAssignments.Count,
                 ClerkOfWorks = cow != null ? $"{cow.User?.FirstName} {cow.User?.LastName}" : null,
-                TechnicalLead = tl != null ? $"{tl.User?.FirstName} {tl.User?.LastName}" : null,
+                ClusterSupervisor = css.FirstOrDefault() != null
+                            ? $"{css.First().User?.FirstName} {css.First().User?.LastName}"
+                            : null,
                 ClusterSupervisors = css.Select(cs => $"{cs.User?.FirstName} {cs.User?.LastName}").ToList(),
 
                 TotalWeeklyReports = project.WeeklyReports.Count,

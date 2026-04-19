@@ -1186,7 +1186,7 @@ SELECT [t3].[Id], [t3].[AccessFailedCount], [t3].[ConcurrencyStamp], [t3].[Creat
 FROM (
     SELECT [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[CreatedAt], [u].[Email], [u].[EmailConfirmed], [u].[FirstName], [u].[IsActive], [u].[LastLoginAt], [u].[LastName], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName], [u].[BaseLatitude], [u].[BaseLongitude], [u].[BaseRadiusInMeters]
     FROM [Users] AS [u]
-    WHERE ([u].[FirstName] LIKE @__search_1 OR [u].[LastName] LIKE @__search_1 OR [u].[Email] LIKE @__search_1_1 OR [u].[UserName] LIKE @__search_1_1) AND EXISTS (
+    WHERE ([u].[FirstName] ILike @__search_1 OR [u].[LastName] ILike @__search_1 OR [u].[Email] ILike @__search_1_1 OR [u].[UserName] ILike @__search_1_1) AND EXISTS (
         SELECT 1
         FROM [ProjectAssignments] AS [p]
         INNER JOIN (
@@ -1242,7 +1242,7 @@ ORDER BY [t3].[FirstName], [t3].[Id], [t4].[Id], [t4].[Id0], [t4].[Id1], [t4].[I
 2026-03-13 11:27:56.146 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__search_1='?' (Size = 100), @__search_1_1='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
 SELECT COUNT(*)
 FROM [Users] AS [u]
-WHERE [u].[FirstName] LIKE @__search_1 OR [u].[LastName] LIKE @__search_1 OR [u].[Email] LIKE @__search_1_1 OR [u].[UserName] LIKE @__search_1_1
+WHERE [u].[FirstName] ILike @__search_1 OR [u].[LastName] ILike @__search_1 OR [u].[Email] ILike @__search_1_1 OR [u].[UserName] ILike @__search_1_1
 2026-03-13 11:27:56.150 +03:00 [INF] Handled GetUsersQuery in 147ms
 2026-03-13 11:27:56.150 +03:00 [INF] Executing OkObjectResult, writing value of type 'RVDMS.Application.Common.PagedResponse`1[[RVDMS.Application.DTOs.UserDto, RVDMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
 2026-03-13 11:27:56.152 +03:00 [INF] Executed action RVDMS.Api.Controllers.UsersController.GetUsers (RVDMS.Api) in 150.4364ms
@@ -1269,7 +1269,7 @@ SELECT [t3].[Id], [t3].[AccessFailedCount], [t3].[ConcurrencyStamp], [t3].[Creat
 FROM (
     SELECT [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[CreatedAt], [u].[Email], [u].[EmailConfirmed], [u].[FirstName], [u].[IsActive], [u].[LastLoginAt], [u].[LastName], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName], [u].[BaseLatitude], [u].[BaseLongitude], [u].[BaseRadiusInMeters]
     FROM [Users] AS [u]
-    WHERE ([u].[FirstName] LIKE @__search_1 OR [u].[LastName] LIKE @__search_1 OR [u].[Email] LIKE @__search_1_1 OR [u].[UserName] LIKE @__search_1_1) AND EXISTS (
+    WHERE ([u].[FirstName] ILike @__search_1 OR [u].[LastName] ILike @__search_1 OR [u].[Email] ILike @__search_1_1 OR [u].[UserName] ILike @__search_1_1) AND EXISTS (
         SELECT 1
         FROM [ProjectAssignments] AS [p]
         INNER JOIN (
@@ -1330,7 +1330,7 @@ WHERE [u].[UserId] = @__userId_0
 2026-03-13 11:29:40.113 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[@__search_1='?' (Size = 100), @__search_1_1='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
 SELECT COUNT(*)
 FROM [Users] AS [u]
-WHERE [u].[FirstName] LIKE @__search_1 OR [u].[LastName] LIKE @__search_1 OR [u].[Email] LIKE @__search_1_1 OR [u].[UserName] LIKE @__search_1_1
+WHERE [u].[FirstName] ILike @__search_1 OR [u].[LastName] ILike @__search_1 OR [u].[Email] ILike @__search_1_1 OR [u].[UserName] ILike @__search_1_1
 2026-03-13 11:29:40.120 +03:00 [INF] Handled GetUsersQuery in 129ms
 2026-03-13 11:29:40.121 +03:00 [INF] Executing OkObjectResult, writing value of type 'RVDMS.Application.Common.PagedResponse`1[[RVDMS.Application.DTOs.UserDto, RVDMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
 2026-03-13 11:29:40.123 +03:00 [INF] Executed action RVDMS.Api.Controllers.UsersController.GetUsers (RVDMS.Api) in 132.8839ms
@@ -1357,7 +1357,7 @@ SELECT [t3].[Id], [t3].[AccessFailedCount], [t3].[ConcurrencyStamp], [t3].[Creat
 FROM (
     SELECT [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[CreatedAt], [u].[Email], [u].[EmailConfirmed], [u].[FirstName], [u].[IsActive], [u].[LastLoginAt], [u].[LastName], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName], [u].[BaseLatitude], [u].[BaseLongitude], [u].[BaseRadiusInMeters]
     FROM [Users] AS [u]
-    WHERE ([u].[FirstName] LIKE @__search_1 OR [u].[LastName] LIKE @__search_1 OR [u].[Email] LIKE @__search_1_1 OR [u].[UserName] LIKE @__search_1_1) AND EXISTS (
+    WHERE ([u].[FirstName] ILike @__search_1 OR [u].[LastName] ILike @__search_1 OR [u].[Email] ILike @__search_1_1 OR [u].[UserName] ILike @__search_1_1) AND EXISTS (
         SELECT 1
         FROM [ProjectAssignments] AS [p]
         INNER JOIN (
@@ -1418,7 +1418,7 @@ WHERE [u].[UserId] = @__userId_0
 2026-03-13 11:29:59.589 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__search_1='?' (Size = 100), @__search_1_1='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
 SELECT COUNT(*)
 FROM [Users] AS [u]
-WHERE [u].[FirstName] LIKE @__search_1 OR [u].[LastName] LIKE @__search_1 OR [u].[Email] LIKE @__search_1_1 OR [u].[UserName] LIKE @__search_1_1
+WHERE [u].[FirstName] ILike @__search_1 OR [u].[LastName] ILike @__search_1 OR [u].[Email] ILike @__search_1_1 OR [u].[UserName] ILike @__search_1_1
 2026-03-13 11:29:59.591 +03:00 [INF] Handled GetUsersQuery in 148ms
 2026-03-13 11:29:59.592 +03:00 [INF] Executing OkObjectResult, writing value of type 'RVDMS.Application.Common.PagedResponse`1[[RVDMS.Application.DTOs.UserDto, RVDMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
 2026-03-13 11:29:59.593 +03:00 [INF] Executed action RVDMS.Api.Controllers.UsersController.GetUsers (RVDMS.Api) in 150.5705ms

@@ -16071,7 +16071,7 @@ SELECT [t].[Id], [t].[ClusterId], [t].[ConsultantName], [t].[ContractSum], [t].[
 FROM (
     SELECT [p].[Id], [p].[ClusterId], [p].[ConsultantName], [p].[ContractSum], [p].[ContractorName], [p].[CreatedAt], [p].[CreatedBy], [p].[CurrentPhysicalProgress], [p].[Description], [p].[EndDate], [p].[IsDeleted], [p].[LastProgressUpdate], [p].[LastUpdatedById], [p].[Latitude], [p].[Longitude], [p].[Name], [p].[ProjectLeadId], [p].[RadiusInMeters], [p].[StartDate], [p].[Status], [p].[TenderNumber], [p].[UpdatedAt], [p].[UpdatedBy], [p].[WardId]
     FROM [Projects] AS [p]
-    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND ([p].[Name] LIKE @__search_1 OR COALESCE([p].[TenderNumber], N'') LIKE @__search_1_1 OR [p].[ContractorName] LIKE @__search_1_2 OR [p].[ConsultantName] LIKE @__search_1_2)
+    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND ([p].[Name] ILike @__search_1 OR COALESCE([p].[TenderNumber], N'') ILike @__search_1_1 OR [p].[ContractorName] ILike @__search_1_2 OR [p].[ConsultantName] ILike @__search_1_2)
     ORDER BY [p].[Name]
     OFFSET @__p_2 ROWS FETCH NEXT @__p_3 ROWS ONLY
 ) AS [t]
@@ -16111,7 +16111,7 @@ ORDER BY [t].[Name], [t].[Id], [t0].[Id], [t1].[Id], [t2].[Id], [t3].[Id], [u].[
 2026-03-21 15:02:17.687 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__Format_1='?' (Size = 300), @__Format_1_1='?' (Size = 100), @__Format_1_2='?' (Size = 200)], CommandType='"Text"', CommandTimeout='30']
 SELECT COUNT(*)
 FROM [Projects] AS [p]
-WHERE [p].[IsDeleted] = CAST(0 AS bit) AND ([p].[Name] LIKE @__Format_1 OR COALESCE([p].[TenderNumber], N'') LIKE @__Format_1_1 OR [p].[ContractorName] LIKE @__Format_1_2 OR [p].[ConsultantName] LIKE @__Format_1_2)
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND ([p].[Name] ILike @__Format_1 OR COALESCE([p].[TenderNumber], N'') ILike @__Format_1_1 OR [p].[ContractorName] ILike @__Format_1_2 OR [p].[ConsultantName] ILike @__Format_1_2)
 2026-03-21 15:02:17.689 +03:00 [INF] Handled GetAllProjectsQuery in 148ms
 2026-03-21 15:02:17.692 +03:00 [INF] Executing OkObjectResult, writing value of type 'RVDMS.Application.Common.PagedResponse`1[[RVDMS.Application.Queries.Projects.ProjectDto, RVDMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
 2026-03-21 15:02:17.693 +03:00 [INF] Executed action RVDMS.Api.Controllers.ProjectsController.GetProjects (RVDMS.Api) in 152.5389ms

@@ -9074,7 +9074,7 @@ SELECT [t].[Id], [t].[ClusterId], [t].[ConsultantName], [t].[ContractSum], [t].[
 FROM (
     SELECT [p].[Id], [p].[ClusterId], [p].[ConsultantName], [p].[ContractSum], [p].[ContractorName], [p].[CreatedAt], [p].[CreatedBy], [p].[CurrentPhysicalProgress], [p].[Description], [p].[EndDate], [p].[IsDeleted], [p].[LastProgressUpdate], [p].[LastUpdatedById], [p].[Latitude], [p].[Longitude], [p].[Name], [p].[ProjectLeadId], [p].[RadiusInMeters], [p].[StartDate], [p].[Status], [p].[TenderNumber], [p].[UpdatedAt], [p].[UpdatedBy], [p].[WardId]
     FROM [Projects] AS [p]
-    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND ([p].[Name] LIKE @__search_1 OR COALESCE([p].[TenderNumber], N'') LIKE @__search_1_1 OR [p].[ContractorName] LIKE @__search_1_2 OR [p].[ConsultantName] LIKE @__search_1_2)
+    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND ([p].[Name] ILike @__search_1 OR COALESCE([p].[TenderNumber], N'') ILike @__search_1_1 OR [p].[ContractorName] ILike @__search_1_2 OR [p].[ConsultantName] ILike @__search_1_2)
     ORDER BY [p].[Name]
     OFFSET @__p_2 ROWS FETCH NEXT @__p_3 ROWS ONLY
 ) AS [t]
@@ -9114,7 +9114,7 @@ ORDER BY [t].[Name], [t].[Id], [t0].[Id], [t1].[Id], [t2].[Id], [t3].[Id], [u].[
 2026-03-20 13:20:19.906 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__Format_1='?' (Size = 300), @__Format_1_1='?' (Size = 100), @__Format_1_2='?' (Size = 200)], CommandType='"Text"', CommandTimeout='30']
 SELECT COUNT(*)
 FROM [Projects] AS [p]
-WHERE [p].[IsDeleted] = CAST(0 AS bit) AND ([p].[Name] LIKE @__Format_1 OR COALESCE([p].[TenderNumber], N'') LIKE @__Format_1_1 OR [p].[ContractorName] LIKE @__Format_1_2 OR [p].[ConsultantName] LIKE @__Format_1_2)
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND ([p].[Name] ILike @__Format_1 OR COALESCE([p].[TenderNumber], N'') ILike @__Format_1_1 OR [p].[ContractorName] ILike @__Format_1_2 OR [p].[ConsultantName] ILike @__Format_1_2)
 2026-03-20 13:20:19.909 +03:00 [INF] Handled GetAllProjectsQuery in 130ms
 2026-03-20 13:20:19.910 +03:00 [INF] Executing OkObjectResult, writing value of type 'RVDMS.Application.Common.PagedResponse`1[[RVDMS.Application.Queries.Projects.ProjectDto, RVDMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
 2026-03-20 13:20:19.911 +03:00 [INF] Executed action RVDMS.Api.Controllers.ProjectsController.GetProjects (RVDMS.Api) in 133.1083ms
@@ -9133,7 +9133,7 @@ SELECT [t].[Id], [t].[ClusterId], [t].[ConsultantName], [t].[ContractSum], [t].[
 FROM (
     SELECT [p].[Id], [p].[ClusterId], [p].[ConsultantName], [p].[ContractSum], [p].[ContractorName], [p].[CreatedAt], [p].[CreatedBy], [p].[CurrentPhysicalProgress], [p].[Description], [p].[EndDate], [p].[IsDeleted], [p].[LastProgressUpdate], [p].[LastUpdatedById], [p].[Latitude], [p].[Longitude], [p].[Name], [p].[ProjectLeadId], [p].[RadiusInMeters], [p].[StartDate], [p].[Status], [p].[TenderNumber], [p].[UpdatedAt], [p].[UpdatedBy], [p].[WardId]
     FROM [Projects] AS [p]
-    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND ([p].[Name] LIKE @__search_1 OR COALESCE([p].[TenderNumber], N'') LIKE @__search_1_1 OR [p].[ContractorName] LIKE @__search_1_2 OR [p].[ConsultantName] LIKE @__search_1_2)
+    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND ([p].[Name] ILike @__search_1 OR COALESCE([p].[TenderNumber], N'') ILike @__search_1_1 OR [p].[ContractorName] ILike @__search_1_2 OR [p].[ConsultantName] ILike @__search_1_2)
     ORDER BY [p].[Name]
     OFFSET @__p_2 ROWS FETCH NEXT @__p_3 ROWS ONLY
 ) AS [t]
@@ -9173,7 +9173,7 @@ ORDER BY [t].[Name], [t].[Id], [t0].[Id], [t1].[Id], [t2].[Id], [t3].[Id], [u].[
 2026-03-20 13:20:20.316 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__Format_1='?' (Size = 300), @__Format_1_1='?' (Size = 100), @__Format_1_2='?' (Size = 200)], CommandType='"Text"', CommandTimeout='30']
 SELECT COUNT(*)
 FROM [Projects] AS [p]
-WHERE [p].[IsDeleted] = CAST(0 AS bit) AND ([p].[Name] LIKE @__Format_1 OR COALESCE([p].[TenderNumber], N'') LIKE @__Format_1_1 OR [p].[ContractorName] LIKE @__Format_1_2 OR [p].[ConsultantName] LIKE @__Format_1_2)
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND ([p].[Name] ILike @__Format_1 OR COALESCE([p].[TenderNumber], N'') ILike @__Format_1_1 OR [p].[ContractorName] ILike @__Format_1_2 OR [p].[ConsultantName] ILike @__Format_1_2)
 2026-03-20 13:20:20.318 +03:00 [INF] Handled GetAllProjectsQuery in 22ms
 2026-03-20 13:20:20.319 +03:00 [INF] Executing OkObjectResult, writing value of type 'RVDMS.Application.Common.PagedResponse`1[[RVDMS.Application.Queries.Projects.ProjectDto, RVDMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
 2026-03-20 13:20:20.320 +03:00 [INF] Executed action RVDMS.Api.Controllers.ProjectsController.GetProjects (RVDMS.Api) in 24.7494ms
@@ -9251,7 +9251,7 @@ SELECT [t].[Id], [t].[ClusterId], [t].[ConsultantName], [t].[ContractSum], [t].[
 FROM (
     SELECT [p].[Id], [p].[ClusterId], [p].[ConsultantName], [p].[ContractSum], [p].[ContractorName], [p].[CreatedAt], [p].[CreatedBy], [p].[CurrentPhysicalProgress], [p].[Description], [p].[EndDate], [p].[IsDeleted], [p].[LastProgressUpdate], [p].[LastUpdatedById], [p].[Latitude], [p].[Longitude], [p].[Name], [p].[ProjectLeadId], [p].[RadiusInMeters], [p].[StartDate], [p].[Status], [p].[TenderNumber], [p].[UpdatedAt], [p].[UpdatedBy], [p].[WardId]
     FROM [Projects] AS [p]
-    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND ([p].[Name] LIKE @__search_1 OR COALESCE([p].[TenderNumber], N'') LIKE @__search_1_1 OR [p].[ContractorName] LIKE @__search_1_2 OR [p].[ConsultantName] LIKE @__search_1_2)
+    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND ([p].[Name] ILike @__search_1 OR COALESCE([p].[TenderNumber], N'') ILike @__search_1_1 OR [p].[ContractorName] ILike @__search_1_2 OR [p].[ConsultantName] ILike @__search_1_2)
     ORDER BY [p].[Name]
     OFFSET @__p_2 ROWS FETCH NEXT @__p_3 ROWS ONLY
 ) AS [t]
@@ -9291,7 +9291,7 @@ ORDER BY [t].[Name], [t].[Id], [t0].[Id], [t1].[Id], [t2].[Id], [t3].[Id], [u].[
 2026-03-20 13:20:25.214 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__Format_1='?' (Size = 300), @__Format_1_1='?' (Size = 100), @__Format_1_2='?' (Size = 200)], CommandType='"Text"', CommandTimeout='30']
 SELECT COUNT(*)
 FROM [Projects] AS [p]
-WHERE [p].[IsDeleted] = CAST(0 AS bit) AND ([p].[Name] LIKE @__Format_1 OR COALESCE([p].[TenderNumber], N'') LIKE @__Format_1_1 OR [p].[ContractorName] LIKE @__Format_1_2 OR [p].[ConsultantName] LIKE @__Format_1_2)
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND ([p].[Name] ILike @__Format_1 OR COALESCE([p].[TenderNumber], N'') ILike @__Format_1_1 OR [p].[ContractorName] ILike @__Format_1_2 OR [p].[ConsultantName] ILike @__Format_1_2)
 2026-03-20 13:20:25.216 +03:00 [INF] Handled GetAllProjectsQuery in 24ms
 2026-03-20 13:20:25.217 +03:00 [INF] Executing OkObjectResult, writing value of type 'RVDMS.Application.Common.PagedResponse`1[[RVDMS.Application.Queries.Projects.ProjectDto, RVDMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
 2026-03-20 13:20:25.218 +03:00 [INF] Executed action RVDMS.Api.Controllers.ProjectsController.GetProjects (RVDMS.Api) in 26.964ms
@@ -9310,7 +9310,7 @@ SELECT [t].[Id], [t].[ClusterId], [t].[ConsultantName], [t].[ContractSum], [t].[
 FROM (
     SELECT [p].[Id], [p].[ClusterId], [p].[ConsultantName], [p].[ContractSum], [p].[ContractorName], [p].[CreatedAt], [p].[CreatedBy], [p].[CurrentPhysicalProgress], [p].[Description], [p].[EndDate], [p].[IsDeleted], [p].[LastProgressUpdate], [p].[LastUpdatedById], [p].[Latitude], [p].[Longitude], [p].[Name], [p].[ProjectLeadId], [p].[RadiusInMeters], [p].[StartDate], [p].[Status], [p].[TenderNumber], [p].[UpdatedAt], [p].[UpdatedBy], [p].[WardId]
     FROM [Projects] AS [p]
-    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND ([p].[Name] LIKE @__search_1 OR COALESCE([p].[TenderNumber], N'') LIKE @__search_1_1 OR [p].[ContractorName] LIKE @__search_1_2 OR [p].[ConsultantName] LIKE @__search_1_2)
+    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND ([p].[Name] ILike @__search_1 OR COALESCE([p].[TenderNumber], N'') ILike @__search_1_1 OR [p].[ContractorName] ILike @__search_1_2 OR [p].[ConsultantName] ILike @__search_1_2)
     ORDER BY [p].[Name]
     OFFSET @__p_2 ROWS FETCH NEXT @__p_3 ROWS ONLY
 ) AS [t]
@@ -9350,7 +9350,7 @@ ORDER BY [t].[Name], [t].[Id], [t0].[Id], [t1].[Id], [t2].[Id], [t3].[Id], [u].[
 2026-03-20 13:20:27.044 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__Format_1='?' (Size = 300), @__Format_1_1='?' (Size = 100), @__Format_1_2='?' (Size = 200)], CommandType='"Text"', CommandTimeout='30']
 SELECT COUNT(*)
 FROM [Projects] AS [p]
-WHERE [p].[IsDeleted] = CAST(0 AS bit) AND ([p].[Name] LIKE @__Format_1 OR COALESCE([p].[TenderNumber], N'') LIKE @__Format_1_1 OR [p].[ContractorName] LIKE @__Format_1_2 OR [p].[ConsultantName] LIKE @__Format_1_2)
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND ([p].[Name] ILike @__Format_1 OR COALESCE([p].[TenderNumber], N'') ILike @__Format_1_1 OR [p].[ContractorName] ILike @__Format_1_2 OR [p].[ConsultantName] ILike @__Format_1_2)
 2026-03-20 13:20:27.048 +03:00 [INF] Handled GetAllProjectsQuery in 31ms
 2026-03-20 13:20:27.050 +03:00 [INF] Executing OkObjectResult, writing value of type 'RVDMS.Application.Common.PagedResponse`1[[RVDMS.Application.Queries.Projects.ProjectDto, RVDMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
 2026-03-20 13:20:27.053 +03:00 [INF] Executed action RVDMS.Api.Controllers.ProjectsController.GetProjects (RVDMS.Api) in 36.0188ms
@@ -9369,7 +9369,7 @@ SELECT [t].[Id], [t].[ClusterId], [t].[ConsultantName], [t].[ContractSum], [t].[
 FROM (
     SELECT [p].[Id], [p].[ClusterId], [p].[ConsultantName], [p].[ContractSum], [p].[ContractorName], [p].[CreatedAt], [p].[CreatedBy], [p].[CurrentPhysicalProgress], [p].[Description], [p].[EndDate], [p].[IsDeleted], [p].[LastProgressUpdate], [p].[LastUpdatedById], [p].[Latitude], [p].[Longitude], [p].[Name], [p].[ProjectLeadId], [p].[RadiusInMeters], [p].[StartDate], [p].[Status], [p].[TenderNumber], [p].[UpdatedAt], [p].[UpdatedBy], [p].[WardId]
     FROM [Projects] AS [p]
-    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND ([p].[Name] LIKE @__search_1 OR COALESCE([p].[TenderNumber], N'') LIKE @__search_1_1 OR [p].[ContractorName] LIKE @__search_1_2 OR [p].[ConsultantName] LIKE @__search_1_2)
+    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND ([p].[Name] ILike @__search_1 OR COALESCE([p].[TenderNumber], N'') ILike @__search_1_1 OR [p].[ContractorName] ILike @__search_1_2 OR [p].[ConsultantName] ILike @__search_1_2)
     ORDER BY [p].[Name]
     OFFSET @__p_2 ROWS FETCH NEXT @__p_3 ROWS ONLY
 ) AS [t]
@@ -9409,7 +9409,7 @@ ORDER BY [t].[Name], [t].[Id], [t0].[Id], [t1].[Id], [t2].[Id], [t3].[Id], [u].[
 2026-03-20 13:20:27.376 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__Format_1='?' (Size = 300), @__Format_1_1='?' (Size = 100), @__Format_1_2='?' (Size = 200)], CommandType='"Text"', CommandTimeout='30']
 SELECT COUNT(*)
 FROM [Projects] AS [p]
-WHERE [p].[IsDeleted] = CAST(0 AS bit) AND ([p].[Name] LIKE @__Format_1 OR COALESCE([p].[TenderNumber], N'') LIKE @__Format_1_1 OR [p].[ContractorName] LIKE @__Format_1_2 OR [p].[ConsultantName] LIKE @__Format_1_2)
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND ([p].[Name] ILike @__Format_1 OR COALESCE([p].[TenderNumber], N'') ILike @__Format_1_1 OR [p].[ContractorName] ILike @__Format_1_2 OR [p].[ConsultantName] ILike @__Format_1_2)
 2026-03-20 13:20:27.378 +03:00 [INF] Handled GetAllProjectsQuery in 23ms
 2026-03-20 13:20:27.379 +03:00 [INF] Executing OkObjectResult, writing value of type 'RVDMS.Application.Common.PagedResponse`1[[RVDMS.Application.Queries.Projects.ProjectDto, RVDMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
 2026-03-20 13:20:27.381 +03:00 [INF] Executed action RVDMS.Api.Controllers.ProjectsController.GetProjects (RVDMS.Api) in 26.3029ms
@@ -9428,7 +9428,7 @@ SELECT [t].[Id], [t].[ClusterId], [t].[ConsultantName], [t].[ContractSum], [t].[
 FROM (
     SELECT [p].[Id], [p].[ClusterId], [p].[ConsultantName], [p].[ContractSum], [p].[ContractorName], [p].[CreatedAt], [p].[CreatedBy], [p].[CurrentPhysicalProgress], [p].[Description], [p].[EndDate], [p].[IsDeleted], [p].[LastProgressUpdate], [p].[LastUpdatedById], [p].[Latitude], [p].[Longitude], [p].[Name], [p].[ProjectLeadId], [p].[RadiusInMeters], [p].[StartDate], [p].[Status], [p].[TenderNumber], [p].[UpdatedAt], [p].[UpdatedBy], [p].[WardId]
     FROM [Projects] AS [p]
-    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND ([p].[Name] LIKE @__search_1 OR COALESCE([p].[TenderNumber], N'') LIKE @__search_1_1 OR [p].[ContractorName] LIKE @__search_1_2 OR [p].[ConsultantName] LIKE @__search_1_2)
+    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND ([p].[Name] ILike @__search_1 OR COALESCE([p].[TenderNumber], N'') ILike @__search_1_1 OR [p].[ContractorName] ILike @__search_1_2 OR [p].[ConsultantName] ILike @__search_1_2)
     ORDER BY [p].[Name]
     OFFSET @__p_2 ROWS FETCH NEXT @__p_3 ROWS ONLY
 ) AS [t]
@@ -9468,7 +9468,7 @@ ORDER BY [t].[Name], [t].[Id], [t0].[Id], [t1].[Id], [t2].[Id], [t3].[Id], [u].[
 2026-03-20 13:20:29.543 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__Format_1='?' (Size = 300), @__Format_1_1='?' (Size = 100), @__Format_1_2='?' (Size = 200)], CommandType='"Text"', CommandTimeout='30']
 SELECT COUNT(*)
 FROM [Projects] AS [p]
-WHERE [p].[IsDeleted] = CAST(0 AS bit) AND ([p].[Name] LIKE @__Format_1 OR COALESCE([p].[TenderNumber], N'') LIKE @__Format_1_1 OR [p].[ContractorName] LIKE @__Format_1_2 OR [p].[ConsultantName] LIKE @__Format_1_2)
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND ([p].[Name] ILike @__Format_1 OR COALESCE([p].[TenderNumber], N'') ILike @__Format_1_1 OR [p].[ContractorName] ILike @__Format_1_2 OR [p].[ConsultantName] ILike @__Format_1_2)
 2026-03-20 13:20:29.545 +03:00 [INF] Handled GetAllProjectsQuery in 27ms
 2026-03-20 13:20:29.546 +03:00 [INF] Executing OkObjectResult, writing value of type 'RVDMS.Application.Common.PagedResponse`1[[RVDMS.Application.Queries.Projects.ProjectDto, RVDMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
 2026-03-20 13:20:29.548 +03:00 [INF] Executed action RVDMS.Api.Controllers.ProjectsController.GetProjects (RVDMS.Api) in 30.0469ms
@@ -9487,7 +9487,7 @@ SELECT [t].[Id], [t].[ClusterId], [t].[ConsultantName], [t].[ContractSum], [t].[
 FROM (
     SELECT [p].[Id], [p].[ClusterId], [p].[ConsultantName], [p].[ContractSum], [p].[ContractorName], [p].[CreatedAt], [p].[CreatedBy], [p].[CurrentPhysicalProgress], [p].[Description], [p].[EndDate], [p].[IsDeleted], [p].[LastProgressUpdate], [p].[LastUpdatedById], [p].[Latitude], [p].[Longitude], [p].[Name], [p].[ProjectLeadId], [p].[RadiusInMeters], [p].[StartDate], [p].[Status], [p].[TenderNumber], [p].[UpdatedAt], [p].[UpdatedBy], [p].[WardId]
     FROM [Projects] AS [p]
-    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND ([p].[Name] LIKE @__search_1 OR COALESCE([p].[TenderNumber], N'') LIKE @__search_1_1 OR [p].[ContractorName] LIKE @__search_1_2 OR [p].[ConsultantName] LIKE @__search_1_2)
+    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND ([p].[Name] ILike @__search_1 OR COALESCE([p].[TenderNumber], N'') ILike @__search_1_1 OR [p].[ContractorName] ILike @__search_1_2 OR [p].[ConsultantName] ILike @__search_1_2)
     ORDER BY [p].[Name]
     OFFSET @__p_2 ROWS FETCH NEXT @__p_3 ROWS ONLY
 ) AS [t]
@@ -9527,7 +9527,7 @@ ORDER BY [t].[Name], [t].[Id], [t0].[Id], [t1].[Id], [t2].[Id], [t3].[Id], [u].[
 2026-03-20 13:20:29.917 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__Format_1='?' (Size = 300), @__Format_1_1='?' (Size = 100), @__Format_1_2='?' (Size = 200)], CommandType='"Text"', CommandTimeout='30']
 SELECT COUNT(*)
 FROM [Projects] AS [p]
-WHERE [p].[IsDeleted] = CAST(0 AS bit) AND ([p].[Name] LIKE @__Format_1 OR COALESCE([p].[TenderNumber], N'') LIKE @__Format_1_1 OR [p].[ContractorName] LIKE @__Format_1_2 OR [p].[ConsultantName] LIKE @__Format_1_2)
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND ([p].[Name] ILike @__Format_1 OR COALESCE([p].[TenderNumber], N'') ILike @__Format_1_1 OR [p].[ContractorName] ILike @__Format_1_2 OR [p].[ConsultantName] ILike @__Format_1_2)
 2026-03-20 13:20:29.919 +03:00 [INF] Handled GetAllProjectsQuery in 23ms
 2026-03-20 13:20:29.920 +03:00 [INF] Executing OkObjectResult, writing value of type 'RVDMS.Application.Common.PagedResponse`1[[RVDMS.Application.Queries.Projects.ProjectDto, RVDMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
 2026-03-20 13:20:29.921 +03:00 [INF] Executed action RVDMS.Api.Controllers.ProjectsController.GetProjects (RVDMS.Api) in 25.1928ms
@@ -9543,7 +9543,7 @@ SELECT [t].[Id], [t].[ClusterId], [t].[ConsultantName], [t].[ContractSum], [t].[
 FROM (
     SELECT [p].[Id], [p].[ClusterId], [p].[ConsultantName], [p].[ContractSum], [p].[ContractorName], [p].[CreatedAt], [p].[CreatedBy], [p].[CurrentPhysicalProgress], [p].[Description], [p].[EndDate], [p].[IsDeleted], [p].[LastProgressUpdate], [p].[LastUpdatedById], [p].[Latitude], [p].[Longitude], [p].[Name], [p].[ProjectLeadId], [p].[RadiusInMeters], [p].[StartDate], [p].[Status], [p].[TenderNumber], [p].[UpdatedAt], [p].[UpdatedBy], [p].[WardId]
     FROM [Projects] AS [p]
-    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND ([p].[Name] LIKE @__search_1 OR COALESCE([p].[TenderNumber], N'') LIKE @__search_1_1 OR [p].[ContractorName] LIKE @__search_1_2 OR [p].[ConsultantName] LIKE @__search_1_2)
+    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND ([p].[Name] ILike @__search_1 OR COALESCE([p].[TenderNumber], N'') ILike @__search_1_1 OR [p].[ContractorName] ILike @__search_1_2 OR [p].[ConsultantName] ILike @__search_1_2)
     ORDER BY [p].[Name]
     OFFSET @__p_2 ROWS FETCH NEXT @__p_3 ROWS ONLY
 ) AS [t]
@@ -9583,7 +9583,7 @@ ORDER BY [t].[Name], [t].[Id], [t0].[Id], [t1].[Id], [t2].[Id], [t3].[Id], [u].[
 2026-03-20 13:20:31.046 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__Format_1='?' (Size = 300), @__Format_1_1='?' (Size = 100), @__Format_1_2='?' (Size = 200)], CommandType='"Text"', CommandTimeout='30']
 SELECT COUNT(*)
 FROM [Projects] AS [p]
-WHERE [p].[IsDeleted] = CAST(0 AS bit) AND ([p].[Name] LIKE @__Format_1 OR COALESCE([p].[TenderNumber], N'') LIKE @__Format_1_1 OR [p].[ContractorName] LIKE @__Format_1_2 OR [p].[ConsultantName] LIKE @__Format_1_2)
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND ([p].[Name] ILike @__Format_1 OR COALESCE([p].[TenderNumber], N'') ILike @__Format_1_1 OR [p].[ContractorName] ILike @__Format_1_2 OR [p].[ConsultantName] ILike @__Format_1_2)
 2026-03-20 13:20:31.047 +03:00 [INF] Handled GetAllProjectsQuery in 27ms
 2026-03-20 13:20:31.048 +03:00 [INF] Executing OkObjectResult, writing value of type 'RVDMS.Application.Common.PagedResponse`1[[RVDMS.Application.Queries.Projects.ProjectDto, RVDMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
 2026-03-20 13:20:31.049 +03:00 [INF] Executed action RVDMS.Api.Controllers.ProjectsController.GetProjects (RVDMS.Api) in 28.9743ms
@@ -9602,7 +9602,7 @@ SELECT [t].[Id], [t].[ClusterId], [t].[ConsultantName], [t].[ContractSum], [t].[
 FROM (
     SELECT [p].[Id], [p].[ClusterId], [p].[ConsultantName], [p].[ContractSum], [p].[ContractorName], [p].[CreatedAt], [p].[CreatedBy], [p].[CurrentPhysicalProgress], [p].[Description], [p].[EndDate], [p].[IsDeleted], [p].[LastProgressUpdate], [p].[LastUpdatedById], [p].[Latitude], [p].[Longitude], [p].[Name], [p].[ProjectLeadId], [p].[RadiusInMeters], [p].[StartDate], [p].[Status], [p].[TenderNumber], [p].[UpdatedAt], [p].[UpdatedBy], [p].[WardId]
     FROM [Projects] AS [p]
-    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND ([p].[Name] LIKE @__search_1 OR COALESCE([p].[TenderNumber], N'') LIKE @__search_1_1 OR [p].[ContractorName] LIKE @__search_1_2 OR [p].[ConsultantName] LIKE @__search_1_2)
+    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND ([p].[Name] ILike @__search_1 OR COALESCE([p].[TenderNumber], N'') ILike @__search_1_1 OR [p].[ContractorName] ILike @__search_1_2 OR [p].[ConsultantName] ILike @__search_1_2)
     ORDER BY [p].[Name]
     OFFSET @__p_2 ROWS FETCH NEXT @__p_3 ROWS ONLY
 ) AS [t]
@@ -9642,7 +9642,7 @@ ORDER BY [t].[Name], [t].[Id], [t0].[Id], [t1].[Id], [t2].[Id], [t3].[Id], [u].[
 2026-03-20 13:20:31.756 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__Format_1='?' (Size = 300), @__Format_1_1='?' (Size = 100), @__Format_1_2='?' (Size = 200)], CommandType='"Text"', CommandTimeout='30']
 SELECT COUNT(*)
 FROM [Projects] AS [p]
-WHERE [p].[IsDeleted] = CAST(0 AS bit) AND ([p].[Name] LIKE @__Format_1 OR COALESCE([p].[TenderNumber], N'') LIKE @__Format_1_1 OR [p].[ContractorName] LIKE @__Format_1_2 OR [p].[ConsultantName] LIKE @__Format_1_2)
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND ([p].[Name] ILike @__Format_1 OR COALESCE([p].[TenderNumber], N'') ILike @__Format_1_1 OR [p].[ContractorName] ILike @__Format_1_2 OR [p].[ConsultantName] ILike @__Format_1_2)
 2026-03-20 13:20:31.760 +03:00 [INF] Handled GetAllProjectsQuery in 35ms
 2026-03-20 13:20:31.761 +03:00 [INF] Executing OkObjectResult, writing value of type 'RVDMS.Application.Common.PagedResponse`1[[RVDMS.Application.Queries.Projects.ProjectDto, RVDMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
 2026-03-20 13:20:31.763 +03:00 [INF] Executed action RVDMS.Api.Controllers.ProjectsController.GetProjects (RVDMS.Api) in 38.4548ms
@@ -9658,7 +9658,7 @@ SELECT [t].[Id], [t].[ClusterId], [t].[ConsultantName], [t].[ContractSum], [t].[
 FROM (
     SELECT [p].[Id], [p].[ClusterId], [p].[ConsultantName], [p].[ContractSum], [p].[ContractorName], [p].[CreatedAt], [p].[CreatedBy], [p].[CurrentPhysicalProgress], [p].[Description], [p].[EndDate], [p].[IsDeleted], [p].[LastProgressUpdate], [p].[LastUpdatedById], [p].[Latitude], [p].[Longitude], [p].[Name], [p].[ProjectLeadId], [p].[RadiusInMeters], [p].[StartDate], [p].[Status], [p].[TenderNumber], [p].[UpdatedAt], [p].[UpdatedBy], [p].[WardId]
     FROM [Projects] AS [p]
-    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND ([p].[Name] LIKE @__search_1 OR COALESCE([p].[TenderNumber], N'') LIKE @__search_1_1 OR [p].[ContractorName] LIKE @__search_1_2 OR [p].[ConsultantName] LIKE @__search_1_2)
+    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND ([p].[Name] ILike @__search_1 OR COALESCE([p].[TenderNumber], N'') ILike @__search_1_1 OR [p].[ContractorName] ILike @__search_1_2 OR [p].[ConsultantName] ILike @__search_1_2)
     ORDER BY [p].[Name]
     OFFSET @__p_2 ROWS FETCH NEXT @__p_3 ROWS ONLY
 ) AS [t]
@@ -9698,7 +9698,7 @@ ORDER BY [t].[Name], [t].[Id], [t0].[Id], [t1].[Id], [t2].[Id], [t3].[Id], [u].[
 2026-03-20 13:20:32.057 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@__Format_1='?' (Size = 300), @__Format_1_1='?' (Size = 100), @__Format_1_2='?' (Size = 200)], CommandType='"Text"', CommandTimeout='30']
 SELECT COUNT(*)
 FROM [Projects] AS [p]
-WHERE [p].[IsDeleted] = CAST(0 AS bit) AND ([p].[Name] LIKE @__Format_1 OR COALESCE([p].[TenderNumber], N'') LIKE @__Format_1_1 OR [p].[ContractorName] LIKE @__Format_1_2 OR [p].[ConsultantName] LIKE @__Format_1_2)
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND ([p].[Name] ILike @__Format_1 OR COALESCE([p].[TenderNumber], N'') ILike @__Format_1_1 OR [p].[ContractorName] ILike @__Format_1_2 OR [p].[ConsultantName] ILike @__Format_1_2)
 2026-03-20 13:20:32.058 +03:00 [INF] Handled GetAllProjectsQuery in 23ms
 2026-03-20 13:20:32.059 +03:00 [INF] Executing OkObjectResult, writing value of type 'RVDMS.Application.Common.PagedResponse`1[[RVDMS.Application.Queries.Projects.ProjectDto, RVDMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
 2026-03-20 13:20:32.061 +03:00 [INF] Executed action RVDMS.Api.Controllers.ProjectsController.GetProjects (RVDMS.Api) in 26.3983ms
@@ -9717,7 +9717,7 @@ SELECT [t].[Id], [t].[ClusterId], [t].[ConsultantName], [t].[ContractSum], [t].[
 FROM (
     SELECT [p].[Id], [p].[ClusterId], [p].[ConsultantName], [p].[ContractSum], [p].[ContractorName], [p].[CreatedAt], [p].[CreatedBy], [p].[CurrentPhysicalProgress], [p].[Description], [p].[EndDate], [p].[IsDeleted], [p].[LastProgressUpdate], [p].[LastUpdatedById], [p].[Latitude], [p].[Longitude], [p].[Name], [p].[ProjectLeadId], [p].[RadiusInMeters], [p].[StartDate], [p].[Status], [p].[TenderNumber], [p].[UpdatedAt], [p].[UpdatedBy], [p].[WardId]
     FROM [Projects] AS [p]
-    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND ([p].[Name] LIKE @__search_1 OR COALESCE([p].[TenderNumber], N'') LIKE @__search_1_1 OR [p].[ContractorName] LIKE @__search_1_2 OR [p].[ConsultantName] LIKE @__search_1_2)
+    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND ([p].[Name] ILike @__search_1 OR COALESCE([p].[TenderNumber], N'') ILike @__search_1_1 OR [p].[ContractorName] ILike @__search_1_2 OR [p].[ConsultantName] ILike @__search_1_2)
     ORDER BY [p].[Name]
     OFFSET @__p_2 ROWS FETCH NEXT @__p_3 ROWS ONLY
 ) AS [t]
@@ -9757,7 +9757,7 @@ ORDER BY [t].[Name], [t].[Id], [t0].[Id], [t1].[Id], [t2].[Id], [t3].[Id], [u].[
 2026-03-20 13:20:32.683 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__Format_1='?' (Size = 300), @__Format_1_1='?' (Size = 100), @__Format_1_2='?' (Size = 200)], CommandType='"Text"', CommandTimeout='30']
 SELECT COUNT(*)
 FROM [Projects] AS [p]
-WHERE [p].[IsDeleted] = CAST(0 AS bit) AND ([p].[Name] LIKE @__Format_1 OR COALESCE([p].[TenderNumber], N'') LIKE @__Format_1_1 OR [p].[ContractorName] LIKE @__Format_1_2 OR [p].[ConsultantName] LIKE @__Format_1_2)
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND ([p].[Name] ILike @__Format_1 OR COALESCE([p].[TenderNumber], N'') ILike @__Format_1_1 OR [p].[ContractorName] ILike @__Format_1_2 OR [p].[ConsultantName] ILike @__Format_1_2)
 2026-03-20 13:20:32.685 +03:00 [INF] Handled GetAllProjectsQuery in 22ms
 2026-03-20 13:20:32.686 +03:00 [INF] Executing OkObjectResult, writing value of type 'RVDMS.Application.Common.PagedResponse`1[[RVDMS.Application.Queries.Projects.ProjectDto, RVDMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
 2026-03-20 13:20:32.687 +03:00 [INF] Executed action RVDMS.Api.Controllers.ProjectsController.GetProjects (RVDMS.Api) in 24.1694ms
@@ -9776,7 +9776,7 @@ SELECT [t].[Id], [t].[ClusterId], [t].[ConsultantName], [t].[ContractSum], [t].[
 FROM (
     SELECT [p].[Id], [p].[ClusterId], [p].[ConsultantName], [p].[ContractSum], [p].[ContractorName], [p].[CreatedAt], [p].[CreatedBy], [p].[CurrentPhysicalProgress], [p].[Description], [p].[EndDate], [p].[IsDeleted], [p].[LastProgressUpdate], [p].[LastUpdatedById], [p].[Latitude], [p].[Longitude], [p].[Name], [p].[ProjectLeadId], [p].[RadiusInMeters], [p].[StartDate], [p].[Status], [p].[TenderNumber], [p].[UpdatedAt], [p].[UpdatedBy], [p].[WardId]
     FROM [Projects] AS [p]
-    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND ([p].[Name] LIKE @__search_1 OR COALESCE([p].[TenderNumber], N'') LIKE @__search_1_1 OR [p].[ContractorName] LIKE @__search_1_2 OR [p].[ConsultantName] LIKE @__search_1_2)
+    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND ([p].[Name] ILike @__search_1 OR COALESCE([p].[TenderNumber], N'') ILike @__search_1_1 OR [p].[ContractorName] ILike @__search_1_2 OR [p].[ConsultantName] ILike @__search_1_2)
     ORDER BY [p].[Name]
     OFFSET @__p_2 ROWS FETCH NEXT @__p_3 ROWS ONLY
 ) AS [t]
@@ -9816,7 +9816,7 @@ ORDER BY [t].[Name], [t].[Id], [t0].[Id], [t1].[Id], [t2].[Id], [t3].[Id], [u].[
 2026-03-20 13:20:33.841 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__Format_1='?' (Size = 300), @__Format_1_1='?' (Size = 100), @__Format_1_2='?' (Size = 200)], CommandType='"Text"', CommandTimeout='30']
 SELECT COUNT(*)
 FROM [Projects] AS [p]
-WHERE [p].[IsDeleted] = CAST(0 AS bit) AND ([p].[Name] LIKE @__Format_1 OR COALESCE([p].[TenderNumber], N'') LIKE @__Format_1_1 OR [p].[ContractorName] LIKE @__Format_1_2 OR [p].[ConsultantName] LIKE @__Format_1_2)
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND ([p].[Name] ILike @__Format_1 OR COALESCE([p].[TenderNumber], N'') ILike @__Format_1_1 OR [p].[ContractorName] ILike @__Format_1_2 OR [p].[ConsultantName] ILike @__Format_1_2)
 2026-03-20 13:20:33.843 +03:00 [INF] Handled GetAllProjectsQuery in 24ms
 2026-03-20 13:20:33.845 +03:00 [INF] Executing OkObjectResult, writing value of type 'RVDMS.Application.Common.PagedResponse`1[[RVDMS.Application.Queries.Projects.ProjectDto, RVDMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
 2026-03-20 13:20:33.846 +03:00 [INF] Executed action RVDMS.Api.Controllers.ProjectsController.GetProjects (RVDMS.Api) in 27.5878ms
@@ -11616,7 +11616,7 @@ LEFT JOIN (
     FROM [WeeklyReports] AS [w0]
     WHERE [w0].[IsDeleted] = CAST(0 AS bit)
 ) AS [t4] ON [p].[Id] = [t4].[ProjectId]
-WHERE [p].[IsDeleted] = CAST(0 AS bit) AND ([p].[Name] LIKE @__search_1 OR COALESCE([p].[TenderNumber], N'') LIKE @__search_1_1 OR [p].[ContractorName] LIKE @__search_1_2 OR [p].[ConsultantName] LIKE @__search_1_2)
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND ([p].[Name] ILike @__search_1 OR COALESCE([p].[TenderNumber], N'') ILike @__search_1_1 OR [p].[ContractorName] ILike @__search_1_2 OR [p].[ConsultantName] ILike @__search_1_2)
 ORDER BY [p].[Id], [t].[Id], [t0].[Id], [t1].[Id], [t2].[Id], [u].[Id], [t3].[Id], [t3].[Id0]
 2026-03-20 13:24:00.510 +03:00 [ERR] Error handling GetAllProjectsQuery after 176ms: The source 'IQueryable' doesn't implement 'IAsyncEnumerable<RVDMS.Domain.Entities.Project>'. Only sources that implement 'IAsyncEnumerable' can be used for Entity Framework asynchronous operations.
 System.InvalidOperationException: The source 'IQueryable' doesn't implement 'IAsyncEnumerable<RVDMS.Domain.Entities.Project>'. Only sources that implement 'IAsyncEnumerable' can be used for Entity Framework asynchronous operations.
@@ -11798,7 +11798,7 @@ SELECT [t].[Id], [t].[ClusterId], [t].[ConsultantName], [t].[ContractSum], [t].[
 FROM (
     SELECT [p].[Id], [p].[ClusterId], [p].[ConsultantName], [p].[ContractSum], [p].[ContractorName], [p].[CreatedAt], [p].[CreatedBy], [p].[CurrentPhysicalProgress], [p].[Description], [p].[EndDate], [p].[IsDeleted], [p].[LastProgressUpdate], [p].[LastUpdatedById], [p].[Latitude], [p].[Longitude], [p].[Name], [p].[ProjectLeadId], [p].[RadiusInMeters], [p].[StartDate], [p].[Status], [p].[TenderNumber], [p].[UpdatedAt], [p].[UpdatedBy], [p].[WardId]
     FROM [Projects] AS [p]
-    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND ([p].[Name] LIKE @__search_1 OR COALESCE([p].[TenderNumber], N'') LIKE @__search_1_1 OR [p].[ContractorName] LIKE @__search_1_2 OR [p].[ConsultantName] LIKE @__search_1_2)
+    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND ([p].[Name] ILike @__search_1 OR COALESCE([p].[TenderNumber], N'') ILike @__search_1_1 OR [p].[ContractorName] ILike @__search_1_2 OR [p].[ConsultantName] ILike @__search_1_2)
     ORDER BY [p].[Name]
     OFFSET @__p_2 ROWS FETCH NEXT @__p_3 ROWS ONLY
 ) AS [t]
@@ -11838,7 +11838,7 @@ ORDER BY [t].[Name], [t].[Id], [t0].[Id], [t1].[Id], [t2].[Id], [t3].[Id], [u].[
 2026-03-20 13:24:08.923 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__Format_1='?' (Size = 300), @__Format_1_1='?' (Size = 100), @__Format_1_2='?' (Size = 200)], CommandType='"Text"', CommandTimeout='30']
 SELECT COUNT(*)
 FROM [Projects] AS [p]
-WHERE [p].[IsDeleted] = CAST(0 AS bit) AND ([p].[Name] LIKE @__Format_1 OR COALESCE([p].[TenderNumber], N'') LIKE @__Format_1_1 OR [p].[ContractorName] LIKE @__Format_1_2 OR [p].[ConsultantName] LIKE @__Format_1_2)
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND ([p].[Name] ILike @__Format_1 OR COALESCE([p].[TenderNumber], N'') ILike @__Format_1_1 OR [p].[ContractorName] ILike @__Format_1_2 OR [p].[ConsultantName] ILike @__Format_1_2)
 2026-03-20 13:24:08.925 +03:00 [INF] Handled GetAllProjectsQuery in 93ms
 2026-03-20 13:24:08.926 +03:00 [INF] Executing OkObjectResult, writing value of type 'RVDMS.Application.Common.PagedResponse`1[[RVDMS.Application.Queries.Projects.ProjectDto, RVDMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
 2026-03-20 13:24:08.928 +03:00 [INF] Executed action RVDMS.Api.Controllers.ProjectsController.GetProjects (RVDMS.Api) in 96.6471ms
@@ -11857,7 +11857,7 @@ SELECT [t].[Id], [t].[ClusterId], [t].[ConsultantName], [t].[ContractSum], [t].[
 FROM (
     SELECT [p].[Id], [p].[ClusterId], [p].[ConsultantName], [p].[ContractSum], [p].[ContractorName], [p].[CreatedAt], [p].[CreatedBy], [p].[CurrentPhysicalProgress], [p].[Description], [p].[EndDate], [p].[IsDeleted], [p].[LastProgressUpdate], [p].[LastUpdatedById], [p].[Latitude], [p].[Longitude], [p].[Name], [p].[ProjectLeadId], [p].[RadiusInMeters], [p].[StartDate], [p].[Status], [p].[TenderNumber], [p].[UpdatedAt], [p].[UpdatedBy], [p].[WardId]
     FROM [Projects] AS [p]
-    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND ([p].[Name] LIKE @__search_1 OR COALESCE([p].[TenderNumber], N'') LIKE @__search_1_1 OR [p].[ContractorName] LIKE @__search_1_2 OR [p].[ConsultantName] LIKE @__search_1_2)
+    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND ([p].[Name] ILike @__search_1 OR COALESCE([p].[TenderNumber], N'') ILike @__search_1_1 OR [p].[ContractorName] ILike @__search_1_2 OR [p].[ConsultantName] ILike @__search_1_2)
     ORDER BY [p].[Name]
     OFFSET @__p_2 ROWS FETCH NEXT @__p_3 ROWS ONLY
 ) AS [t]
@@ -11897,7 +11897,7 @@ ORDER BY [t].[Name], [t].[Id], [t0].[Id], [t1].[Id], [t2].[Id], [t3].[Id], [u].[
 2026-03-20 13:24:10.662 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__Format_1='?' (Size = 300), @__Format_1_1='?' (Size = 100), @__Format_1_2='?' (Size = 200)], CommandType='"Text"', CommandTimeout='30']
 SELECT COUNT(*)
 FROM [Projects] AS [p]
-WHERE [p].[IsDeleted] = CAST(0 AS bit) AND ([p].[Name] LIKE @__Format_1 OR COALESCE([p].[TenderNumber], N'') LIKE @__Format_1_1 OR [p].[ContractorName] LIKE @__Format_1_2 OR [p].[ConsultantName] LIKE @__Format_1_2)
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND ([p].[Name] ILike @__Format_1 OR COALESCE([p].[TenderNumber], N'') ILike @__Format_1_1 OR [p].[ContractorName] ILike @__Format_1_2 OR [p].[ConsultantName] ILike @__Format_1_2)
 2026-03-20 13:24:10.665 +03:00 [INF] Handled GetAllProjectsQuery in 25ms
 2026-03-20 13:24:10.666 +03:00 [INF] Executing OkObjectResult, writing value of type 'RVDMS.Application.Common.PagedResponse`1[[RVDMS.Application.Queries.Projects.ProjectDto, RVDMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
 2026-03-20 13:24:10.667 +03:00 [INF] Executed action RVDMS.Api.Controllers.ProjectsController.GetProjects (RVDMS.Api) in 27.5353ms
@@ -17935,7 +17935,7 @@ SELECT [t].[Id], [t].[ClusterId], [t].[ConsultantName], [t].[ContractSum], [t].[
 FROM (
     SELECT [p].[Id], [p].[ClusterId], [p].[ConsultantName], [p].[ContractSum], [p].[ContractorName], [p].[CreatedAt], [p].[CreatedBy], [p].[CurrentPhysicalProgress], [p].[Description], [p].[EndDate], [p].[IsDeleted], [p].[LastProgressUpdate], [p].[LastUpdatedById], [p].[Latitude], [p].[Longitude], [p].[Name], [p].[ProjectLeadId], [p].[RadiusInMeters], [p].[StartDate], [p].[Status], [p].[TenderNumber], [p].[UpdatedAt], [p].[UpdatedBy], [p].[WardId]
     FROM [Projects] AS [p]
-    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND ([p].[Name] LIKE @__search_1 OR COALESCE([p].[TenderNumber], N'') LIKE @__search_1_1 OR [p].[ContractorName] LIKE @__search_1_2 OR [p].[ConsultantName] LIKE @__search_1_2)
+    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND ([p].[Name] ILike @__search_1 OR COALESCE([p].[TenderNumber], N'') ILike @__search_1_1 OR [p].[ContractorName] ILike @__search_1_2 OR [p].[ConsultantName] ILike @__search_1_2)
     ORDER BY [p].[Name]
     OFFSET @__p_2 ROWS FETCH NEXT @__p_3 ROWS ONLY
 ) AS [t]
@@ -17975,7 +17975,7 @@ ORDER BY [t].[Name], [t].[Id], [t0].[Id], [t1].[Id], [t2].[Id], [t3].[Id], [u].[
 2026-03-20 14:32:38.425 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__Format_1='?' (Size = 300), @__Format_1_1='?' (Size = 100), @__Format_1_2='?' (Size = 200)], CommandType='"Text"', CommandTimeout='30']
 SELECT COUNT(*)
 FROM [Projects] AS [p]
-WHERE [p].[IsDeleted] = CAST(0 AS bit) AND ([p].[Name] LIKE @__Format_1 OR COALESCE([p].[TenderNumber], N'') LIKE @__Format_1_1 OR [p].[ContractorName] LIKE @__Format_1_2 OR [p].[ConsultantName] LIKE @__Format_1_2)
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND ([p].[Name] ILike @__Format_1 OR COALESCE([p].[TenderNumber], N'') ILike @__Format_1_1 OR [p].[ContractorName] ILike @__Format_1_2 OR [p].[ConsultantName] ILike @__Format_1_2)
 2026-03-20 14:32:38.428 +03:00 [INF] Handled GetAllProjectsQuery in 69ms
 2026-03-20 14:32:38.429 +03:00 [INF] Executing OkObjectResult, writing value of type 'RVDMS.Application.Common.PagedResponse`1[[RVDMS.Application.Queries.Projects.ProjectDto, RVDMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
 2026-03-20 14:32:38.430 +03:00 [INF] Executed action RVDMS.Api.Controllers.ProjectsController.GetProjects (RVDMS.Api) in 72.3555ms

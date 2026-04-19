@@ -53,9 +53,7 @@
           <p class="text-slate-600">Tender: {{ myProject.tenderNumber }}</p>
         </div>
 
-        <!-- User Menu with Dropdown -->
         <div class="flex items-center gap-2">
-          <!-- Refresh Button -->
           <button
             @click="refreshProject"
             class="p-2 text-slate-600 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg transition-colors"
@@ -90,7 +88,7 @@
           </p>
         </div>
 
-        <!-- Time Card - Now in Months -->
+        <!-- Time Card -->
         <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
           <div class="flex items-center justify-between mb-3">
             <div class="p-2 bg-blue-100 rounded-lg">
@@ -111,7 +109,7 @@
           <p class="text-xs text-slate-400 mt-2">Target: {{ formatDate(myProject.endDate) }}</p>
         </div>
 
-        <!-- Budget Card - Updated: Contract Sum -->
+        <!-- Budget Card - FULL CONTRACT SUM -->
         <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
           <div class="flex items-center justify-between mb-3">
             <div class="p-2 bg-purple-100 rounded-lg">
@@ -119,12 +117,14 @@
             </div>
             <span class="text-xs font-medium px-2 py-1 bg-slate-100 rounded-full">Contract</span>
           </div>
-          <p class="text-2xl font-bold text-slate-900">
-            KES {{ formatCurrency(myProject.contractSum) }}
+          <p class="text-xl font-bold text-slate-900 break-all">
+            KES {{ formatCurrencyFull(myProject.contractSum) }}
           </p>
           <p class="text-sm text-slate-500 mt-1">Contract Sum</p>
           <div class="flex justify-between text-xs mt-3">
-            <span class="text-slate-600">Certified: KES {{ formatCurrency(certifiedAmount) }}</span>
+            <span class="text-slate-600"
+              >Certified: KES {{ formatCurrencyFull(certifiedAmount) }}</span
+            >
             <span class="text-emerald-600">{{ certifiedPercentage }}% Certified</span>
           </div>
         </div>
@@ -206,7 +206,6 @@
                 <div class="lg:col-span-1 bg-slate-50 rounded-lg p-4 flex flex-col items-center">
                   <div class="relative w-40 h-40">
                     <svg class="w-full h-full" viewBox="0 0 100 100">
-                      <!-- Background circle -->
                       <circle
                         cx="50"
                         cy="50"
@@ -215,7 +214,6 @@
                         stroke="#e2e8f0"
                         stroke-width="10"
                       />
-                      <!-- Progress circle -->
                       <circle
                         cx="50"
                         cy="50"
@@ -228,14 +226,12 @@
                         :stroke-dashoffset="283 - (283 * myProject.currentPhysicalProgress) / 100"
                         transform="rotate(-90 50 50)"
                       />
-                      <!-- Center text -->
                       <text
                         x="50"
                         y="50"
                         text-anchor="middle"
                         dominant-baseline="middle"
-                        class="text-2xl font-bold"
-                        fill="#1e293b"
+                        class="text-2xl font-bold fill-slate-900"
                       >
                         {{ myProject.currentPhysicalProgress }}%
                       </text>
@@ -249,7 +245,6 @@
                 <div class="lg:col-span-2 bg-slate-50 rounded-lg p-4">
                   <h4 class="text-sm font-medium text-slate-900 mb-3">Progress vs Time</h4>
                   <div class="h-48 relative">
-                    <!-- Simple bar chart representation -->
                     <div
                       class="absolute bottom-0 left-0 right-0 flex items-end justify-around h-40"
                     >
@@ -377,20 +372,20 @@
               </div>
             </div>
 
-            <!-- Budget Breakdown - Updated with Certified Amount -->
+            <!-- Budget Breakdown - FULL CONTRACT SUM -->
             <div class="bg-slate-50 rounded-lg p-4">
               <h4 class="text-sm font-medium text-slate-900 mb-3">Budget Breakdown</h4>
               <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div>
                   <p class="text-xs text-slate-500 mb-1">Contract Sum</p>
-                  <p class="text-lg font-semibold text-slate-900">
-                    KES {{ formatCurrency(myProject.contractSum) }}
+                  <p class="text-md font-semibold text-slate-900 break-all">
+                    KES {{ formatCurrencyFull(myProject.contractSum) }}
                   </p>
                 </div>
                 <div>
                   <p class="text-xs text-slate-500 mb-1">Certified Amount</p>
-                  <p class="text-lg font-semibold text-emerald-700">
-                    KES {{ formatCurrency(certifiedAmount) }}
+                  <p class="text-md font-semibold text-emerald-700 break-all">
+                    KES {{ formatCurrencyFull(certifiedAmount) }}
                   </p>
                 </div>
                 <div>
@@ -414,7 +409,7 @@
             </div>
           </div>
 
-          <!-- REPORTS TAB (unchanged from previous) -->
+          <!-- REPORTS TAB -->
           <div v-if="activeTab === 'reports'" class="space-y-6">
             <!-- Upload Section with Geolocation -->
             <div class="bg-slate-50 rounded-lg p-5 border border-slate-200">
@@ -550,9 +545,9 @@
             <div>
               <div class="flex items-center justify-between mb-4">
                 <h3 class="text-sm font-medium text-slate-900">All Weekly Reports</h3>
-                <span class="text-xs bg-slate-100 px-2 py-1 rounded-full">
-                  {{ reports.length }} total
-                </span>
+                <span class="text-xs bg-slate-100 px-2 py-1 rounded-full"
+                  >{{ reports.length }} total</span
+                >
               </div>
 
               <div v-if="reportsLoading" class="text-center py-8">
@@ -582,15 +577,13 @@
                         <h4 class="text-sm font-medium text-slate-900">{{ report.title }}</h4>
                         <span
                           class="text-xs bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full"
+                          >{{ report.progress }}% Complete</span
                         >
-                          {{ report.progress }}% Complete
-                        </span>
                       </div>
                       <p class="text-xs text-slate-500 mb-2">
                         {{ formatDate(report.createdAt) }} • {{ report.createdByName || "You" }}
                       </p>
                       <p class="text-sm text-slate-600 mb-3">{{ report.description }}</p>
-
                       <div class="flex items-center gap-4">
                         <a
                           :href="report.filePath"
@@ -699,30 +692,20 @@ const getRemainingMonths = (days) => {
 
 const formatRemainingTime = (days) => {
   if (!days || days <= 0) return "Completed";
-
   const months = getRemainingMonths(days);
   const wholeMonths = Math.floor(months);
   const decimalMonths = months - wholeMonths;
-
-  if (months < 1) {
-    return `${days} day${days !== 1 ? "s" : ""}`;
-  }
-
-  if (decimalMonths > 0.85) {
-    return `${wholeMonths + 1} month${wholeMonths + 1 !== 1 ? "s" : ""}`;
-  } else if (decimalMonths > 0.35) {
-    return `${wholeMonths}.5 month${wholeMonths !== 0 ? "s" : ""}`;
-  } else if (decimalMonths > 0.1) {
+  if (months < 1) return `${days} day${days !== 1 ? "s" : ""}`;
+  if (decimalMonths > 0.85) return `${wholeMonths + 1} month${wholeMonths + 1 !== 1 ? "s" : ""}`;
+  if (decimalMonths > 0.35) return `${wholeMonths}.5 month${wholeMonths !== 0 ? "s" : ""}`;
+  if (decimalMonths > 0.1)
     return `${wholeMonths} month${wholeMonths !== 1 ? "s" : ""} ${Math.round(decimalMonths * 30)} days`;
-  } else {
-    return `${wholeMonths} month${wholeMonths !== 1 ? "s" : ""}`;
-  }
+  return `${wholeMonths} month${wholeMonths !== 1 ? "s" : ""}`;
 };
 
 // Helper: Calculate certified amount based on progress
 const certifiedAmount = computed(() => {
   if (!myProject.value) return 0;
-  // Certified amount is based on physical progress percentage
   return (myProject.value.contractSum * myProject.value.currentPhysicalProgress) / 100;
 });
 
@@ -731,28 +714,28 @@ const certifiedPercentage = computed(() => {
   return myProject.value.currentPhysicalProgress;
 });
 
+// FULL CURRENCY FORMAT - NO ROUNDING
+const formatCurrencyFull = (value) => {
+  if (!value && value !== 0) return "0";
+  const number = typeof value === "string" ? parseFloat(value) : value;
+  return number.toLocaleString("en-KE", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  });
+};
+
 // Chart calculations
-const plannedProgress = computed(() => {
-  return Math.min(myProject.value?.timeElapsedPercentage || 0, 100);
-});
-
-const plannedProgressHeight = computed(() => {
-  return (plannedProgress.value / 100) * 160;
-});
-
-const actualProgressHeight = computed(() => {
-  return ((myProject.value?.currentPhysicalProgress || 0) / 100) * 160;
-});
-
-const varianceHeight = computed(() => {
-  const variance = Math.abs(myProject.value?.variance || 0);
-  return (Math.min(variance, 100) / 100) * 160;
-});
-
-const varianceClass = computed(() => {
-  const variance = myProject.value?.variance || 0;
-  return variance >= 0 ? "bg-emerald-200" : "bg-red-200";
-});
+const plannedProgress = computed(() => Math.min(myProject.value?.timeElapsedPercentage || 0, 100));
+const plannedProgressHeight = computed(() => (plannedProgress.value / 100) * 160);
+const actualProgressHeight = computed(
+  () => ((myProject.value?.currentPhysicalProgress || 0) / 100) * 160,
+);
+const varianceHeight = computed(
+  () => (Math.min(Math.abs(myProject.value?.variance || 0), 100) / 100) * 160,
+);
+const varianceClass = computed(() =>
+  (myProject.value?.variance || 0) >= 0 ? "bg-emerald-200" : "bg-red-200",
+);
 
 const progressCircleColor = computed(() => {
   const progress = myProject.value?.currentPhysicalProgress || 0;
@@ -766,15 +749,6 @@ const progressBarClass = computed(() => {
   if (myProject.value?.variance < -10) return "bg-amber-600";
   return "bg-emerald-600";
 });
-
-// Methods
-const formatCurrency = (value) => {
-  if (!value) return "0";
-  if (value >= 1000000) {
-    return `${(value / 1000000).toFixed(2)}M`;
-  }
-  return value.toLocaleString();
-};
 
 const formatDate = (dateString) => {
   if (!dateString) return "N/A";
@@ -806,7 +780,6 @@ const refreshProject = async () => {
 
 const fetchReports = async () => {
   if (!myProject.value) return;
-
   reportsLoading.value = true;
   try {
     const response = await apiClient.get(`/Reports/project/${myProject.value.id}`);
@@ -821,14 +794,11 @@ const fetchReports = async () => {
 
 const checkGeolocation = async () => {
   if (!myProject.value) return;
-
   try {
     locationStatus.value = "Getting your location...";
-
     const position = await authStore.getCurrentPosition();
     const { latitude, longitude } = position.coords;
     currentLocation.value = { latitude, longitude };
-
     isWithinGeofence.value = true;
     locationStatus.value = "✓ Location detected - you can upload reports";
   } catch (error) {
@@ -842,29 +812,24 @@ const checkGeolocation = async () => {
 const handleFileChange = (event) => {
   const file = event.target.files[0];
   fileError.value = "";
-
   if (!file) {
     selectedFile.value = null;
     return;
   }
-
   const validTypes = [".pdf", ".xls", ".xlsx", ".xlsm"];
   const extension = "." + file.name.split(".").pop().toLowerCase();
-
   if (!validTypes.includes(extension)) {
     fileError.value = "Only PDF and Excel files are allowed";
     event.target.value = "";
     selectedFile.value = null;
     return;
   }
-
   if (file.size > 10 * 1024 * 1024) {
     fileError.value = "File size must be less than 10MB";
     event.target.value = "";
     selectedFile.value = null;
     return;
   }
-
   selectedFile.value = file;
 };
 
@@ -873,25 +838,20 @@ const submitReport = async () => {
     toast.error("You must be within the project site to submit a report");
     return;
   }
-
   if (!selectedFile.value) {
     fileError.value = "Please select a file";
     return;
   }
-
   if (reportForm.value.progress <= myProject.value.currentPhysicalProgress) {
     toast.error(
       `Progress must be greater than current (${myProject.value.currentPhysicalProgress}%)`,
     );
     return;
   }
-
   submitting.value = true;
-
   try {
     const position = await authStore.getCurrentPosition();
     const { latitude, longitude } = position.coords;
-
     const formData = new FormData();
     formData.append("Title", reportForm.value.title);
     formData.append("Description", reportForm.value.description);
@@ -900,31 +860,15 @@ const submitReport = async () => {
     formData.append("SubmissionLatitude", latitude);
     formData.append("SubmissionLongitude", longitude);
     formData.append("File", selectedFile.value);
-
     const response = await apiClient.post("/Reports", formData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
+      headers: { "Content-Type": "multipart/form-data" },
     });
-
     const { isSuccess, error } = response.data;
-
-    if (!isSuccess) {
-      throw new Error(error || "Failed to submit report");
-    }
-
+    if (!isSuccess) throw new Error(error || "Failed to submit report");
     toast.success("Report submitted successfully!");
-
-    reportForm.value = {
-      title: "",
-      progress: 0,
-      description: "",
-    };
+    reportForm.value = { title: "", progress: 0, description: "" };
     selectedFile.value = null;
-    if (fileInput.value) {
-      fileInput.value.value = "";
-    }
-
+    if (fileInput.value) fileInput.value.value = "";
     await Promise.all([fetchReports(), projectStore.fetchMyProject()]);
   } catch (error) {
     console.error("Error submitting report:", error);

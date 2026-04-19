@@ -27,7 +27,7 @@ namespace RVDMS.Infrastructure.Configurations
 
             builder.Property(pa => pa.AssignedAt)
                 .IsRequired()
-                .HasDefaultValueSql("GETUTCDATE()");
+                .HasDefaultValueSql("NOW()");
 
             // Indexes
             builder.HasIndex(pa => new { pa.ProjectId, pa.UserId }).IsUnique();
@@ -37,10 +37,10 @@ namespace RVDMS.Infrastructure.Configurations
 
             // Composite index for finding active assignments
             builder.HasIndex(pa => new { pa.ProjectId, pa.Role, pa.RevokedAt })
-                .HasFilter("[RevokedAt] IS NULL AND [Role] IS NOT NULL");
+                .HasFilter("\"RevokedAt\" IS NULL AND \"Role\" IS NOT NULL");
 
             builder.HasIndex(pa => new { pa.ProjectId, pa.Role })
-                .HasFilter("[RevokedAt] IS NULL");
+                .HasFilter("\"RevokedAt\" IS NULL");
 
             // Relationships
             builder.HasOne(pa => pa.Project)

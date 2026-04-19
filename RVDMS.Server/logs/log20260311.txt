@@ -176,7 +176,7 @@ CREATE TABLE [Wards] (
     [UpdatedBy] nvarchar(450) NOT NULL,
     [IsDeleted] bit NOT NULL,
     CONSTRAINT [PK_Wards] PRIMARY KEY ([Id]),
-    CONSTRAINT [CK_Ward_Code_Format] CHECK (Code IS NULL OR Code LIKE '[A-Z0-9][A-Z0-9][A-Z0-9]'),
+    CONSTRAINT [CK_Ward_Code_Format] CHECK (Code IS NULL OR Code ILike '[A-Z0-9][A-Z0-9][A-Z0-9]'),
     CONSTRAINT [FK_Wards_Constituencies_ConstituencyId] FOREIGN KEY ([ConstituencyId]) REFERENCES [Constituencies] ([Id]) ON DELETE NO ACTION
 );
 2026-03-11 10:41:33.642 +03:00 [INF] Executed DbCommand (14ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
