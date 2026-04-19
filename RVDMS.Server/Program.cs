@@ -107,6 +107,10 @@ var app = builder.Build();
 app.UseDefaultFiles();
 app.UseStaticFiles();
 
+using var scope = app.Services.CreateScope();
+var initializer = scope.ServiceProvider.GetRequiredService<DbInitializer>();
+await initializer.SeedAsync();
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -118,13 +122,12 @@ if (app.Environment.IsDevelopment())
             options.RoutePrefix = "swagger";
         }
     });
-    using var scope = app.Services.CreateScope();
-    var initializer = scope.ServiceProvider.GetRequiredService<DbInitializer>();
-    await initializer.SeedAsync();
+    app.UseHttpsRedirection();
+
 }
 app.UseMiddleware<ExceptionMiddleware>();
 
-app.UseHttpsRedirection();
+
 app.UseCors("AllowFrontend");
 app.UseAuthentication();
 
