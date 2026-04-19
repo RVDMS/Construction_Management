@@ -2,9 +2,6 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
-# Copy solution file (if exists)
-COPY *.sln . 2>nul || true
-
 # Copy all project files
 COPY RVDMS.Server/*.csproj ./RVDMS.Server/
 COPY RVDMS.Application/*.csproj ./RVDMS.Application/
