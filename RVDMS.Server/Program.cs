@@ -112,7 +112,7 @@ var initializer = scope.ServiceProvider.GetRequiredService<DbInitializer>();
 await initializer.SeedAsync();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
 {
     app.UseSwagger();
     app.UseSwaggerUI(options =>
@@ -122,8 +122,12 @@ if (app.Environment.IsDevelopment())
             options.RoutePrefix = "swagger";
         }
     });
-    app.UseHttpsRedirection();
+   
 
+}
+if (app.Environment.IsDevelopment())
+{
+    app.UseHttpsRedirection();
 }
 app.UseMiddleware<ExceptionMiddleware>();
 
@@ -134,6 +138,14 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapGet("/", () => Results.Ok(new
+{
+    message = "RVDMS API is running",
+    swagger = "/swagger",
+    environment = app.Environment.EnvironmentName,
+    status = "healthy"
+}));
 
 app.MapFallbackToFile("/index.html");
 
