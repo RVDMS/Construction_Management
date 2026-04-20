@@ -38,14 +38,13 @@ logs/
 *.ldf
 *.ndf
 
-# Configuration files with secrets (CRITICAL - ADD THESE!)
-appsettings.Development.json
-appsettings.Production.json
-appsettings.Staging.json
-*.local.json
-*.secret.json
-**/appsettings.*.json
-!appsettings.json
+# Configuration files with secrets (CRITICAL)
+**/appsettings.json
+**/appsettings.Development.json
+**/appsettings.Production.json
+**/appsettings.Staging.json
+**/*.local.json
+**/*.secret.json
 
 # Environment variables
 .env
